@@ -1,0 +1,39 @@
+<!--pages/memberLevels/index.wxml-->
+<view class="page_app page_pd_app member_levels_section">
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <mp-cells title="">
+        <mp-cell  value="{{itemName.level_name}}" footer=""  wx:for="{{level_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+            <image slot="icon" src="../../assets/img/img.png" style="margin-right: 12px;vertical-align: middle;width:40px; height: 40px;"></image>
+        </mp-cell>
+ 
+    </mp-cells>
+    </scroll-view>
+  <view class="add_view_btn">
+    <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="openConfirm">添加</button>
+    <mp-dialog title="添加等级" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+      <mp-form-page title="" subtitle="">
+        <mp-form ext-class="dialog_form" id="form"  models="{{formData}}">
+            <mp-cells title="" footer="">
+                <label>
+                    <mp-cell prop="level_name" title="等级名称" ext-class="">
+                        <input bindinput="formInputChange" data-field="level_name" class="weui-input" placeholder="请输入等级名称"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="discount" title="购买折扣" ext-class="">
+                        <input bindinput="formInputChange" data-field="discount" class="weui-input" placeholder="请输入购买折扣"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="balance" title="金额" ext-class=" weui-cell_vcode">
+                        <input bindinput="formInputChange" data-field="balance" class="weui-input" placeholder="请输入金额"/>
+                    </mp-cell>
+                </label>
+                <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="save_level">保存</button>
+
+            </mp-cells>
+        </mp-form>
+    </mp-form-page>
+    </mp-dialog>
+  </view>
+</view>

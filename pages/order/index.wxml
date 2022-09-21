@@ -1,0 +1,79 @@
+<!--pages/order/index.wxml-->
+<view class="page_app page_pd_app cards_page_section order_page_section">
+  <!--搜索开始-->
+  <view class="cards_search_con">
+    <view class="search_con">
+      <input type="text" placeholder="请输入搜索内容" />
+      <icon class="search_icon" type="search" size="18"></icon>
+      <view class="search_con_btn">搜索</view>
+    </view>
+    <button class="share_btn aux_btn" type="primary" plain="true" size="mini" bindtap="shareOrderHandle">分享今日预约订单</button>
+  </view>
+  <!--订单列表开始-->
+  <view class="order_tab_section">
+    <!--tab切换开始-->
+    <view class="order_tab_navbar">
+      <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">全部</view>
+      <view class="order_tab_item {{orderState==='1'?'active':''}}" data-index="1" bindtap="changeState">待使用</view>
+      <view class="order_tab_item {{orderState==='3'?'active':''}}" data-index="3" bindtap="changeState">已完成</view>
+      <view class="order_tab_item {{orderState==='4'?'active':''}}" data-index="4" bindtap="changeState">已取消</view>
+    </view>
+  </view>
+  <!--列表内容开始-->
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <view class="order_list_section">
+      <!--列表开始-->
+      <view class="order_li_con"  wx:for="{{dataList}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+        <navigator url="../orderDetail/index?id={{itemName.id}}">
+          <view class="order_li_top">
+            <!-- <text class="order_li_num">订单号：123456789</text> -->
+
+            <view class="order_li_num">
+              <icon class="store_icon iconfont icon-stores" size="14" ></icon>
+              门店：{{itemName.title}}
+            </view>
+            <text class="order_li_state">已使用</text>
+          </view>
+          <view class="order_li_infor">
+            <!-- <view class="order_infor_ba">
+              <view class="order_infor_store order_infor_li">
+                <icon class="store_icon iconfont icon-stores" size="14" ></icon>
+                <text>门店：{{itemName.title}}</text>
+              </view>
+              <view class="order_infor_time order_infor_li">
+                <icon class="store_icon iconfont icon-yiliaohangyedeICON-" size="14" ></icon>
+                <text>预约时间：{{itemName.appointment_date}} {{itemName.appointment_time}}</text>
+              </view>
+            </view> -->
+            <view class="order_infor_con">
+              <view class="order_infor_list">
+                <view class="order_infor_li">
+                  <view class="order_infor_label">预约剧本：</view>
+                  <text class="order_infor_text">{{itemName.script_name}}</text>
+                </view>
+                <view class="order_infor_li">
+                  <view class="order_infor_label">预约时间：</view>
+                  <text class="order_infor_text">{{itemName.appointment_date}} {{itemName.appointment_time}}</text>
+                </view>
+                <view wx:if="{{itemName.mode}}" class="order_infor_li">
+                  <view class="order_infor_label">预约模式：</view>
+                  <text class="order_infor_text">{{itemName.mode}}</text>
+                </view>
+                <view class="order_infor_li">
+                  <view class="order_infor_label">预约人：</view>
+                  <text class="order_infor_text">{{itemName.name}}</text>
+                </view>
+                <view class="order_infor_li">
+                  <view class="order_infor_label">预约电话：</view>
+                  <text class="order_infor_text">{{itemName.phone}}</text>
+                </view>
+              </view>
+              <view class="order_price">￥{{itemName.publish_price}}</view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      
+    </view>
+  </scroll-view>
+</view>

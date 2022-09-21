@@ -1,0 +1,351 @@
+<!--pages/script/index.wxml-->
+<view class="page_app page_pd_app cards_page_section" >
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <!--搜索开始-->
+  <view class="cards_search_con">
+    <view class="search_con">
+
+      <form bindsubmit="formSubmit">
+        <input type="text" placeholder="请输入搜索内容" bindinput="input_name" name="query_name" />
+        <icon class="search_icon" type="search" size="18"></icon>
+        <view class="search_con_btn" bindtap="name_filter">搜索</view>
+        <!-- <button class="wehx-foot-btn" hover-class="wehx-button_hover" formType="submit">确定</button> -->
+      </form>
+
+    </view>
+    <view class="screen_btn" bindtap="filterBtn">
+      <icon class="icon_sx iconfont icon-shaixuan"></icon>
+      <text>筛选</text>
+    </view>
+  </view>
+  <!--筛选开始-->
+  <view class="screen_content">
+    <view class="screen_con_li">
+      <view class="screen_label">排序</view>
+      <view class="screen_list">
+        <view class="screen_li active">全部</view>
+        <view class="screen_li">推荐</view>
+        <view class="screen_li">最新</view>
+        <view class="screen_li">热门</view>
+      </view>
+    </view>
+    <!-- <view class="screen_con_li">
+      <view class="screen_label">类型</view>
+      <view class="screen_list">
+        <view class="screen_li active">全部</view>
+        <view class="screen_li">盒装</view>
+        <view class="screen_li">独家</view>
+        <view class="screen_li">城限</view>
+      </view>
+    </view> -->
+  </view>
+  <!--内容列表开始-->
+  <view class="card_list_section">
+    <!-- <view class="card_count">剧本总计：<text>{{total}}</text></view> -->
+    <!--列表开始-->
+    <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+      <view class="card_list_con {{'added'+dataList.length%2}}">
+        <!-- <navigator 
+        class="panel_list" 
+        wx:for="{{dataList}}"
+        wx:for-index="idx"
+        wx:for-item="itemName"
+        wx:key="idx" 
+        data-id="{{itemName.script_code}}"
+        url="../scriptDetail/index?id={{itemName.script_code}}"
+        >
+          <view class="imgbox">
+            <image class="thumbnail" src="{{base_file_url+itemName.script_cover}}"></image>
+            <view class="price-reduction" wx:if="{{itemName.publish_price-itemName.discounted_price}}">
+              直降<text>{{itemName.publish_price-itemName.discounted_price}}</text>元
+            </view>
+          </view>
+          <view class="info">
+            <view class="title">{{itemName.script_name}}</view>
+            <view class="tag">
+              <view>{{itemName.script_person}}</view>
+              <view>{{itemName.duration}}</view>
+              <view>{{itemName.subject_type}}</view>
+              <view>{{itemName.script_difficulty}}</view>
+            </view>
+            <view class="price">
+              ￥{{itemName.discounted_price }}
+              <text>￥{{ itemName.publish_price}}</text>
+              <view class="opening_count">
+                已售{{itemName.opening_count}}
+              </view>
+            </view>
+          </view>
+          <view class="card_state" wx:if="{{itemName.status===1}}">已上架</view>
+            <view class="card_state card_state2" wx:else>未上架</view>
+        </navigator> -->
+        
+        <mp-slideview  class="card_slideview" buttons="{{itemName.status===1 ?slideButtons1:slideButtons}}" bindbuttontap="slideButtonTap" duration="500" wx:for="{{dataList}}" ext-class="card_li_wrap" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.script_code}}" data-status="{{itemName.status}}" data-name="{{itemName.script_name}}" data-data="{{itemName}}">
+          <view class="card_li">
+            <navigator url="../scriptDetail/index?id={{itemName.script_code}}">
+              <view class="card_li_img">
+                <image src="{{base_file_url+itemName.script_cover}}"></image>
+              </view>
+              <view class="card_li_infor">
+                <view class="card_li_head card_li_l">
+                  <text class="card_li_tit">{{itemName.script_name}}</text>
+                  <view class="card_head_fr">开本次数:{{itemName.opening_count}}</view>
+                  <view class="card_type up_type" wx:if="{{itemName.status===1}}">已上架</view>
+                  <view class="card_type down_type" wx:else>未上架</view>
+                </view>
+                <view class="card_li_center card_li_l">
+                  <view class="card_li_tag">
+                    <view>{{itemName.script_person}}</view>
+                    <view>{{itemName.duration}}</view>
+                    <view>{{itemName.subject_type}}</view>
+                    <view>{{itemName.script_difficulty}}</view>
+                  </view>
+                </view>
+                <view class="card_li_bottom card_li_l">
+                  <view class="card_price">
+                    <view class="card_price_num">
+                      <view class="card_price_n">￥{{itemName.publish_price}}</view>
+                    </view>
+                    <view class="card_price_num">
+                      <view class="card_price_z">折扣价：￥{{itemName.discounted_price}}</view>
+                    </view>
+                    <view class="card_price_edit"  catchtap="editChange" data-scriptinfo="{{itemName}}">
+                      <icon size="20" class="iconfont icon-bianji"></icon>
+                    </view>
+                  </view>
+                  <view class="card_price_fr">
+                    <navigator url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}">
+                      <icon size="22" class="iconfont icon-qita"></icon>
+                    </navigator>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </mp-slideview>
+        <!-- <mp-slideview buttons="{{itemName.status===1 ?slideButtons1:slideButtons}}" bindbuttontap="slideButtonTap" duration="500" wx:for="{{dataList}}" ext-class="card_li" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.script_code}}" data-status="{{itemName.status}}" data-name="{{itemName.script_name}}" data-data="{{itemName}}">
+          <view class="card_li">
+            <navigator url="../scriptDetail/index?id={{itemName.script_code}}">
+              <view class="card_li_img">
+                <image src="{{base_file_url+itemName.script_cover}}"></image>
+              </view>
+              <view class="card_li_infor">
+                <view class="card_li_head card_li_l">
+                  <text class="card_li_tit">{{itemName.script_name}}</text>
+                  <view class="card_head_fr">开本次数:{{itemName.opening_count}}</view>
+                  <view class="card_type up_type" wx:if="{{itemName.status===1}}">已上架</view>
+                  <view class="card_type down_type" wx:else>未上架</view>
+                </view>
+                <view class="card_li_center card_li_l">
+                  <view class="card_li_tag">
+                    <view>{{itemName.script_person}}</view>
+                    <view>{{itemName.duration}}</view>
+                    <view>{{itemName.subject_type}}</view>
+                    <view>{{itemName.script_difficulty}}</view>
+                  </view>
+                </view>
+                <view class="card_li_bottom card_li_l">
+                  <view class="card_price">
+                    <view class="card_price_num">
+                      <view class="card_price_n">￥{{itemName.publish_price}}</view>
+                    </view>
+                    <view class="card_price_num">
+                      <view class="card_price_z">折扣价：￥{{itemName.discounted_price}}</view>
+                    </view>
+                    <view class="card_price_edit" catchtap="stop" catchtap="editChange" data-scriptinfo="{{itemName}}">
+                      <icon size="20" class="iconfont icon-bianji"></icon>
+                    </view>
+                  </view>
+                  <view class="card_price_fr">
+                    <navigator url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}">
+                      <icon size="22" class="iconfont icon-qita"></icon>
+                    </navigator> -->
+                    <!-- <picker wx:if="{{itemName.status===1}}" data-scriptname="{{itemName.script_name}}" data-scriptcode="{{itemName.script_code}}" data-status="1" catchtap="stop" range="{{otherRange1}}" range-key="name" bindchange="otherChange">
+                      <icon size="22" class="iconfont icon-qita"></icon>
+                    </picker>
+                    <picker wx:else catchtap="stop" data-scriptname="{{itemName.script_name}}" data-scriptcode="{{itemName.script_code}}" data-status="2" range="{{otherRange2}}" range-key="name" bindchange="otherChange">
+                      <icon size="22" class="iconfont icon-qita"></icon>
+                    </picker> -->
+                  <!-- </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </mp-slideview> -->
+        <!-- <view class="card_li">
+        <navigator url="../scriptDetail/index">
+          <view class="card_li_img">
+            <image src="../../assets/img/img.png"></image>
+          </view>
+          <view class="card_li_infor">
+            <view class="card_li_head card_li_l">
+              <text class="card_li_tit">剧本名称</text>
+              <view class="card_head_fr">开本次数:1000</view>
+            </view>
+            <view class="card_li_center card_li_l">
+              <view class="card_li_tag">
+                <view>7人</view>
+                <view>现实</view>
+                <view>古装</view>
+                <view>困难</view>
+              </view>
+              <view class="card_type down_type">已下架</view>
+            </view>
+            <view class="card_li_bottom card_li_l">
+              <view class="card_price">
+                <view class="card_price_num">
+                  <view class="card_price_n">￥0.00</view>
+                  <view class="card_price_z">折扣价：￥0.00</view>
+                </view>
+                <view class="card_price_edit">
+                  <icon size="20" class="iconfont icon-bianji"></icon>
+                </view>
+              </view>
+              <view class="card_price_fr">
+                <icon size="22" class="iconfont icon-qita"></icon>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+      <view class="card_li">
+        <navigator url="../scriptDetail/index">
+          <view class="card_li_img">
+            <image src="../../assets/img/img.png"></image>
+          </view>
+          <view class="card_li_infor">
+            <view class="card_li_head card_li_l">
+              <text class="card_li_tit">剧本名称</text>
+              <view class="card_head_fr">开本次数:1000</view>
+            </view>
+            <view class="card_li_center card_li_l">
+              <view class="card_li_tag">
+                <view>7人</view>
+                <view>现实</view>
+                <view>古装</view>
+                <view>困难</view>
+              </view>
+              <view class="card_type up_type">已上架</view>
+            </view>
+            <view class="card_li_bottom card_li_l">
+              <view class="card_price">
+                <view class="card_price_num">
+                  <view class="card_price_n">￥0.00</view>
+                  <view class="card_price_z">折扣价：￥0.00</view>
+                </view>
+                <view class="card_price_edit">
+                  <icon size="20" class="iconfont icon-bianji"></icon>
+                </view>
+              </view>
+              <view class="card_price_fr">
+                <icon size="22" class="iconfont icon-qita"></icon>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view> -->
+      </view>
+    </scroll-view>
+  </view>
+  <!--筛选开始-->
+  <view class="{{filterShow?'filter_box active':'filter_box'}}">
+    <view class="dialog_dialog__mask" bindtap="filterBtn"></view>
+    <view class="filter_con">
+      <!-- <view class="filter_back">
+        <icon bindtap="filterBtn" size="16" class="filter_back_icon iconfont icon-jiantouyou"></icon>
+      </view> -->
+      <view class="filter_list_header">剧本库</view>
+      <scroll-view class="filter_list_wrap" scroll-y="true">
+        <view class="filter_list">
+          <view class="filter_tit">题材</view>
+          <view class="filter_list_con">
+            <radio-group class="filter_group {{'filter_group'+subject_list.length%3}}" bindchange="checkboxChange" data-filed="subject_type" data-object="subject_list">
+              <label class="weui-cell {{item.checked?'active':''}} weui-check__label" wx:for="{{subject_list}}" wx:key="index">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.name}}" checked="{{item.checked}}" />
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+
+
+
+
+        <view class="filter_list">
+          <view class="filter_tit">时长</view>
+          <view class="filter_list_con">
+            <radio-group class="filter_group {{'filter_group'+duration_list.length%3}}" bindchange="checkboxChange" data-filed="duration" data-object="duration_list">
+              <label class="weui-cell {{item.checked?'active':''}} weui-check__label" wx:for="{{duration_list}}" wx:key="index">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.name}}" checked="{{item.checked}}" />
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+        <!-- <view class="filter_list">
+          <view class="filter_tit">人数</view>
+          <view class="filter_list_con">
+            <checkbox-group class="filter_group" bindchange="checkboxChange">
+              <label class="weui-cell {{item.checked?'active':''}} weui-check__label" wx:for="{{person_list}}" wx:key="{{item.id}}">
+                <view class="weui-cell__hd">
+                  <checkbox value="{{item.name}}" checked="{{item.checked}}"/>
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+              </label>
+            </checkbox-group>
+          </view>
+        </view> -->
+        <view class="filter_list">
+          <view class="filter_tit">难度</view>
+          <view class="filter_list_con">
+            <radio-group class="filter_group {{'filter_group'+difficulty_list.length%3}}" bindchange="checkboxChange" data-filed="script_difficulty" data-object="difficulty_list">
+              <label class="weui-cell {{item.checked?'active':''}} weui-check__label" wx:for="{{difficulty_list}}" wx:key="index">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.name}}" checked="{{item.checked}}" />
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="from_view_btn">
+        <button class="filter_btn" type="default" formType="reset" bindtap="reset_filter">重置</button>
+        <button class="filter_btn" type="primary" formType="submit" bindtap="start_filter">确定</button>
+      </view>
+    </view>
+  </view>
+  <mp-dialog title="{{dialog_title}}" show="{{dialogShow}}" bindbuttontap="tapDialogButton" ext-class="nobutton">
+    <!-- <mp-form-page title="" subtitle=""> -->
+      <mp-form ext-class="dialog_form" id="form_change_price" models="{{script_detail}}" rules="{{rules}}">
+        <!-- <mp-cells title="" footer=""> -->
+          <!-- <label> -->
+            <mp-cell prop="price" title="价格" ext-class="">
+              <input type="number" bindinput="formInputChange" value="{{script_detail.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
+            </mp-cell>
+          <!-- </label> -->
+          <!-- <label> -->
+            <mp-cell prop="discount" title="折扣" ext-class="">
+              <input type="number" bindinput="formInputChange" data-field="discount" value="{{script_detail.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+            </mp-cell>
+          <!-- </label> -->
+          <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>
+        <!-- </mp-cells> -->
+      </mp-form>
+    <!-- </mp-form-page> -->
+  </mp-dialog>
+
+  <mp-dialog title="剧本删除" show="{{dialogDeleteShow}}" bindbuttontap="tapDialogButton" buttons="{{delete_buttons}}" >
+    <text class="card_head_fr">您确定要删除剧本 '{{script_detail.script_name}}'，删除后可在 导入剧本中重新导入进行上架</text>
+  </mp-dialog>
+
+  <mp-dialog title="剧本下架" show="{{dialogDownShow}}" bindbuttontap="tapDialogDownButton" buttons="{{down_buttons}}" >
+    <text class="card_head_fr">您确定要下架剧本 '{{script_detail.script_name}}' 么？
+
+</text>
+  </mp-dialog>
+</view>

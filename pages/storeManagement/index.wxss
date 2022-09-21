@@ -1,0 +1,4 @@
+/* pages/storeManagement/index.wxss */
+.card_list_scroll{
+  height: 100%;
+}

@@ -1,0 +1,30 @@
+<view class="mask">
+	<wxs src='../../utils/getExactor.wxs' module='util' />
+  <view class='flag' wx:if='{{startTime}}' >
+   <text class='starttime'>{{startTime || ''}}</text>  
+    <text style='position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:20rpx'>至</text> 
+    <text class='endtime'>{{endTime || ''}}</text>
+   </view>
+  <scroll-view scroll-y scroll-top='{{scrolly}}' bindscrolltoupper='showPre' bindscrolltolower='showNext' class='outer'>
+    <view>
+      <view class='nav'>
+        <icon type='cancel' color='#999999' class="leave" catchtap="isShow" ></icon>
+        <text>选择日期</text>
+        <view class='finshed' catchtap="finshed" >完成</view>
+      </view>
+      <view class='days'>
+        <text class="days-item {{dayItem =='日' || dayItem == '六' ? 'red' : ''  }} " wx:key='dayIndex' wx:for='{{days}}' wx:for-item='dayItem' wx:for-index='dayIndex'  bindtap="choose_day" data-day="{{dayItem}}">{{dayItem}}</text>
+      </view>
+      <view class='month' wx:key='monthIntem' wx:for="{{monthList}}" wx:for-item='monthIntem' wx:for-index='monthIndex'>
+        <view style="text-align:center;border-bottom:1px solid #eee;padding-bottom: 10rpx; " >{{monthIntem.year}}年{{monthIntem.month}}月</view>
+        <view class='date-list'>
+         <view class='date dateClear' wx:for='{{monthIntem.startDay}}' wx:key='emptyIndex' wx:for-item='emptyIntem' wx:for-index='tmptyIndex' >{{''}}</view>
+          
+          <view catchtap="selcet" data-index='{{datesIndex}}' data-month='{{monthIntem.month-2}}' data-year='{{monthIntem.year}}' class=" date {{'' + monthIntem.year + '-' +  monthIntem.month + '-' + (datesIndex+1) === currentTime ? 'today' : ''  }} {{'' + monthIntem.year + '-' +  monthIntem.month + '-' + (datesIndex+1) === timeStr ? 'dateActive' : ''  }} {{util.get(monthIntem.year,monthIntem.month-1,datesIndex+1) >= tampStart && util.get(monthIntem.year,monthIntem.month-1,datesIndex+1) < tampEnd ? 'dateActive' : '' }}               {{ monthIntem.startDay==choose_week_day? 'dateActive' : '' }}" wx:for='{{monthIntem.dates}}' wx:key='datesIndex' wx:for-item='datesIntem' wx:for-index='datesIndex' >
+          {{datesIndex+1}}
+          </view>
+        </view>
+      </view>
+    </view> 
+  </scroll-view> 
+</view>

@@ -1,0 +1,43 @@
+<!--pages/payments/index.wxml-->
+<view class="page_app page_pd_app payments_box">
+
+    <mp-form id="form" rules="{{rules}}" models="{{payment_data}}">
+      <mp-cells title="">
+        <label>
+          <mp-cell ext-class="weui-cell_select weui-cell_select-after">
+            <view slot="title" class="weui-label">门店选择</view>
+            <!-- <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
+                            <view class="weui-select">{{countries[countryIndex]}}</view>
+                        </picker> -->
+            <picker range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
+              <view class="weui-select">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</view>
+            </picker>
+          </mp-cell>
+        </label>
+        <label>
+          <mp-cell>
+            <view slot="title" class="weui-label">剧本名称</view>
+            <!-- <picker bindchange="bindScriptChange" value="{{ScriptIndex}}" range="{{dataList}}" range-key="script_name" >
+              <view class="weui-select">{{dataList[ScriptIndex].script_name}}</view>
+            </picker> -->
+            <input class="weui-input" placeholder="" value="{{scriptName}}" disabled/>
+          </mp-cell>
+        </label>
+        <label>
+          <mp-cell  title="收款金额" ext-class="">
+            <input bindinput="formInputChange"  class="weui-input" placeholder="请输入收款金额" value="{{payment_data.price}}"  data-filed="price"/>
+          </mp-cell>
+        </label>
+        <label>
+          <mp-cell has-header="{{false}}" has-footer="{{false}}" title="收款备注" ext-class="">
+            <textarea class="weui-textarea" bindinput="formInputChange"  data-filed="desc"  placeholder="请输入收款备注" style="height: 2.6em"  value="{{payment_data.desc}}"/>
+            <view class="weui-textarea-counter">0/100</view>
+          </mp-cell>
+        </label>
+      </mp-cells>
+    </mp-form>
+    <view slot="button">
+      <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+    </view>
+
+</view>

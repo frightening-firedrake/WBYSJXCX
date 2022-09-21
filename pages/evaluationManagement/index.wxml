@@ -1,0 +1,90 @@
+<!--pages/evaluationManagement/index.wxml-->
+<view class="page_app page_pd_app evaluation_management_section">
+  <view class="evaluation_management_li">
+    <view class="evaluation_li_top">
+      <view class="evaluation_li_img">
+        <image src="../../assets/img/img.png" alt=""></image>
+      </view>
+      <view class="evaluation_user_infor">
+        <view class="user_infor_name"><text>134xxxx1441</text></view>
+        <view class="infor_time">2021-04-13 11:30</view>
+      </view>
+    </view>
+    <view class="evaluation_management_bot">
+      <view class="evaluation_start_box">
+        <view class="evaluation_start detail_start">
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+        </view>
+        <view class="evaluation_time">对局时长5小时</view>
+      </view>
+      <view class="evaluation_content">玩的不错呀玩的不错呀玩的不错呀的不错呀的不错呀的不错呀</view>
+    </view>
+    <view class="evaluation_management_check">
+      <label class="checkbox">
+        <checkbox value="cb" checked="true"/>是否显示
+      </label>
+    </view>
+  </view>
+  <view class="evaluation_management_li">
+    <view class="evaluation_li_top">
+      <view class="evaluation_li_img">
+        <image src="../../assets/img/img.png" alt=""></image>
+      </view>
+      <view class="evaluation_user_infor">
+        <view class="user_infor_name"><text>134xxxx1441</text></view>
+        <view class="infor_time">2021-04-13 11:30</view>
+      </view>
+    </view>
+    <view class="evaluation_management_bot">
+      <view class="evaluation_start_box">
+        <view class="evaluation_start detail_start">
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+        </view>
+        <view class="evaluation_time">对局时长5小时</view>
+      </view>
+      <view class="evaluation_content">玩的不错呀玩的不错呀玩的不错呀的不错呀的不错呀的不错呀</view>
+    </view>
+    <view class="evaluation_management_check">
+      <label class="checkbox">
+        <checkbox value="cb" checked="true"/>是否显示
+      </label>
+    </view>
+  </view>
+  <view class="evaluation_management_li">
+    <view class="evaluation_li_top">
+      <view class="evaluation_li_img">
+        <image src="../../assets/img/img.png" alt=""></image>
+      </view>
+      <view class="evaluation_user_infor">
+        <view class="user_infor_name"><text>134xxxx1441</text></view>
+        <view class="infor_time">2021-04-13 11:30</view>
+      </view>
+    </view>
+    <view class="evaluation_management_bot">
+      <view class="evaluation_start_box">
+        <view class="evaluation_start detail_start">
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+          <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+        </view>
+        <view class="evaluation_time">对局时长5小时</view>
+      </view>
+      <view class="evaluation_content">玩的不错呀玩的不错呀玩的不错呀的不错呀的不错呀的不错呀</view>
+    </view>
+    <view class="evaluation_management_check">
+      <label class="checkbox">
+        <checkbox value="cb" checked="true"/>是否显示
+      </label>
+    </view>
+  </view>
+</view>

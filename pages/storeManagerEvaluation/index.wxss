@@ -1,0 +1,22 @@
+/* pages/storeManagerEvaluation/index.wxss */
+.storemanager_evaluation_section .weui-form{
+padding: 0;
+}
+.storemanager_evaluation_section .weui-form__control-area{
+  margin: 0;
+  margin-top: 40rpx;
+}
+.storemanager_evaluation_section .weui-cells__title{
+  padding: 0;
+}
+.storemanager_evaluation_section .storemanager_evaluation_section {
+  padding: 0;
+}
+.storemanager_evaluation_section .weui-cells__group_form .weui-cell::before,.storemanager_evaluation_section .weui-cells__group_form .weui-cells::before,.storemanager_evaluation_section .weui-cells__group_form .weui-cell::after,.storemanager_evaluation_section .weui-cells__group_form .weui-cells::after{
+  display: none;
+}
+.storemanager_evaluation_section .weui-cells__group_form .weui-cell{
+  padding: 24rpx;
+  border: solid 1px #f1f1f1;
+  border-radius: 8rpx;
+}

@@ -1,0 +1,82 @@
+/* pages/importPage/index.wxss */
+.import_page_section checkbox .wx-checkbox-input {
+  width: 40rpx;
+  height: 40rpx;
+}
+.import_page_select{
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+}
+.import_card_list{
+  /* width: 50%; */
+  display: flex;
+  flex-wrap: wrap;
+}
+.import_card_li{
+  width: calc(50% - 20rpx);
+  margin: 0 10rpx 20rpx;
+}
+.import_card_li.active .import_cardli_con{
+  background-color: #dae1fc;
+}
+.import_card_img{
+  height: 0;
+  padding-top: 138%;
+  position: relative;
+  margin-bottom: 16rpx;
+}
+.import_card_img image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.import_cardli_con{
+  padding: 30rpx;
+  box-shadow: 0 0 20rpx #cad4fd;
+  border-radius: 20rpx;
+}
+.import_card_infor{
+  text-align: center;
+}
+.import_card_name{
+  margin-bottom: 12rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.import_card_infor .card_li_tag{
+  /* justify-content: space-between; */
+  gap: 6rpx;
+  flex-wrap: wrap;
+}
+.card_list_scroll{
+  /* height:calc(100vh - 196rpx); */
+  height: calc(100vh - 72rpx - 1px - 28rpx - 25px - 30rpx - 56px);
+  border-top: 1px solid rgba(103,103,103,0.1);
+}
+.page_app.active{
+  background-color: #4e6eff;
+  color: #ffffff;
+}
+
+.import_page_section .import_button{
+  position: fixed;
+  /* bottom: 58px; */
+  bottom: 152rpx;
+  left: 32rpx;
+  right: 32rpx;
+  width: auto !important;
+}
+.screen_btn{
+  display: flex;
+  align-items: center;
+}
+.daoru{
+  display: inline-block;
+  color: #7089FF;
+  padding:0 20rpx;
+}

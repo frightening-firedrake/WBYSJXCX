@@ -1,0 +1,16 @@
+<!--pages/storeManagerEvaluation/index.wxml-->
+<view class="page_app page_pd_app storemanager_evaluation_section">
+  <mp-form-page title="" subtitle="">
+        <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+            <mp-cells title="店长评价">
+                <mp-cell has-header="{{false}}" has-footer="{{false}}" title="" ext-class="">
+                    <textarea class="weui-textarea" placeholder="请输入店长评价" style="height: 20em" />
+                    <view class="weui-textarea-counter">0/100</view>
+                </mp-cell>
+            </mp-cells>
+        </mp-form>
+        <view slot="button">
+            <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+        </view>
+    </mp-form-page>
+</view>

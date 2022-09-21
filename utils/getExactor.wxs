@@ -1,0 +1,32 @@
+
+module.exports = {
+  parse:function(num){
+    return Math.ceil(num)
+  },
+  insertLine:function insert(str){
+    //根据字符串长度返回不同结果
+    if(str.length <= 3){
+    }
+    //把字符串转化为数组，插入-，再转化为字符串
+    var array = str.split('')
+    array.splice(1,0,'-')    //起始索引，后续索引，内容，可指定多个内容
+    // var changedStr = arr
+    return array.join('')
+  },
+  slice:function(str,num){
+    return str.slice(num)
+  },
+  parseFloat:function(num){
+    return num.toFixed(2)
+  },
+  get:function(num1,num2,num3,num4=12,num5=0,num6=0){
+    var some = getDate(num1,num2,num3,num4,num5,num6).getTime()
+    return some
+  },
+  getTimeStr:function(num1,num2,num3){
+    var str
+    var year = getDate().getFullYear()
+    return year
+  }
+  
+}

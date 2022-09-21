@@ -1,0 +1,90 @@
+<!--pages/setScriptTime/index.wxml-->
+
+<calendar style='display:{{isshowCalendar}}' bindisshowCalendar='bindisshowCalendar' scrolly='{{scrolly}}' bindsendTamp='finshedSelect'></calendar>
+
+<!--pages/setScriptTime/index.wxml-->
+<view class="page_app page_pd_app set_time_box">
+  <!-- <view>{{hour}}:{{minute}}~{{hours_}}:{{minutes_}}</view> -->
+  <mp-form-page title="" subtitle="">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells title="">
+        <label>
+          <mp-cell prop="startDate" title="开本时间" ext-class="">
+            <!-- <picker data-field="date" mode="date" value="{{startDate}}" start="2020-09-01" end="" >
+              <view class="weui-input">{{startDate}}</view>
+            </picker> -->
+            <button bindtap="free">选择</button>
+          </mp-cell>
+        </label>
+      </mp-cells>
+      <mp-cells title="">
+        <mp-cell prop="startDate" title="时间段选择" ext-class="">
+          <!-- <picker data-field="date" mode="time" value="{{startDate}}" start="2020-09-01" end="" bindchange="bindDateChange">
+                      <view class="weui-input">{{startDate}}</view>
+                  </picker> -->
+          <view bindtap="toggleDialog">4444</view>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+    <view slot="button">
+      <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+    </view>
+  </mp-form-page>
+  <!--时间段选择器-->
+  <view class="free-dialog {{ showDialog ? 'free-dialog--show' : '' }}">
+    <view class="free-dialog__mask" bindtap="toggleDialog"></view>
+    <view class="free-dialog__container">
+      <view style="padding: 5% 5% 8%;">
+        <form bindsubmit='submit' bindreset="reset">
+          <view bindtap='freetoBack' class="free-button free-dialog-reset">取消</view>
+          <view bindtap='freeBack' class="free-button free-dialog-submit">确定</view>
+          <checkbox-group class="freedialog_content" bindchange="checkboxChange">
+            <label class="weui-cell weui-check__label" wx:for="{{timesItems}}" wx:key="{{item.value}}">
+              <view class="weui-cell__hd">
+                <checkbox value="{{item.value}}" checked="{{item.checked}}" />
+              </view>
+              <view class="weui-cell__bd">{{item.name}}</view>
+              <view class="del_btn">
+                <mp-icon class="del_icon" type="field" icon="close" color="#ff4e4e" size="{{18}}"></mp-icon>
+              </view>
+            </label>
+          </checkbox-group>
+        </form>
+        <button class="add_times" type="primary" plain="true" bindtap="toggleTimeDialog">
+          <mp-icon extClass="del_icon" type="field" icon="add" color="#4e6eff" size="{{18}}"></mp-icon>添加
+        </button>
+      </view>
+    </view>
+  </view>
+  <!--自定义时段选择-->
+  <view class="dialog_time_section {{showTimeDialog?'dialog_time_show':''}}">
+    <view class="dialog_dialog__mask" bindtap="toggleTimeDialog"></view>
+    <view class="dialog_time_con">
+      <view class="free-button free-dialog-reset" bindtap="clearTimeDialog">取消</view>
+      <view class="free-button free-dialog-submit" bindtap="addTime">确定</view>
+      <picker-view indicator-style="height: 50px;" value="{{value}}" bindchange="bindChange">
+        <picker-view-column>
+          <view wx:for="{{hours}}" wx:key style="line-height: 50px">{{item}}点</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view style="line-height: 50px;text-align: center;">:</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{minutes}}" wx:key style="line-height: 50px">{{item}}分</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view style="line-height: 50px;text-align: center;">~</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{hours_s}}" wx:key style="line-height: 50px">{{item}}点</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view style="line-height: 50px;text-align: center;">:</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{minutes_s}}" wx:key style="line-height: 50px">{{item}}分</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+</view>

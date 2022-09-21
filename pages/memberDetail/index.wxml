@@ -1,0 +1,55 @@
+<!--pages/memberManagement/index.wxml-->
+<view class="page_app page_pd_app member_management_section">
+  <view class="member_management_top">
+    <view class="member_head_portrait">
+      <image src="{{base_file_url+member_detail.avatar}}"></image>
+    </view>
+    <view class="member_name">
+      <text>账户：{{member_detail.moble_phone}}</text>
+    </view>
+  </view>
+  <view class="">
+    <mp-form-page title="" subtitle="">
+        <mp-form ext-class="form_page" id="form" rules="{{rules}}" models="{{member_detail}}">
+          <mp-cells title="">
+                <label>
+                    <mp-cell prop="" title="性别" ext-class="">
+                        <input bindinput="formInputChange" data-field="gender"  value="{{member_detail.gender===1?'女':'男'}}" class="weui-input"  placeholder="您的性别"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="name" title="昵称" ext-class="">
+                        <input bindinput="formInputChange" data-field="name" value="{{member_detail.name}}" class="weui-input" placeholder="请输入昵称"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="" title="微信号" ext-class="">
+                        <input bindinput="formInputChange" data-field="wechat_number"  value="{{member_detail.wechat_number}}"    class="weui-input" placeholder="请输入微信号"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="mobile" title="注册手机号" ext-class=" weui-cell_vcode">
+                        <input bindinput="formInputChange" data-field="moble_phone" class="weui-input"  value="{{member_detail.moble_phone}}"   placeholder="请输入注册手机号"/>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell ext-class="weui-cell_select weui-cell_select-after">
+                        <view slot="title" class="weui-label">会员等级</view>
+                        <picker bindchange="bindLevelChange" value="{{memberIndex}}" range="{{level_list}}" range-key="level_name">
+                            <view class="weui-select">{{level_list[memberIndex].level_name}}</view>
+                        </picker>
+                    </mp-cell>
+                </label>
+                <label>
+                    <mp-cell prop="mobile" title="账户余额" ext-class=" weui-cell_vcode">
+                        <input bindinput="formInputChange" data-field="balance"  value="{{member_detail.balance}}"     class="weui-input" placeholder="请输入账户余额"/>
+                    </mp-cell>
+                </label>
+            </mp-cells>
+        </mp-form>
+        <view slot="button">
+            <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+        </view>
+    </mp-form-page>
+  </view>
+</view>

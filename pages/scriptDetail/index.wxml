@@ -1,0 +1,122 @@
+<!--pages/scriptDetail/index.wxml-->
+<view class="page_app page_pd_app script_detail_section" style="padding-bottom:120rpx;">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <view class="detail_content_li shadow">
+    <view class="detail_content_tit">剧本信息</view>
+    <view class="detail_content">
+        <image class="detail_con_img" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
+        <view class="detail_con_fr">
+            <view class="detail_con_name">
+              <view class="detail_name_fl">
+                <text class="detail_name">{{script_detail.script_name}}</text>
+                <view class="detail_start">
+                  <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+                  <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
+                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
+                </view>
+              </view>
+              <view class="detail_price">￥{{script_detail.publish_price}}</view>
+            </view>
+            <view class="">
+              <view class="card_li_tag">
+       
+                <view>{{script_detail.script_person}}</view>
+                <view>{{script_detail.duration}}</view>
+                <view>{{script_detail.subject_type}}</view>
+                <view>{{script_detail.script_difficulty}}</view>
+              </view>
+            </view>
+            <!-- <view class="detail_con_infor">
+                <view class="detail_infor_fl">
+                    <view class="detail_infor_text">作者：雪国</view>
+                    <view class="detail_infor_text">系列：无</view>
+                    <view class="detail_infor_text detail_infor_p">剧本描述很好的本子很好玩，结局很悲伤！</view>
+                </view>
+            </view> -->
+        </view>
+    </view>
+  </view>
+  <view class="detail_zs_tit">剧本介绍</view>
+  <view class="detail_content_li">
+    <h6 class="detail_content_tit">故事介绍</h6>
+    <view class="detail_content detail_content_bot">
+      <view class="detail_content_p">
+           
+            <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
+        <view class="see_more" bindtap="readmore" hidden="{{!more}}">
+          <view>查看更多</view>
+          <icon size="12" class="more_icon iconfont icon-jiantouxia"></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="detail_content_li" wx:if="{{script_detail.role_list.length>0}}">
+    <h6 class="detail_content_tit">角色介绍</h6>
+    <view class="detail_content">
+      <scroll-view class="scroll_view_role" scroll-x="true" bindscroll="scroll" style="width: 100%">
+        <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+          <view class="role_li_img">
+            <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
+          </view>
+          <view class="role_li_infor">
+            <view class="role_li_name"><text>{{itemName.name}}</text></view>
+            <view class="role_li_text role_li_name">{{itemName.sex}}，{{itemName.age}}</view>
+            <view class="role_li_text role_li_name">{{itemName.introduce}}</view>
+          </view>
+        </view>
+
+      </scroll-view>
+    </view>
+  </view>
+  <view class="detail_content_li detail_edit_box"> 
+    <view class="detail_edit_li">
+      <view class="detail_edit_label">价格：</view>
+      <view class="detail_edit_value price_num">￥{{script_detail.publish_price}}</view>
+      <view bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;" size="20" class="iconfont icon-bianji"></icon></view>
+    </view>
+    <!-- <view class="detail_edit_li">
+      <view class="detail_edit_label">是否上架：</view>
+      <view class="detail_edit_label">
+        <radio-group class="from_view_group" bindchange="radioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{typeItems}}" wx:key="{{item.value}}">
+                <view class="weui-cell__hd">
+                    <radio value="{{script_detail.status}}" checked="{{script_detail.status==1?true:false}}"/>
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+            </label>
+        </radio-group>
+      </view>
+    </view> -->
+  </view>
+  <view class="upordown">
+    <view bindtap="buttonShowDialog"  wx:if="{{script_detail.status===0}}" class="btn btnup">上架</view>
+    <view bindtap="buttonShowDialogDown" wx:if="{{script_detail.status===1}}" class="btn btndown">下架</view>
+  </view>
+
+  <!-- 价格修改与上架弹窗 -->
+  <mp-dialog title="{{dialog_title}}" show="{{dialogShow}}" bindbuttontap="tapDialogButton" ext-class="nobutton">
+    <!-- <mp-form-page title="" subtitle=""> -->
+      <mp-form ext-class="dialog_form" id="form_change_price" models="{{script_detail_Price}}" rules="{{rules}}">
+        <!-- <mp-cells title="" footer=""> -->
+          <!-- <label> -->
+            <mp-cell prop="price" title="价格" ext-class="">
+              <input type="number" bindinput="formInputChange" value="{{script_detail_Price.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
+            </mp-cell>
+          <!-- </label> -->
+          <!-- <label> -->
+            <mp-cell prop="discount" title="折扣" ext-class="">
+              <input type="number" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+            </mp-cell>
+          <!-- </label> -->
+          <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>
+        <!-- </mp-cells> -->
+      </mp-form>
+    <!-- </mp-form-page> -->
+  </mp-dialog>
+<!-- 剧本下架弹窗 -->
+  <mp-dialog title="剧本下架" show="{{dialogDownShow}}" bindbuttontap="tapDialogDownButton" buttons="{{down_buttons}}" >
+    <text class="card_head_fr">您确定要下架剧本 '{{script_detail.script_name}}' 么？</text>
+  </mp-dialog>
+</view>

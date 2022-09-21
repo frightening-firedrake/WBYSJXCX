@@ -1,0 +1,21 @@
+/* pages/memberManagement/index.wxss */
+.member_head_portrait{
+  text-align: center;
+}
+.member_head_portrait image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.member_name{
+  text-align: center;
+  font-size: 28rpx;
+}
+.page_app .weui-form{
+  padding: 10px 0 20px;
+}
+.page_app .weui-form__control-area{
+  margin: 0;
+}
+.page_app .weui-form__control-area{
+  margin-bottom: 0;
+}

@@ -1,0 +1,130 @@
+.mask{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(80,80,80,0.7);
+  z-index: 999;
+}
+
+
+.flag{
+  position: absolute;
+  top:100rpx;
+  left: 50%;
+  transform:translate(-50%,0);
+  width: 464rpx;
+  height: 55rpx;
+  background-color: white;
+  border-radius: 12rpx;
+  color:#666
+}
+
+.starttime , .endtime {
+  display: block;
+  width: 230rpx;
+  height: 55rpx;
+  position: absolute;
+  line-height: 55rpx;
+  text-indent: 28rpx;
+  text-align: center;
+}
+.starttime{
+  left: -4%;
+}
+
+.endtime{
+  left: 50%;
+}
+
+.outer{
+  width: 100vw;
+  background-color: white;
+  position: fixed;
+  top:324rpx;
+  color: #666;
+  bottom: 0;
+}
+.nav{
+  text-align: center;
+  position: sticky;
+  height: 68rpx;
+  background: white;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  right: 0;
+  top:0;
+}
+
+.leave{
+  position: absolute;
+  left: 26rpx;
+}
+.finshed{
+  position: absolute;
+  right: 26rpx;
+  border-radius: 10rpx;
+  padding: 0px 20rpx 4rpx 20rpx;
+  color: white;
+  top:8rpx;
+  background-color: #44af3d;
+}
+
+.days{
+  display: flex;
+  position: sticky;
+  left: 0;
+  height: 80rpx;
+  top: 69rpx;
+  z-index: 99999;
+  background-color: white;
+}
+.days-item{
+  display: block;
+  width: 108rpx;
+  text-align: center;
+  text-indent: -20rpx;
+  padding-top:14rpx;
+}
+.month{
+  margin-top: 40rpx;
+}
+
+
+.red{
+  color:#589654;
+}
+
+
+.date-list{
+  display: flex;
+  flex-flow: wrap row;
+}
+
+.date{
+  width: 106rpx;
+  background-color: white;
+  text-align: center;
+  height: 74rpx;
+  line-height: 74rpx;
+}
+
+.dateClear:active{
+  background-color: white;
+}
+
+.dateActive{
+  color: white !important;
+  background-color: #44af3d;
+}
+.today{
+  color: #44af3d ;
+  box-sizing: border-box;
+}
+
+
+

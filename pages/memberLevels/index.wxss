@@ -1,0 +1,10 @@
+/* pages/memberLevels/index.wxss */
+.member_levels_section .weui-form{
+  padding: 0;
+}
+.member_levels_section .weui-form__control-area{
+  margin: 0;
+}
+.card_list_scroll{
+  height: calc(100vh - 32px - 50px);
+}

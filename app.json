@@ -1,0 +1,90 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/scriptList/index",
+    "pages/importPage/index",
+    "pages/order/index",
+    "pages/myPage/index",
+    "pages/businessInformation/index",
+    "pages/roomManagement/index",
+    "pages/addRoom/index",
+    "pages/hostManagement/index",
+    "pages/memberManagement/index",
+    "pages/memberDetail/index",
+    "pages/financialManagement/index",
+    "pages/storeManagement/index",
+    "pages/memberLevels/index",
+    "pages/scriptDetail/index",
+    "pages/orderDetail/index",
+    "pages/payments/index",
+    "pages/setScriptTime/index",
+    "pages/evaluationManagement/index",
+    "pages/storeManagerEvaluation/index",
+    "pages/policyAgreement/index",
+    "pages/map/map",
+    "pages/qrcode/index",
+    "pages/orderToday/index",
+    "pages/addHost/index",
+    "pages/scriptUtils/index"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "玩本鸭",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
+  "usingComponents":{
+    "calendar":"/pages/calendar/carlendar"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "color": "#333333",
+    "selectedColor": "#2db7f5",
+    "backgroundColor": "#eff6f9",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/img/home-icon.png",
+        "selectedIconPath": "assets/img/home-icon1.png"
+      },
+      {
+        "pagePath": "pages/scriptList/index",
+        "text": "剧本",
+        "iconPath": "assets/img/jb-con.png",
+        "selectedIconPath": "assets/img/jb-con1.png"
+      },
+      {
+        "pagePath": "pages/importPage/index",
+        "text": "导入剧本",
+        "iconPath": "assets/img/add-icon1.png",
+        "selectedIconPath": "assets/img/add-icon1.png"
+      },
+      {
+        "pagePath": "pages/order/index",
+        "text": "订单",
+        "iconPath": "/assets/img/order-icon.png",
+        "selectedIconPath": "/assets/img/order-icon1.png"
+      },
+      {
+        "pagePath": "pages/myPage/index",
+        "text": "我的",
+        "iconPath": "/assets/img/personal-icon.png",
+        "selectedIconPath": "/assets/img/personal-icon1.png"
+      }
+    ]
+  }
+}

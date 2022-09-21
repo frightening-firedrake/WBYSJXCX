@@ -1,0 +1,9 @@
+/* pages/policyAgreement/index.wxss */
+.policy_tit{
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom: 5px;
+}
+.policy_con_p{
+  font-size: 24rpx;
+}

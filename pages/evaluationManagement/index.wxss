@@ -1,0 +1,59 @@
+/* pages/evaluationManagement/index.wxss */
+.evaluation_li_top{
+  display: flex;
+  align-items: center;
+}
+.evaluation_li_img{
+  margin-right: 10px;
+}
+.evaluation_li_img image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+}
+.evaluation_management_li{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 10rpx;
+  margin-bottom: 40rpx;
+}
+.evaluation_user_infor{
+  font-size: 24rpx;
+  line-height: 36rpx;
+}
+.user_infor_name{
+  margin-bottom: 5px;
+  color: #333333;
+}
+.infor_time{
+  color: #999999;
+}
+.evaluation_start_box{
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+.evaluation_start{
+  margin-right: 40rpx;
+}
+.evaluation_time{
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 36rpx;
+  padding-top: 8rpx;
+}
+.evaluation_content{
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: #333333;
+}
+.evaluation_management_bot{
+  border-bottom: solid 1px #f1f1f1;
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
+}
+.evaluation_management_check{
+  font-size: 24rpx;
+  text-align: right;
+  color: #666666;
+}

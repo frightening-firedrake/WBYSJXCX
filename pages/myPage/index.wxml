@@ -1,0 +1,66 @@
+<!--pages/myPage/index.wxml-->
+<view class="page_app">
+    <!--首页头部开始-->
+    <profile></profile>
+    <!--首页头部结束-->
+    <!-- <view class="my_page_section">
+        <view class="my_content_li" data-url="../storeManagement/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-stores"></icon>
+            </view>
+            <view class="my_li_text">商家资料</view>
+        </view>
+        <view class="my_content_li" data-url="../memberManagement/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-huiyuanguanli"></icon>
+            </view>
+            <view class="my_li_text">会员管理</view>
+        </view>
+        <view class="my_content_li" data-url="../hostManagement/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-people"></icon>
+            </view>
+            <view class="my_li_text">主持人管理</view>
+        </view>
+        <view class="my_content_li" data-url="../roomManagement/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-fangjianshu"></icon>
+            </view>
+            <view class="my_li_text">房间管理</view>
+        </view>
+        <view class="my_content_li" data-url="../memberLevels/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-yunyingzhongxintianchong"></icon>
+            </view>
+            <view class="my_li_text">运营中心</view>
+        </view>
+        <view class="my_content_li" data-url="../financialManagement/index" bindtap="linkTo">
+            <view class="my_li_icon">
+                <icon size="40" class="li_icon iconfont icon-caiwuguanli"></icon>
+            </view>
+            <view class="my_li_text">财务管理</view>
+        </view>
+    </view> -->
+    <view class="my_page_section2">
+      <mp-cells>
+            <mp-cell link url="../storeManagement/index" value="商家资料">
+                <icon  slot="icon" class="iconbefore iconfont icon-stores"></icon>
+            </mp-cell>
+            <mp-cell link url="../memberManagement/index" value="会员管理">
+                <icon  slot="icon" class="iconbefore iconfont icon-huiyuanguanli"></icon>
+            </mp-cell>
+            <mp-cell link url="../hostManagement/index" value="主持人管理">
+                <icon  slot="icon" class="iconbefore iconfont icon-people"></icon>
+            </mp-cell>
+            <mp-cell link url="../roomManagement/index" value="房间管理" footer="3">
+                <icon  slot="icon" class="iconbefore iconfont icon-fangjianshu"></icon>
+            </mp-cell>
+            <mp-cell link url="../memberLevels/index" value="运营中心" footer="5">
+                <icon  slot="icon" class="iconbefore iconfont icon-yunyingzhongxintianchong"></icon>
+            </mp-cell>
+            <mp-cell link url="../financialManagement/index" value="财务管理">
+                <icon  slot="icon" class="iconbefore iconfont icon-caiwuguanli"></icon>
+            </mp-cell>
+        </mp-cells>
+    </view>
+</view>

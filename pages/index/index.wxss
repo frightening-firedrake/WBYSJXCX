@@ -1,0 +1,179 @@
+/**index.wxss**/
+
+/* 首页内容 */
+.index_content{
+  padding: 30rpx 30rpx;
+  margin: -40rpx 32rpx 0;
+  background-color: #f7f7fa;
+  position: relative;
+  z-index: 1;
+  border-radius: 28rpx;
+}
+.index_content_list{
+  margin-bottom: 36rpx;
+}
+.content_list_title{
+  font-size: 30rpx;
+  margin-bottom: 30rpx;
+  position: relative;
+}
+/* .content_list_title::before{
+  display: inline-block;
+  content: "";
+  width: 18rpx;
+  height: 12rpx;
+  background-color: #4e6eff;
+  position: absolute;
+  top: 50%;
+  left: -20rpx;
+  transform: translateY(-50%);
+} */
+.list_content{
+  display: flex;
+  justify-content: space-around;
+}
+.list_content_li{
+  /* width: 30%; */
+  text-align: center;
+  display: flex;
+}
+.list_content_icon{
+  width: 34px;
+  height: 34px;
+  background-color: #8b72fe;
+  border-radius: 10rpx;
+  margin-right:10rpx;
+  /* margin: 0 auto 2px; */
+}
+.list_content_li:nth-child(1) .list_content_icon{
+  background-color: #2cc2ea;
+}
+
+.list_content_li:nth-child(2) .list_content_icon{
+  background-color: #4de9c9;
+}
+.list_tj_icon{
+  font-size: 20px;
+  height: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  /* //#8b8cff */
+}
+.list_content_text{
+  width: 3em;
+}
+.content_text_tit{
+  font-size: 24rpx;
+  color: #666666;
+}
+.content_text_num{
+  font-size: 28rpx;
+  color: #333333;
+}
+.list_content_data{
+  height: 600rpx;
+}
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* picker样式 */
+picker-view .btns {
+  width: 100%;
+  height: 100rpx;
+  color: #609CF7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  font-size: 28rpx;
+}
+
+picker-view .btns view {
+  width: 20%;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+picker-view {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  /* background-color: rgba(0,0,0,0.6); */
+  background-color: #3CBDF0;
+  text-align: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  border-radius: 30rpx 30rpx 0 0;
+  z-index: 999999;
+}
+
+/* 添加弹出的过渡动画 */
+picker-view.show {
+  /* height: 100%; */
+  height: 36%;
+  transition: all 0.4s;
+  box-sizing: border-box;
+}
+/* 尝试修改遮罩 */
+.pickerColMask{
+  position: fixed;
+  bottom:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  height:100vh;
+  width: 100%;
+  z-index: 99999;
+}
+.pickerColpanel{
+  position: fixed;
+  left: 0;
+  bottom:0;
+  width: 100%;
+  background: #fff;
+  height: 36%;
+}
+/* 设置单列数据的样式 */
+picker-view-column {
+  border-radius: 30rpx 30rpx 0 0;
+  color: #fff;
+  font-size: 30rpx;
+  /* margin-top: 64vh;
+  height: 36vh; */
+}
+
+/* 设置选中框的样式 */
+.pickerCol {
+  width: 100%;
+  height: 50rpx;
+  color: #4e6eff;
+  border-top: 1px solid #f2f3f5;
+  border-bottom: 1px solid #f2f3f5;
+}
+
+/* 添加前面的三角形 */
+/* .pickerCol::before {
+  width: 10rpx; 
+  height: 28rpx;
+  position: absolute;
+  left: 200rpx;
+  top: 15rpx;
+  background-image: url(//demo.17weiju.com/wxsh/wxsh/image/food-sjx.png);
+  background-size: 100% 100%;
+} */
+
+/* 这里的两个伪类有默认样式（两条线），但是介于我已经重写了before，这里就取消after的显示 */
+.pickerCol::after {
+  /* display: none; */
+}
+
+/* 自定义选中的时候字体颜色和大小 */
+.pick-text {
+  color: #4e6eff;
+  font-size: 34rpx;
+}

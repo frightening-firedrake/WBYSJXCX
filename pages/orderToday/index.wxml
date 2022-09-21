@@ -1,0 +1,25 @@
+<view class="page_app page_pd_app script_detail_section">
+  <view class="head_btn">
+    <button class="import_button" type="primary">分享</button>
+  </view>
+  <view class="table__box">
+    <scroll-view class="table__scroll" scroll-y scroll-x style="height:{{totalHeight}}px;" bindscrolltolower="handleScrollToLower">
+      <view class="table__scroll__view">
+        <view class="table__header">
+          <view class="table__header__item" wx:for="{{headList}}" wx:key="index">{{item.title}}</view>
+        </view>
+        <view class="table__content">
+          <view class="table__content__line" wx:for="{{list}}" wx:key="index" wx:for-item="dataItem">
+            <view class="table__content__line__item">{{dataItem.id}}</view>
+            <view class="table__content__line__item">{{dataItem.name}}</view>
+            <view class="table__content__line__item">{{dataItem.phone}}</view>
+            <view class="table__content__line__item">{{dataItem.store}}</view>
+            <view class="table__content__line__item">{{dataItem.scriptName}}</view>
+            <view class="table__content__line__item">{{dataItem.type}}</view>
+            <view class="table__content__line__item">{{dataItem.time}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

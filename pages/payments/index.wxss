@@ -1,0 +1,4 @@
+/* pages/payments/index.wxss */
+.payments_box .weui-form{
+  padding: 0;
+}

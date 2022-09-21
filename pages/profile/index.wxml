@@ -1,0 +1,66 @@
+
+  <view class="index_head_con">
+    <!--收付款开始-->
+    <!-- <view class="index_top_collection">
+      <navigator url="../payments/index">
+        <view class="collection_icon_view"><icon size="20" class="collection_icon iconfont icon-saomafukuan-"></icon></view>
+        <view class="collection_text">收付款</view>
+      </navigator>
+    </view> -->
+    <!--选中门店-->
+    <!-- <picker value="{{storeDate}}" range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
+      <view class="select_shop_con">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}<icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon></view>
+    </picker> -->
+
+
+    <view bindtap="showPicker" class="select_shop_con">
+      <text class="shopName">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</text>
+      <icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
+    </view>
+    
+
+  <picker-view indicator-class='pickerCol' bindchange="bindStoreChange" class="{{ pickerShow ? 'show' : '' }}">
+    <!-- <view class="pickerColpanel"> -->
+      <view class='btns'>
+        <view bindtap="closePicker">取消</view>
+        <view bindtap="StoreIsChange">确认</view>
+      </view>
+      <picker-view-column>
+        <view wx:for="{{storeRangeList}}" style="line-height: 50rpx" class="{{ pickerIndex === index ? 'pick-text' : '' }}">{{item.title}}</view>
+      </picker-view-column>
+      <!-- </view> -->
+    </picker-view>
+    <view hidden="{{!pickerShow}}" bindtap="closePicker" class="pickerColMask"></view>
+
+
+    <view class="index_head_title">
+      <view class="head_title_img">
+        <image class="title_img" src="../../assets/img/logo.png"></image>
+      </view>
+      <view class="head_title_text"><text>{{informationData.name}}</text></view>
+    </view>
+    <view class="index_head_data">
+      <view class="head_data_li">
+        <view class="data_tit">总收益</view>
+        <view class="data_num">{{informationData.total_amount}}</view>
+      </view>
+      <view class="border"></view>
+
+      <view class="head_data_li">
+        <view class="data_tit">今日收益</view>
+        <view class="data_num">{{informationData.today_total_amount}}</view>
+      </view>
+      <view class="border"></view>
+
+      <view class="head_data_li">
+        <view class="data_tit">本月收益</view>
+        <view class="data_num">{{informationData.month_total_amount}}</view>
+      </view>
+      <view class="border"></view>
+
+      <view class="head_data_li">
+        <view class="data_tit">今日约车</view>
+        <view class="data_num">{{informationData.today_order_sum}}</view>
+      </view>
+    </view>
+  </view>

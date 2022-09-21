@@ -1,0 +1,111 @@
+/* pages/order/index.wxss */
+.page_app .cards_search_con .share_btn{
+  font-size: 24rpx;
+}
+.order_tab_navbar{
+  display: flex;
+  justify-content:space-around;
+  font-size:28rpx;
+  margin-bottom: 20rpx;
+}
+.order_tab_item{
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: solid 2px transparent;
+  transition: all linear 0.2s;
+}
+.order_tab_item.active{
+  border-bottom-color: #4e6eff;
+  color: #4e6eff;
+}
+.order_list_section{
+  padding:7px ;
+}
+.order_li_con{
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px #e7e7e7;
+  border-radius: 6px;
+  margin-bottom: 40rpx;
+}
+.order_li_top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #f1f1f1;
+  padding: 16rpx 30rpx;
+}
+.order_li_num{
+  font-size: 28rpx;
+  width: 18em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.order_li_state{
+  font-size: 24rpx;
+  color: #999999;
+}
+.order_li_infor{
+  padding: 30rpx;
+}
+.order_infor_ba{
+  display: flex;
+  flex-direction: column;
+}
+.order_infor_store,.order_infor_time{
+  font-size: 24rpx;
+  color: #333333;
+}
+.store_icon{
+  font-size: 14px;
+  color: #4e6eff;
+  margin-right: 10rpx;
+}
+.order_infor_con{
+  /* display: flex;
+  justify-content: space-between; */
+  position: relative;
+}
+.order_infor_list{
+  /* margin-right: 20rpx;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; */
+  display: flex;
+  flex-direction: column;
+}
+.order_infor_list .order_infor_li{
+  display: flex;
+  font-size: 24rpx;
+  color: #333333;
+  /* width: 50%; */
+}
+.order_infor_li{
+  padding-right: 24rpx;
+  box-sizing: border-box;
+  line-height: 60rpx;
+}
+.order_infor_li:nth-child(2n){
+  margin-right: 0;
+}
+.order_infor_label{
+  color: #999999;
+}
+.order_price{
+  position: absolute;
+  font-size: 24rpx;
+  color: #ff4e4e;
+  right: 0;
+  bottom: 0;
+  line-height: 60rpx;
+}
+.card_list_scroll{
+  /* height:calc(100vh - 196rpx); */
+  /* height: calc(100vh - 72rpx - 1px - 28rpx - 20rpx - 2px - 60rpx - 56px); */
+  height: calc(100vh - 100rpx - 36rpx - 18rpx - 48px);
+  margin:0 -7px;
+  width: auto;
+  border-top:1px solid rgba(103,103,103,0.1) ;
+
+}

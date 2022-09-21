@@ -1,0 +1,5 @@
+/* pages/hostManagement/index.wxss */
+.from_map{
+  width: 100%;
+  height: 300rpx;
+}

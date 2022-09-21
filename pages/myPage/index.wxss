@@ -1,0 +1,59 @@
+/* pages/myPage/index.wxss */
+.my_page_section{
+    padding: 40rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+.my_content_li{
+    width: calc(50% - 40rpx - 80rpx);
+    margin: 0 20rpx 40rpx;
+    background-color: #dae1fc;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 40rpx;
+}
+.my_li_icon{
+    text-align: center;
+    margin-bottom: 20rpx;
+}
+.li_icon{
+    font-size: 40px;
+    color: #8b8cff;
+}
+.my_li_text{
+    font-size: 28rpx;
+    text-align: center;
+}
+
+/* 新改造我的 */
+.my_page_section2{
+  padding:0 36rpx;
+}
+.my_page_section2 .weui-cells_after-title{
+  margin-top:0;
+}
+.my_page_section2 .weui-cell__ft_in-access{
+  font-size:28rpx;
+  color: #999;
+}
+.my_page_section2 .weui-cell {
+  padding: 4rpx 0;
+}
+.my_page_section2 .iconbefore{
+  font-size: 46rpx;
+  margin-right: 30rpx;
+  line-height: 50px;
+  position: relative;
+}
+.my_page_section2 .iconbefore::after{
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(162,168,198,0.4);
+}
+.my_page_section2 .weui-cell_access .weui-cell__ft::after {
+  transform: scale(0.7);
+}

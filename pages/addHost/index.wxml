@@ -1,0 +1,37 @@
+<!--pages/hostManagement/index.wxml-->
+<view class="page_app page_pd_app business_information_section">
+    <form class="form_view"  catchsubmit="save_host">
+        <view class="form_view_li">
+            <view class="from_title">*<text>DM照片</text></view>
+            <view class="from_view_con from_view_flex">
+                <view class="form_view_upload" bindtap="uploadImg">
+                    <icon size="20" class="upload_add_icon iconfont icon-tianjia"></icon>
+                </view>
+                <view class="form_img_list">
+                  <view wx:if="{{imgurl!==null}}" class="form_img">
+                    <image src="{{imgurl}}" mode="aspectFill" />
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="form_view_li">
+            <view class="from_title">*<text>DM姓名</text></view>
+            <view class="from_view_con">
+                <input class="from_input" type="text" 
+                
+                value="{{host_data.name}}" name="name"
+                placeholder="请输入DM姓名" />
+            </view>
+        </view>
+        <view class="form_view_li">
+            <view class="from_title">*<text>DM手机号</text></view>
+            <view class="from_view_con">
+                <input class="from_input" type="number" 
+                value="{{host_data.mobile_phone}}" name="mobile_phone" placeholder="请输入DM手机号" />
+            </view>
+        </view>
+        <view class="from_view_btn">
+          <button style="margin: 30rpx 0" type="primary" formType="submit">保存</button>
+        </view>
+    </form>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/memberManagement/index.wxml-->
+<view class="page_app page_pd_app member_management_section">
+
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <mp-cells title="">
+      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" wx:for="{{link_list}}" 
+      wx:for-index="idx" wx:for-item="itemName" wx:key="idx"  data-link="{{itemName.value}}"   >
+        <text>{{itemName.name}}</text>
+      </mp-cell>
+    </mp-cells>
+  </scroll-view>
+
+</view>

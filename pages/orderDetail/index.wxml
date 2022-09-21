@@ -1,0 +1,62 @@
+<!--pages/orderDetail/index.wxml-->
+<!--pages/scriptDetail/index.wxml-->
+<view class="page_app page_pd_app script_detail_section">
+  <view class="detail_tip" wx:if="{{order_detail.status===4}}">您的订单已取消</view>
+  <view class="detail_content_li">
+    <view class="detail_content_tit">剧本信息</view>
+    <view class="detail_content">
+        <image class="detail_con_img" src="{{base_file_url+order_detail.script_cover}}" alt=""></image>
+        <view class="detail_con_fr">
+            <view class="detail_con_name">
+                <text class="detail_name">{{order_detail.script_name}}</text>
+                <view class="detail_price">￥{{order_detail.publish_price}}</view>
+            </view>
+            <view class="detail_con_infor">
+                <view class="detail_infor_fl">
+                    <view class="detail_infor_text">{{order_detail.subject_type}}</view>
+                    <view class="detail_infor_text">{{order_detail.duration}}</view>
+                    <!-- <view class="detail_infor_text detail_infor_p">剧本描述很好的本子很好玩，结局很悲伤！</view> -->
+                </view>
+                <view class="detail_infor_ft"></view>
+            </view>
+        </view>
+    </view>
+  </view>
+  <view class="detail_content_li">
+    <h6 class="detail_content_tit">预约信息</h6>
+    <view class="detail_content detail_content_bot">
+       <view class="detail_content_text">门店：<text>{{order_detail.title}}</text></view>
+       <view class="detail_content_text">预约时间：<text>{{order_detail.appointment_date}}{{order_detail.appointment_time}}</text></view>
+       <view class="detail_content_text">预约剧本：<text>{{order_detail.subject_type}} </text></view>
+       <view class="detail_content_text">预约模式：<text>{{order_detail.mode}}</text></view>
+       <view class="detail_content_text">预约人：<text>{{order_detail.name}}</text></view>
+       <view class="detail_content_text">预约电话：<text>{{order_detail.phone}}</text></view>
+       <view class="detail_content_text"><icon size="16" class="text_icon iconfont icon-shouhuodizhi"></icon>门店地址：<text>{{order_detail.address}}</text></view>
+       <view class="detail_content_text"><icon size="16" class="text_icon iconfont icon-dianhua"></icon>电话：<text>{{order_detail.store_phone}}</text></view>
+    </view>
+  </view>
+  <view class="detail_content_li">
+    <h6 class="detail_content_tit">订单信息</h6>
+    <view class="detail_content detail_content_bot order_list">
+       <view class="detail_content_text">订单编号：<text>011111111</text></view>
+       <view class="detail_content_text">下单时间：<text>{{order_detail.pay_time}}</text></view>
+       <view class="detail_content_text">支付方式：<text>{{order_detail.pay_mode}}</text></view>
+       <!-- <view class="detail_content_text">订单取消时间：<text>2022-04-06 15:30:10</text></view> -->
+    </view>
+  </view>
+  <view class="detail_content_li detail_price_li">
+    <view class="detail_li">
+        <view class="detail_li_fl">支付金额：</view>
+        <view class="detail_li_fr">￥{{order_detail.publish_price}}</view>
+    </view>
+    <view class="detail_li">
+        <view class="detail_li_fl">优惠金额：</view>
+        <view class="detail_li_fr">￥0</view>
+    </view>
+    <view class="detail_li">
+        <view class="detail_li_fl">应付金额：</view>
+        <view class="detail_li_fr price_num">￥{{order_detail.publish_price}}</view>
+    </view>
+  </view>
+</view>
+

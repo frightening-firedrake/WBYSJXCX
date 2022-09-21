@@ -1,0 +1,8 @@
+
+<view class="map_box">
+  <input bindinput="bindInput" placeholder="搜索" focus="true" />
+  <view bindtouchstart="bindSearch" data-keywords="{{i}}" class="text_box" wx:for="{{tips}}" wx:for-item="i">
+  {{i.name}}
+</view>
+  <map id="navi_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="15" markers="{{markers}}"></map>
+</view>

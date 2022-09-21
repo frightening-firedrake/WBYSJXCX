@@ -1,0 +1,4 @@
+/* pages/memberManagement/index.wxss */
+.card_list_scroll{
+  height: calc(100vh - 72rpx - 1px - 28rpx -10px);
+}

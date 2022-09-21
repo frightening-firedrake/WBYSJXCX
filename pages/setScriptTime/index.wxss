@@ -1,0 +1,80 @@
+/* pages/setScriptTime/index.wxss */
+.set_time_box .weui-form{
+ padding: 0;
+}
+.set_time_box .weui-form__control-area{
+  margin: 0;
+}
+.free-dialog__mask,.dialog_dialog__mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+ }
+ .free-dialog__container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 750rpx;
+  background: white;
+  transform: translateY(150%);
+  transition: all 0.4s ease;
+  z-index: 11;
+ }
+ .free-dialog--show .free-dialog__container {
+  transform: translateY(0);
+ }
+ .free-dialog--show .free-dialog__mask {
+  display: block;
+ }
+ /*模态框中的内容*/
+ .free-button{
+  display: inline-block;
+  width:50px;
+  text-align: center;
+  font-size:16px;
+  color:#707070;
+  margin-bottom:20px;
+ }
+ .free-dialog-submit{
+  float: right;
+  color:#48c23d;
+ }
+ .freedialog_content{
+   max-height: 400rpx;
+   padding: 0 10px;
+   overflow-y: auto;
+ }
+ .add_times{
+   margin-top: 10px;
+ }
+ .del_icon{
+   vertical-align: middle;
+ }
+ .dialog_time_con{
+   position: fixed;
+   width: 100%;
+   background-color: #ffffff;
+   transform: translateY(150%);
+   transition: all 0.4s ease;
+   z-index: 12;
+   bottom: 0;
+   left: 0;
+   box-sizing: border-box;
+   padding: 10px 10px 0;
+ }
+ .dialog_time_show .dialog_dialog__mask{
+  display: block;
+ }
+ .dialog_time_show .dialog_time_con{
+  transform: translateY(0);
+ }
+.dialog_time_con picker-view{
+  height: 600rpx;
+  text-align: center;
+  width: 100%;
+}

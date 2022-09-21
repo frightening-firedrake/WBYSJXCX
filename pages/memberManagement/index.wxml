@@ -1,0 +1,28 @@
+<!--pages/memberManagement/index.wxml-->
+<view class="page_app page_pd_app member_management_section">
+  <!--搜索开始-->
+  <mp-form  id="loginForm" models="{{queryJson}}">
+  <view class="cards_search_con">
+   
+    
+      <view class="search_con">
+      <input type="text" placeholder="请输入手机号内容" />
+      <icon class="search_icon" type="search" size="18"></icon>
+      <view class="search_con_btn">搜索</view>
+    </view>
+  </view>
+</mp-form>
+  <!--筛选开始-->
+  <!--内容列表-->
+  <!--WXML示例代码-->
+  
+
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <mp-cells title="">
+        <mp-cell link hover url="../memberDetail/index?id={{itemName.id}}" value="账户：{{itemName.moble_phone}}" footer=""  wx:for="{{member_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+            <image slot="icon" src="{{base_file_url+itemName.avatar}}" style="margin-right: 12px;vertical-align: middle;width:30px; height: 30px;"></image>
+        </mp-cell>
+  
+    </mp-cells>
+  </scroll-view>
+</view>

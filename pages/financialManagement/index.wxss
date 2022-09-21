@@ -1,0 +1,81 @@
+/* pages/financialManagement/index.wxss */
+.financial_management_section{
+  position: relative;
+}
+.financial_record{
+  font-size: 24rpx;
+  color: #999999;
+  display: flex;
+}
+.financial_record view{
+  margin-right: 30rpx;
+}
+.financial_record view text{
+  color: #333333;
+}
+.revenue_li .weui-cell__ft{
+  color: #07c160;
+}
+.pay_li .weui-cell__ft{
+  color: #ff4e4e;
+}
+.weui-input{
+  margin-left: 10px;
+}
+.date_picker{
+  position: relative;
+}
+.date_icon{
+  font-size: 16px;
+  position: absolute;
+  top: -2px;
+  right: 10px;
+  color: #999999;
+}
+.select_down{
+  display: flex;
+  justify-content: space-between;
+}
+.select_down_cell{
+  position: relative;
+}
+.arrow_icon{
+  font-size: 12px;
+  color: #999999;
+}
+.dropdown_select_list{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  margin-top: 5px;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0px 0px 10px #e7e7e7;
+  padding: 20rpx 0;
+  z-index: 10;
+  max-height: 600rpx;
+  overflow-y: auto;
+  transform: scale(0);
+  transform-origin:50% 0;
+  opacity: 0;
+  transition: all 0.4s linear;
+}
+.dropdown_select_list.active{
+  opacity: 1;
+  transform: scale(1);
+}
+.dropdown_select_li{
+  text-align: center;
+  line-height: 76rpx;
+  color: #333333;
+}
+.dropdown_select_li.active{
+  /* background-color: #e7ecfc; */
+}
+.card_list_scroll{
+  height: calc(100vh - 72rpx - 1px - 28rpx -20px);
+}
+.selectStore .weui-cells_after-title{
+  overflow: visible;
+}
