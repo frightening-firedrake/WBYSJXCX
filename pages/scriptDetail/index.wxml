@@ -7,7 +7,7 @@
     <image class="detail_con_img" mode="aspectFill" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
     <view class="intro">
       <view class="left">
-        <view class="titleH2">剧本名称</view>
+        <view class="titleH2">{{script_detail.script_name}}</view>
         <view class="tags">
           <view>{{script_detail.script_person}}</view>
           <view>{{script_detail.duration}}</view>
@@ -28,15 +28,16 @@
       <view class="title">故事简介</view>
       <view class="article">
         <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
-        <view class="see_more" bindtap="readmore" hidden="{{!more}}">
-          <view>查看更多</view>
-          <icon size="10" class="more_icon iconfont icon-jiantouxia"></icon>
+        <view class="see_more" bindtap="readmore" >
+          <view hidden="{{!more}}">查看更多</view>
+          <view hidden="{{more}}">收起</view>
+          <icon size="10" class="{{more?'more_icon iconfont icon-jiantouxia':'more_icon iconfont icon-jiantouxia back'}}"></icon>
         </view>
       </view>
       <view class="roles" wx:if="{{script_detail.role_list.length>0}}">
         <view class="title">角色介绍</view>
         <view>
-          <scroll-view class="scroll_view_role" scroll-x="true" style="width: 100%">
+          <scroll-view class="scroll_view_role" enable-flex scroll-x="true" style="width: 100%">
             <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
               <view class="role_li_img">
                 <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
@@ -72,12 +73,12 @@
         <!-- <mp-cells title="" footer=""> -->
           <!-- <label> -->
             <mp-cell prop="price" title="价格" ext-class="">
-              <input type="number" bindinput="formInputChange" value="{{script_detail_Price.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
+              <input type="digit" bindinput="formInputChange" value="{{script_detail_Price.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
             </mp-cell>
           <!-- </label> -->
           <!-- <label> -->
             <mp-cell prop="discount" title="折扣" ext-class="">
-              <input type="number" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入购买折扣" />
             </mp-cell>
           <!-- </label> -->
           <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>

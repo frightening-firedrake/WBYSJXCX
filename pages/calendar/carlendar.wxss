@@ -71,7 +71,7 @@
   padding: 0px 20rpx 4rpx 20rpx;
   color: white;
   top:8rpx;
-  background-color: #44af3d;
+  background-color: #4e6eff;
 }
 
 .days{
@@ -119,10 +119,10 @@
 
 .dateActive{
   color: white !important;
-  background-color: #44af3d;
+  background-color: #4e6eff;
 }
 .today{
-  color: #44af3d ;
+  color: #4e6eff ;
   box-sizing: border-box;
 }
 

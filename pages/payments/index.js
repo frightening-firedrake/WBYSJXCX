@@ -28,6 +28,8 @@ Page({
     dataList: [],
     storeDate: 0,
     storeIndex: 0,
+    storeTitle:"请选择门店",
+    storePickerVisible:false,
     ScriptIndex: 0,
     store_id: null,
     queryJson: {
@@ -43,7 +45,11 @@ Page({
     },
     scriptName: ''
   },
-
+  showStorePicker(){
+    this.setData({
+      storePickerVisible:!this.data.storePickerVisible
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -117,7 +123,10 @@ Page({
       },
       //使用箭头函数 不然会报 Cannot read property 'setData' of undefined
       success: (res) => {
-
+        res.data.data.forEach((v)=>{
+          v.label=v.title
+          v.value=v.store_id
+        })
         wx.hideLoading()
         console.log('门店', res)
         if (res.data.code === 200) {
@@ -125,6 +134,7 @@ Page({
             storeRangeList: res.data.data,
             store_id: res.data.data[0].store_id,
             ['payment_data.store_id']:res.data.data[0].store_id,
+            storeTitle: res.data.data[0].title
 
           })
           this.getData()
@@ -153,6 +163,17 @@ Page({
     this.setData({
       storeIndex: choose_store_index
     })
+    this.getData()
+  },
+  onStorePickerChange(event){
+    // console.log(event)
+    this.setData(
+      {   
+        storeTitle:event.detail.label[0],
+        ['payment_data.store_id']:event.detail.value[0],
+      })
+    
+    //重新获取数据 
     this.getData()
   },
 //选择剧本事件

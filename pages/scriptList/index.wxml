@@ -82,7 +82,7 @@
         
         <mp-slideview  class="card_slideview" buttons="{{itemName.status===1 ?slideButtons1:slideButtons}}" bindbuttontap="slideButtonTap" duration="500" wx:for="{{dataList}}" ext-class="card_li_wrap" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.script_code}}" data-status="{{itemName.status}}" data-name="{{itemName.script_name}}" data-data="{{itemName}}">
           <view class="card_li">
-            <navigator url="../scriptDetail/index?id={{itemName.script_code}}">
+            <navigator  hover-class="none" url="../scriptDetail/index?id={{itemName.script_code}}">
               <view class="card_li_img">
                 <image src="{{base_file_url+itemName.script_cover}}"></image>
               </view>
@@ -113,8 +113,8 @@
                       <icon size="20" class="iconfont icon-bianji"></icon>
                     </view>
                   </view>
-                  <view class="card_price_fr">
-                    <navigator url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}">
+                  <view class="card_price_fr" catchtap="stop">
+                    <navigator hover-class="none" url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}">
                       <icon size="22" class="iconfont icon-qita"></icon>
                     </navigator>
                   </view>
@@ -325,12 +325,12 @@
         <!-- <mp-cells title="" footer=""> -->
           <!-- <label> -->
             <mp-cell prop="price" title="价格" ext-class="">
-              <input type="number" bindinput="formInputChange" value="{{script_detail.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
+              <input type="digit" bindinput="formInputChange" value="{{script_detail.price}}" data-field="price" class="weui-input" placeholder="请输入价格" />
             </mp-cell>
           <!-- </label> -->
           <!-- <label> -->
             <mp-cell prop="discount" title="折扣" ext-class="">
-              <input type="number" bindinput="formInputChange" data-field="discount" value="{{script_detail.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail.discount}}" class="weui-input" placeholder="请输入购买折扣" />
             </mp-cell>
           <!-- </label> -->
           <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>

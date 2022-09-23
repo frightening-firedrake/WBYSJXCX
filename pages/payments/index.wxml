@@ -9,9 +9,13 @@
             <!-- <picker bindchange="bindCountryChange" value="{{countryIndex}}" range="{{countries}}">
                             <view class="weui-select">{{countries[countryIndex]}}</view>
                         </picker> -->
-            <picker range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
+            <!-- <picker range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
               <view class="weui-select">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</view>
-            </picker>
+            </picker> -->
+            
+            <view bindtap="showStorePicker" class="select_shop_con2">
+              <text class="shopName">{{storeTitle}}</text>
+            </view>
           </mp-cell>
         </label>
         <label>
@@ -40,4 +44,15 @@
       <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
     </view>
 
+<!-- 门店选择picker -->
+<t-picker
+  visible="{{storePickerVisible}}"
+  value="{{[]}}"
+  title="请选择门店"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onStorePickerChange"
+>
+  <t-picker-item options="{{storeRangeList}}"></t-picker-item>
+</t-picker>
 </view>

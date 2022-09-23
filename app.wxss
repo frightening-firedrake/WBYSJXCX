@@ -605,6 +605,9 @@ button::after {
 .page_app .weui-toptips{
   z-index: 999999;
 }
+.page_wrap .weui-toptips{
+  z-index: 999999;
+}
 /* 上传 */
 .uploader_b{
   padding:0 20rpx;

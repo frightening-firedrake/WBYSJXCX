@@ -42,7 +42,7 @@
  }
  .free-dialog-submit{
   float: right;
-  color:#48c23d;
+  color:#4e6eff;
  }
  .freedialog_content{
    max-height: 400rpx;

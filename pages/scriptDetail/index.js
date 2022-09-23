@@ -334,9 +334,9 @@ Page({
   },
   // 查看更多
   readmore(){
-    console.log('查看更多')
+    // console.log('查看更多')
     this.setData({
-      more:false
+      more:!this.data.more
     })
   }
 })

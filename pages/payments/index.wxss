@@ -2,3 +2,9 @@
 .payments_box .weui-form{
   padding: 0;
 }
+.select_shop_con2{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100vw - 64rpx - 125px);
+}

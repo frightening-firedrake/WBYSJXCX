@@ -12,7 +12,8 @@
   border-radius: 120rpx;
 }
 .evaluation_management_li{
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0px 0px 10px #e7e7e7;
   padding: 10px;
   border-radius: 10rpx;
   margin-bottom: 40rpx;
