@@ -13,8 +13,12 @@
     <!-- <picker value="{{storeDate}}" range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
       <view class="select_shop_con">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}<icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon></view>
     </picker> -->
-    <view bindtap="showPicker" class="select_shop_con">
+    <!-- <view bindtap="showPicker" class="select_shop_con">
       <text class="shopName">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
+    </view> -->
+
+    <view bindtap="showStorePicker" class="select_shop_con">
+      <text class="shopName">{{storeTitle}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
     </view>
     
 
@@ -140,4 +144,15 @@
       </view>
     </view>
   </view>
+  <!-- 门店选择picker -->
+<t-picker
+  visible="{{storePickerVisible}}"
+  value="{{[]}}"
+  title="请选择门店"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onStorePickerChange"
+>
+  <t-picker-item options="{{storeRangeList}}"></t-picker-item>
+</t-picker>
 </view>

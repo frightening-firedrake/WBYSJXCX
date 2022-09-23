@@ -1,95 +1,65 @@
 <!--pages/scriptDetail/index.wxml-->
-<view class="page_app page_pd_app script_detail_section" style="padding-bottom:120rpx;">
+<view class="page_wrap">
+  <!-- 表单验证提示小工具 -->
   <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
-  <view class="detail_content_li shadow">
-    <view class="detail_content_tit">剧本信息</view>
-    <view class="detail_content">
-        <image class="detail_con_img" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
-        <view class="detail_con_fr">
-            <view class="detail_con_name">
-              <view class="detail_name_fl">
-                <text class="detail_name">{{script_detail.script_name}}</text>
-                <view class="detail_start">
-                  <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
-                  <mp-icon icon="star" type="field" color="#dfbf00" size="{{18}}"></mp-icon>
-                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
-                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
-                  <mp-icon icon="star" color="#999999" size="{{18}}"></mp-icon>
-                </view>
-              </view>
-              <view class="detail_price">￥{{script_detail.publish_price}}</view>
-            </view>
-            <view class="">
-              <view class="card_li_tag">
-       
-                <view>{{script_detail.script_person}}</view>
-                <view>{{script_detail.duration}}</view>
-                <view>{{script_detail.subject_type}}</view>
-                <view>{{script_detail.script_difficulty}}</view>
-              </view>
-            </view>
-            <!-- <view class="detail_con_infor">
-                <view class="detail_infor_fl">
-                    <view class="detail_infor_text">作者：雪国</view>
-                    <view class="detail_infor_text">系列：无</view>
-                    <view class="detail_infor_text detail_infor_p">剧本描述很好的本子很好玩，结局很悲伤！</view>
-                </view>
-            </view> -->
+  <view class="detailBanner">
+    <view class="titleH">剧本详情</view>
+    <image class="detail_con_img" mode="aspectFill" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
+    <view class="intro">
+      <view class="left">
+        <view class="titleH2">剧本名称</view>
+        <view class="tags">
+          <view>{{script_detail.script_person}}</view>
+          <view>{{script_detail.duration}}</view>
+          <view>{{script_detail.subject_type}}</view>
+          <view>{{script_detail.script_difficulty}}</view>
         </view>
+        <t-rate value="{{score}}" variant="filled" bind:change="onScoreChange" />
+      </view>
+      <view class="right">
+        <view class="yuanjia">原价￥{{script_detail.publish_price}}元/人</view>
+        <view>￥{{script_detail.publish_price}}元/人</view>
+        <view bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;color:#4e6eff;" size="20" class="iconfont icon-bianji"></icon></view>
+      </view>
     </view>
   </view>
-  <view class="detail_zs_tit">剧本介绍</view>
-  <view class="detail_content_li">
-    <h6 class="detail_content_tit">故事介绍</h6>
-    <view class="detail_content detail_content_bot">
-      <view class="detail_content_p">
-           
-            <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
+  <view>
+    <scroll-view scroll-y="true" class="scroll-view-y">
+      <view class="title">故事简介</view>
+      <view class="article">
+        <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
         <view class="see_more" bindtap="readmore" hidden="{{!more}}">
           <view>查看更多</view>
-          <icon size="12" class="more_icon iconfont icon-jiantouxia"></icon>
+          <icon size="10" class="more_icon iconfont icon-jiantouxia"></icon>
         </view>
       </view>
-    </view>
-  </view>
-  <view class="detail_content_li" wx:if="{{script_detail.role_list.length>0}}">
-    <h6 class="detail_content_tit">角色介绍</h6>
-    <view class="detail_content">
-      <scroll-view class="scroll_view_role" scroll-x="true" bindscroll="scroll" style="width: 100%">
-        <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
-          <view class="role_li_img">
-            <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
-          </view>
-          <view class="role_li_infor">
-            <view class="role_li_name"><text>{{itemName.name}}</text></view>
-            <view class="role_li_text role_li_name">{{itemName.sex}}，{{itemName.age}}</view>
-            <view class="role_li_text role_li_name">{{itemName.introduce}}</view>
-          </view>
+      <view class="roles" wx:if="{{script_detail.role_list.length>0}}">
+        <view class="title">角色介绍</view>
+        <view>
+          <scroll-view class="scroll_view_role" scroll-x="true" style="width: 100%">
+            <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+              <view class="role_li_img">
+                <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
+              </view>
+              <view class="role_li_infor">
+                <view class="role_li_name"><text>{{itemName.name}}</text></view>
+                <view class="role_li_name">{{itemName.sex}}，{{itemName.age}}</view>
+                <view class="role_li_text role_li_name">{{itemName.introduce}}</view>
+              </view>
+            </view>
+          </scroll-view>
         </view>
+      </view>
+    </scroll-view>
+  </view>
 
-      </scroll-view>
-    </view>
-  </view>
-  <view class="detail_content_li detail_edit_box"> 
-    <view class="detail_edit_li">
-      <view class="detail_edit_label">价格：</view>
-      <view class="detail_edit_value price_num">￥{{script_detail.publish_price}}</view>
-      <view bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;" size="20" class="iconfont icon-bianji"></icon></view>
-    </view>
-    <!-- <view class="detail_edit_li">
-      <view class="detail_edit_label">是否上架：</view>
-      <view class="detail_edit_label">
-        <radio-group class="from_view_group" bindchange="radioChange">
-            <label class="weui-cell weui-check__label" wx:for="{{typeItems}}" wx:key="{{item.value}}">
-                <view class="weui-cell__hd">
-                    <radio value="{{script_detail.status}}" checked="{{script_detail.status==1?true:false}}"/>
-                </view>
-                <view class="weui-cell__bd">{{item.name}}</view>
-            </label>
-        </radio-group>
-      </view>
-    </view> -->
-  </view>
+
+
+
+
+
+
+  <!-- 上下架按钮们 -->
   <view class="upordown">
     <view bindtap="buttonShowDialog"  wx:if="{{script_detail.status===0}}" class="btn btnup">上架</view>
     <view bindtap="buttonShowDialogDown" wx:if="{{script_detail.status===1}}" class="btn btndown">下架</view>

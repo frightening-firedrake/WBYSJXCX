@@ -77,7 +77,7 @@
                       <!-- <view class="form_view_upload" bindtap="recommendUpload">
                           <icon size="20" class="upload_add_icon iconfont icon-tianjia"></icon>
                       </view> -->
-                      <mp-uploader ext-class="uploader_b" bindfail="uploadError" bindsuccess="uploadSuccess" max-size="{{10*1024*1024}}" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{selectType==='0'?recommendImgList0:selectType==='1'?recommendImgList1:recommendImgList2}}" max-count="3" title="" tips=""></mp-uploader>
+                      <mp-uploader ext-class="uploader_b" bindfail="uploadError" bindsuccess="uploadSuccess" max-size="{{10*1024*1024}}" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{selectType==='0'?recommendImgList0:selectType==='1'?recommendImgList1:recommendImgList2}}" max-count="3" title="推荐图片上传" tips=""></mp-uploader>
                       <!-- <mp-uploader wx:show="{{selectType==='0'}}" ext-class="uploader_b" bindfail="uploadError" bindsuccess="uploadSuccess" max-size="{{10*1024*1024}}" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{recommendImgList0}}" binddelete="binddeleteImg" max-count="3" title="" tips=""></mp-uploader> -->
                       <!-- <view wx:if="{{typeItems[0].checked}}" class="form_img_list">
                         <view wx:for="{{recommendImgList0}}" wx:key="index" class="form_img">

@@ -5,7 +5,7 @@
     <view class="search_con">
 
       <form bindsubmit="formSubmit">
-      <input type="text" placeholder="请输入搜索内容"  bindinput="input_name"  name="query_name"/>
+      <input type="text"  bindconfirm="name_filter" placeholder="请输入搜索内容"  bindinput="input_name"  name="query_name"/>
       <icon class="search_icon" type="search" size="18"></icon>
       <view class="search_con_btn" bindtap="name_filter">搜索</view>
 	<!-- <button class="wehx-foot-btn" hover-class="wehx-button_hover" formType="submit">确定</button> -->

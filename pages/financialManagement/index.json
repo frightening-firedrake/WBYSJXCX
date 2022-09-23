@@ -1,5 +1,10 @@
 {
   "usingComponents": {
+    "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker",
+    "t-picker": "tdesign-miniprogram/picker/picker",
+    "t-picker-item": "tdesign-miniprogram/picker/picker-item",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "t-overlay": "tdesign-miniprogram/overlay/overlay",
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-cell": "weui-miniprogram/cell/cell"
   }

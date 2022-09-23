@@ -46,3 +46,36 @@
   text-align:center;
   border-radius:5px;
 } */
+.map_box{
+  position: relative;
+}
+input{
+  font-size: 28rpx;
+  color: #666666;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0 20rpx;
+  border: 1px solid #e8e8e8;
+  border-radius: 6rpx;
+  margin:10rpx 0;
+}
+.text_box_wrap{
+  position: absolute;
+  top: 73rpx;
+  left: 0;
+  width: 100%;
+  background-color: #eee;
+  z-index: 99;
+  max-height: 8em;
+  padding:0 20rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.text_box{
+  line-height: 2em;
+}
+map{
+  width: auto;
+  height: 400rpx;
+  /* margin-top:20rpx; */
+}

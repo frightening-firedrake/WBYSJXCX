@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    error:"",
     base_file_url: app.globalData.baseUrl,
     businessScriptList: app.globalData.baseUrl + app.globalData.urlData.businessScriptList,
     scriptConfigList: app.globalData.baseUrl + app.globalData.urlData.scriptConfigList,

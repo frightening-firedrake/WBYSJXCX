@@ -39,7 +39,6 @@
     "navigationBarTitleText": "玩本鸭",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "useExtendedLib": {
     "kbone": true,

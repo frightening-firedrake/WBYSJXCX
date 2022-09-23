@@ -72,15 +72,16 @@
 }
 /* 图标背景 删除 上架 下架*/
 .delete_li .weui-slideview__btn{
-  /* background-color: #FE3B34; */
-  background-color: rgba(254,59,52,0.1);
-  color: #FE3B34;
+  background-color: #FE3B34;
+  /* background-color: rgba(254,59,52,0.1);
+  color: #FE3B34; */
 }
 .put_li .weui-slideview__btn{
-  background-color: #F4BE7A;
+  /* background-color: #F4BE7A; */
+  background: #EEA151;
 }
 .down_li .weui-slideview__btn{
-  background-color: #3C5F95;
+  background-color: rgba(55, 134, 235, 1);
 }
 .card_li_wrap .weui-slideview__btn{
   margin-top:7px;
@@ -111,8 +112,9 @@
 }
 .weui-slideview__btn-group_default .weui-slideview__btn {
   /* background: rgba(55, 134, 235, 1); */
-  background: rgba(55, 134, 235, 0.1);
-  color:rgba(55, 134, 235, 1);
+  
+  /* background: rgba(55, 134, 235, 0.1);
+  color:rgba(55, 134, 235, 1); */
 }
 .card_li navigator{
   display: flex;
@@ -190,7 +192,7 @@
 .card_list_scroll{
   /* height:calc(100vh - 196rpx); */
   /* height: calc(100vh - 72rpx - 1px - 28rpx - 36rpx - 40rpx - 72rpx - 36rpx - 16rpx - 56px); */
-  height: calc(100vh - 100rpx - 36rpx - 18rpx - 48px);
+  height: calc(100vh - 100rpx - 36rpx - 28rpx - 140rpx - 16rpx);
   border-top:1px solid rgba(103,103,103,0.1) ;
 }
 .screen_btn{

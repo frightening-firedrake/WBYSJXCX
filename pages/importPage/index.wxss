@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 30rpx;
+  height: 50rpx;
 }
 .import_card_list{
   /* width: 50%; */
@@ -36,7 +37,8 @@
 }
 .import_cardli_con{
   padding: 30rpx;
-  box-shadow: 0 0 20rpx #cad4fd;
+  /* box-shadow: 0 0 20rpx #cad4fd; */
+  box-shadow: 0px 0px 10px #e7e7e7;
   border-radius: 20rpx;
 }
 .import_card_infor{
@@ -50,12 +52,14 @@
 }
 .import_card_infor .card_li_tag{
   /* justify-content: space-between; */
-  gap: 6rpx;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10rpx;
+  flex-wrap: no-wrap;
+  overflow: hidden;
 }
 .card_list_scroll{
   /* height:calc(100vh - 196rpx); */
-  height: calc(100vh - 72rpx - 1px - 28rpx - 25px - 30rpx - 56px);
+  height: calc(100vh - 100rpx - 80rpx - 140rpx - 16rpx);
   border-top: 1px solid rgba(103,103,103,0.1);
 }
 .page_app.active{

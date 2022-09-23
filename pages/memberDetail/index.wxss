@@ -5,6 +5,9 @@
 .member_head_portrait image{
   width: 100rpx;
   height: 100rpx;
+  border-radius: 50%;
+  display: block;
+  margin:0 auto;
 }
 .member_name{
   text-align: center;
@@ -18,4 +21,37 @@
 }
 .page_app .weui-form__control-area{
   margin-bottom: 0;
+}
+
+.wsgxl{
+  z-index: 999999;
+}
+
+.clineH{
+  padding:16px 32px!important;
+  line-height: 1.42!important;
+}
+.clineH .weui-select{
+  height: auto!important;
+  line-height: 1.42!important;
+}
+.huiyuan .t-dropdown-menu__bar{
+  height: auto!important;
+  line-height: 1.42!important;
+}
+.huiyuan .t-dropdown-menu__item{
+  justify-content:space-between;
+  padding:0;
+}
+.huiyuan .t-dropdown-menu__title{
+  font-size: 28rpx;
+}
+.huiyuan .t-dropdown-item__body {
+  padding:0 60rpx;
+}
+.huiyuan .t-radio{
+  font-size: 28rpx;
+}
+.huiyuan .t-dropdown-menu__bar::after{
+  display: none;
 }

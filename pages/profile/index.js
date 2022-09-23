@@ -22,6 +22,8 @@ Component({
       }
     ],
     storeIndex: 0,
+    storeTitle:"请选择门店",
+    storePickerVisible:false,
     userInfo: {},
     hasUserInfo: false,
 
@@ -48,6 +50,11 @@ Component({
 
   },
   methods:{
+    showStorePicker(){
+      this.setData({
+        storePickerVisible:!this.data.storePickerVisible
+      })
+    },
     showPicker(){
       this.setData({
         pickerShow: true
@@ -67,6 +74,17 @@ Component({
       )
       //修改全局store_id 
       app.globalData.storeId =this.data.storeRangeList[this.data.storeIndex].store_id
+      //重新获取数据 
+      this.getData()
+    },
+    onStorePickerChange(event){
+      // console.log(event)
+      this.setData(
+        {   storeTitle:event.detail.label[0]}
+         )
+      
+      //修改全局store_id 
+      app.globalData.storeId =event.detail.value[0]
       //重新获取数据 
       this.getData()
     },
@@ -132,12 +150,16 @@ Component({
         },
         //使用箭头函数 不然会报 Cannot read property 'setData' of undefined
         success: (res) => {
-        
+          res.data.data.forEach((v)=>{
+            v.label=v.title
+            v.value=v.store_id
+          })
           wx.hideLoading()
           console.log('门店',res)
           if(res.data.code === 200){
             this.setData({
-              storeRangeList: res.data.data
+              storeRangeList: res.data.data,
+              storeTitle: res.data.data[0].title
             })
             app.globalData.storeId = res.data.data[0].store_id
             this.getData()

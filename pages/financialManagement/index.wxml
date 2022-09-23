@@ -3,7 +3,7 @@
   <!--搜索开始-->
   <view class="cards_search_con">
     <view class="search_con">
-      <input type="text" placeholder="请输入手机号搜索" />
+      <input bindconfirm="" type="text" placeholder="请输入手机号搜索" />
       <icon class="search_icon" type="search" size="18"></icon>
       <view class="search_con_btn">搜索</view>
     </view>
@@ -47,30 +47,40 @@
         <icon bindtap="filterBtn" size="16" class="filter_back_icon iconfont icon-jiantouyou"></icon>
       </view> -->
       <mp-cells title="" footer="" ext-class="selectStore">
-          <mp-cell class="select_down_cell" prop="name" title="门店选择:" bindtap="selectStore" ext-class="">
+          <!-- <mp-cell class="select_down_cell" prop="name" title="门店选择:" bindtap="selectStore" ext-class="">
               <view class="select_down">
                 <view class="select_fl">{{storeValue}}</view>
                 <view class="select_fr"><icon size="12" class="arrow_icon iconfont icon-jiantouxia"></icon></view>
               </view>
               <view class="dropdown_select_list {{storeShow?'active':''}}">
                 <view class="dropdown_select_li active" wx:for="{{store_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" bindtap="change_store" data-store="{{itemName}}">{{itemName.title}}</view>
-                <!-- <view class="dropdown_select_li">门店二</view> -->
+              </view>
+          </mp-cell> -->
+
+          <!-- 门店选择2号 -->
+          <mp-cell class="select_down_cell" prop="name" title="门店选择" bindtap="showPicker" ext-class="">
+              <view class="select_down">
+                <view class="select_fl">{{storeValue}}</view>
+                <view style="margin-right: 10px;" class="select_fr"><icon size="12" class="arrow_icon iconfont icon-jiantouxia"></icon></view>
               </view>
           </mp-cell>
+         
+
           <label>
               <mp-cell prop="date" title="开始时间" ext-class="">
-                  <picker class="date_picker" data-field="date" mode="date" value="{{startDate}}" start="2015-09-01" bindchange="bindStartDateChange">
-                      <view class="weui-input">{{startDate}}</view>
+                  <!-- <picker class="date_picker" data-field="date" mode="date" value="{{startDate}}" start="2015-09-01" bindchange="bindStartDateChange"> -->
+                      <view bindtap="showStartDatePicker" class="weui-input">{{startDate}}</view>
+                      <!-- <view  class="weui-input">{{startDate}}</view> -->
                       <icon size="16" class="date_icon iconfont icon-riqi"></icon>
-                  </picker>
+                  <!-- </picker> -->
               </mp-cell>
           </label>
           <label>
               <mp-cell prop="date" title="结束时间" ext-class="">
-                  <picker class="date_picker" data-field="date" mode="date" value="{{endDate}}" start="2015-09-01" bindchange="bindEndChange">
-                      <view class="weui-input">{{endDate}}</view>
+                  <!-- <picker class="date_picker" data-field="date" mode="date" value="{{endDate}}" start="2015-09-01" bindchange="bindEndChange"> -->
+                      <view bindtap="showEndDatePicker" class="weui-input">{{endDate}}</view>
                       <icon size="16" class="date_icon iconfont icon-riqi"></icon>
-                  </picker>
+                  <!-- </picker> -->
               </mp-cell>
           </label>
       </mp-cells>
@@ -79,4 +89,38 @@
         </view>
     </view>
   </view>
+   <!-- 新的门店选择 -->
+   <t-picker
+    visible="{{pickerVisible}}"
+    value="{{[]}}"
+    title="请选择门店"
+    cancelBtn="取消"
+    confirmBtn="确认"
+    bindchange="onPickerChange"
+  >
+    <t-picker-item options="{{store_list}}"></t-picker-item>
+  </t-picker>
+  <!-- 新的日期选择器年月日 -->
+  <!-- 开始时间 -->
+  <t-date-time-picker
+    title="请选择开始时间"
+    visible="{{dateStartVisible}}"
+    mode="date"
+    format="YYYY-MM-DD"
+    bindchange="dateStartChange"
+    start="{{start1}}"
+    end="{{end1}}"
+    value="{{startDate}}"
+  ></t-date-time-picker>
+  <!-- 结束时间 -->
+  <t-date-time-picker
+    title="请选择结束时间"
+    visible="{{dateEndVisible}}"
+    mode="date"
+    format="YYYY-MM-DD"
+    bindchange="dateEndChange"
+    start="{{start2}}"
+    end="{{end2}}"
+    value="{{endDate}}"
+  ></t-date-time-picker>
 </view>

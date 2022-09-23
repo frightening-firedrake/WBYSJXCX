@@ -6,7 +6,7 @@
    
     
       <view class="search_con">
-      <input type="text" placeholder="请输入手机号内容" />
+      <input bindconfirm="" type="text" placeholder="请输入手机号内容" />
       <icon class="search_icon" type="search" size="18"></icon>
       <view class="search_con_btn">搜索</view>
     </view>

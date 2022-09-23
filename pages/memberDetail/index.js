@@ -14,7 +14,8 @@ Page({
     businessMemberDetail: app.globalData.baseUrl + app.globalData.urlData.businessMemberDetail,
     businessMemberChange: app.globalData.baseUrl + app.globalData.urlData.businessMemberChange,
     member_detail: {
-      name:'12'
+      name:'12',
+      member_level:""
     },
     member_detail_id: null,
     formData: {
@@ -69,14 +70,35 @@ Page({
           }
         }
       },
-    }]
+    }],
+    memberPickerVisible:false,
+  //   showActionsheet: false,
+  //   groups: [
+  //       { text: '示例菜单', value: 1 },
+  //       { text: '示例菜单', value: "id" },
+  //       { text: '负向菜单', type: 'warn', value: 3 }
+  //   ]
   },
-
+  // close: function () {
+  //   this.setData({
+  //       showActionsheet: false
+  //   })
+  // },
+  // btnClick(e) {
+  //     console.log(e)
+  //     this.close()
+  // },
+  // showwsxl(){
+  //   this.setData({
+  //       showActionsheet: true
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     console.log(options)
+    console.log('发生了什么')
     this.setData({
       member_detail_id: options.id
     })
@@ -136,12 +158,25 @@ Page({
   //选择等级
   bindLevelChange(event) {
     let choose_store_index = event.detail.value
+    console.log(event)
     this.setData({
       memberIndex: choose_store_index
     })
     this.setData({
       [`member_detail.member_level`]: this.data.level_list[choose_store_index].id
     })
+  },
+  handleSingleSelect(e){
+    let level_name=this.find_level_name_by_member_level(e.detail.value)
+    console.log(level_name)
+    this.setData({
+      [`member_detail.member_level`]: e.detail.value,
+      [`member_detail.level_name`]: level_name,
+    })
+  },
+  find_level_name_by_member_level(id){
+    let levelobj=this.data.level_list.find((v)=>{return v.id==id})
+    return levelobj.level_name
   },
   //获取店铺会员详情
   getbusinessMemberDetail() {
@@ -211,10 +246,14 @@ Page({
       success: (res) => {
 
         wx.hideLoading()
-
+        res.data.data.forEach((v)=>{
+          v.label=v.level_name
+          v.value=v.id
+        })
+        // MemberLevelOptions
         if (res.data.status) {
           this.setData({
-            level_list: res.data.data
+            level_list: res.data.data,
           })
         } else {
           wx.showToast({
@@ -282,5 +321,11 @@ Page({
       [`member_detail.${field}`]: e.detail.value
     })
 
+  },
+  // 显示等级picker
+  showMemberPicker(){
+    this.setData({
+      memberPickerVisible:!this.data.memberPickerVisible
+    })
   },
 })

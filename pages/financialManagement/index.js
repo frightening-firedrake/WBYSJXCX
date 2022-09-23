@@ -12,10 +12,18 @@ Page({
     financial_list:[],
     startDate: '2022-07-16',
     endDate: '2022-07-27',
+    start1: '2022-01-01',
+    end1: '2023-01-01',
+    start2: '2022-01-01',
+    end2: '2023-01-01',
     storeValue: '',
     storeAccounts: ["门店一", "门店二", "门店三"],
     filterShow: false,
     storeShow: false,
+    pickerVisible: false,
+    dateStartVisible:false,
+    dateEndVisible:false,
+    showStartDatePicker:false,
     queryJson:{
       user_code:'',
       page:1,
@@ -83,6 +91,7 @@ Page({
 
   },
   bindStartDateChange(detail) {
+    // console.log('原始的开始时间',detail)
     this.setData({
       startDate:detail.detail.value
     })
@@ -90,6 +99,20 @@ Page({
   bindEndChange(detail) {
     this.setData({
       endDate:detail.detail.value
+    })
+  },
+  // 新的日期时间
+  dateStartChange(e){
+    // console.log('开始时间',e)
+    this.setData({
+      startDate:e.detail.value,
+      start2:e.detail.value
+    })
+  },
+  dateEndChange(e){
+    // console.log('结束时间',e)
+    this.setData({
+      endDate:e.detail.value
     })
   },
   filterBtn(){
@@ -101,6 +124,21 @@ Page({
   selectStore(){
     this.setData({
       storeShow: !this.data.storeShow
+    })
+  },
+  showPicker(){
+    this.setData({
+      pickerVisible: !this.data.pickerVisible
+    })
+  },
+  showStartDatePicker(){
+    this.setData({
+      dateStartVisible: !this.data.dateStartVisible
+    })
+  },
+  showEndDatePicker(){
+    this.setData({
+      dateEndVisible: !this.data.dateEndVisible
     })
   },
     //获取门店列表
@@ -117,7 +155,10 @@ Page({
         },
         //使用箭头函数 不然会报 Cannot read property 'setData' of undefined
         success: (res) => {
-        
+          res.data.data.forEach((v)=>{
+            v.label=v.title
+            v.value=v.store_id
+          })
           wx.hideLoading()
           console.log('门店',res)
           if(res.data.code === 200){
@@ -204,6 +245,15 @@ Page({
       )
   
 
+    },
+    onPickerChange(e){
+      console.log(e)
+      this.setData(
+        {
+         'queryJson.store_id':e.detail.value[0],
+         storeValue:e.detail.label[0]
+        }
+      )
     },
     //侧边过滤
     financia_filter(){

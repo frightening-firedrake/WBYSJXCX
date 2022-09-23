@@ -10,8 +10,8 @@
     </scroll-view>
   <view class="add_view_btn">
     <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="openConfirm">添加</button>
-    <mp-dialog title="添加等级" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
-      <mp-form-page title="" subtitle="">
+    <mp-dialog title="添加等级" ext-class="nobutton" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+      <!-- <mp-form-page title="" subtitle=""> -->
         <mp-form ext-class="dialog_form" id="form"  models="{{formData}}">
             <mp-cells title="" footer="">
                 <label>
@@ -33,7 +33,7 @@
 
             </mp-cells>
         </mp-form>
-    </mp-form-page>
+    <!-- </mp-form-page> -->
     </mp-dialog>
   </view>
 </view>

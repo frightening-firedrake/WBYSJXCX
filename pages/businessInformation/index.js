@@ -27,17 +27,21 @@ Page({
         },
         store_id:'',
         logoImgurl: null,
-        recommendImgList0:[{
-            url: 'http://mmbiz.qpic.cn/mmbiz_png/VUIF3v9blLsicfV8ysC76e9fZzWgy8YJ2bQO58p43Lib8ncGXmuyibLY7O3hia8sWv25KCibQb7MbJW3Q7xibNzfRN7A/0',
-        }],//基本推荐图片列表——页面显示用的
+        recommendImgList0:[
+          // {
+            // url: 'http://mmbiz.qpic.cn/mmbiz_png/VUIF3v9blLsicfV8ysC76e9fZzWgy8YJ2bQO58p43Lib8ncGXmuyibLY7O3hia8sWv25KCibQb7MbJW3Q7xibNzfRN7A/0',
+          // }
+        ],//基本推荐图片列表——页面显示用的
         cacheRecommendImgList0:[],//基本推荐图片列表——传参用这个值
         recommendImgList1:[],//场所照片列表
         cacheRecommendImgList1:[],//场所照片列表——传参用这个值
         recommendImgList2:[],//活动推荐列表
         cacheRecommendImgList2:[],//活动推荐列表——传参用这个值
-        files: [{
-            url: 'http://mmbiz.qpic.cn/mmbiz_png/VUIF3v9blLsicfV8ysC76e9fZzWgy8YJ2bQO58p43Lib8ncGXmuyibLY7O3hia8sWv25KCibQb7MbJW3Q7xibNzfRN7A/0',
-        }]
+        files: [
+          // {
+          //   url: 'http://mmbiz.qpic.cn/mmbiz_png/VUIF3v9blLsicfV8ysC76e9fZzWgy8YJ2bQO58p43Lib8ncGXmuyibLY7O3hia8sWv25KCibQb7MbJW3Q7xibNzfRN7A/0',
+          // }
+        ]
     },
 
     /**

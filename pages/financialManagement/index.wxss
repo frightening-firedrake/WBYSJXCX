@@ -28,7 +28,9 @@
 .date_icon{
   font-size: 16px;
   position: absolute;
-  top: -2px;
+  /* top: -2px; */
+  top:50%;
+  transform: translateY(-50%);
   right: 10px;
   color: #999999;
 }
@@ -78,4 +80,11 @@
 }
 .selectStore .weui-cells_after-title{
   overflow: visible;
+}
+.select_fl{
+  padding:0 18rpx;
+  width: 14em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -84,6 +84,13 @@ Page({
       }
     ],
     more:true,
+    score:3,
+  },
+  onScoreChange(e) {
+    const { score } = e.detail;
+    this.setData({
+      score,
+    });
   },
   // 上架按钮点击弹窗
   buttonShowDialog(){

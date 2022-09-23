@@ -188,7 +188,8 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
   vertical-align: bottom;
 }
 .index_container{
-  padding-bottom: 50rpx;
+  /* padding-bottom: 50rpx; */
+  padding-bottom: 0rpx;
 }
 .collection_icon_view{
   height: 20px;
@@ -265,12 +266,14 @@ border-right: 1px dashed #fff;
   position: relative;
 }
 .search_con input{
-  border: solid 1px #f1f1f1;
+  /* border: solid 1px #f1f1f1; */
   height: 72rpx;
   line-height: 72rpx;
   padding: 0 80rpx 0 70rpx;
   font-size: 28rpx;
-  border-radius: 4px;
+  /* border-radius: 4px; */
+  border-radius: 36rpx;
+  background-color: #EFEFEF;
 }
 .search_con_btn{
   position: absolute;
@@ -279,6 +282,7 @@ border-right: 1px dashed #fff;
   font-size: 28rpx;
   color: #4e6eff;
   transform: translateY(-50%);
+  display: none;
 }
 .search_icon{
   position: absolute;
@@ -300,6 +304,7 @@ border-right: 1px dashed #fff;
 }
 .card_li_tag{
   display: flex;
+  gap: 20rpx;
 }
 .card_li_tag view{
   font-size: 20rpx;
@@ -308,6 +313,10 @@ border-right: 1px dashed #fff;
   border-radius: 3px;
   /* margin:0 2px; */
   color: #999999;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 6em;
 }
 /* form表单 */
 .from_title{
@@ -337,8 +346,12 @@ border-right: 1px dashed #fff;
   position: relative;
 }
 .from_view_con text.from_input{
-  /* font-size:28rpx; */
+  font-size:28rpx;
   padding-left: 30rpx;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .from_map_con .map_box map{
   width: 100%;
@@ -364,7 +377,7 @@ border-right: 1px dashed #fff;
   padding: 0 20rpx;
   border: 1px solid #e8e8e8;
   border-radius: 6rpx;
-  width: 100%;
+  /* width: 100%; */
 }
 .from_view_con textarea{
   font-size: 28rpx;
@@ -373,6 +386,7 @@ border-right: 1px dashed #fff;
   padding: 0 20rpx;
   border: 1px solid #e8e8e8;
   border-radius: 6rpx;
+  width: auto;
 }
 .input_map_search[type=primary][plain]{
   position: absolute;
@@ -393,6 +407,9 @@ border-right: 1px dashed #fff;
 .page_app .weui-cell{
   padding: 16px 0;
   font-size: 28rpx;
+}
+.from_view_con .weui-cell::before{
+  opacity: 0;
 }
 .from_view_group{
   margin-bottom: 20rpx;
@@ -549,21 +566,30 @@ border-right: 1px dashed #fff;
    border-radius: 40rpx;
    margin:0;
    font-size: 32rpx;
-   color:#fff!important;
+   color:#fff;
  }
  .page_app .filter_box .filter_con .from_view_btn button[type=default]{
-  color: #999;
+  color: #000;
   /* background-color:#E6E6E6; */
   background-color:#e7ecfc;
-  
+  outline: none;
+  border: none;
 }
-
+button::after {
+  border:none
+ }
 /* 强制提升覆盖层级遮挡tab */
 .weui-mask{
   z-index: 99999!important;
 }
 .weui-dialog{
   z-index: 99999!important;
+}
+.t-overlay{
+  z-index: 999999!important;
+}
+.t-popup{
+  z-index: 9999999!important;
 }
 /* 隐藏滚动条 */
 ::-webkit-scrollbar {
@@ -582,6 +608,9 @@ border-right: 1px dashed #fff;
 /* 上传 */
 .uploader_b{
   padding:0 20rpx;
+}
+.uploader_b .weui-uploader__overview{
+  font-size:28rpx;
 }
 .uploader_b .weui-uploader__file{
   width: 28vw;
