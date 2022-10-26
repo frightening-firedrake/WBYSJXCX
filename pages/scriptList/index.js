@@ -231,7 +231,15 @@ Page({
   onShow() {
     this.setData({
       dataList: [],
+      ['queryJson.page']: 1,
+      ['queryJson.script_difficulty']: '',
+      ['queryJson.subject_type']: '',
+      ['queryJson.duration']: '',
+      ['queryJson.query_name']: '',
+
     })
+    // console.log(this.data.queryJson.page)
+
     this.getData()
     this.getConfigList()
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -272,9 +280,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   filterBtn() {
     console.log(this.data.filterShow)
     this.setData({
@@ -285,6 +293,8 @@ Page({
   name_filter(e) {
     this.setData({
       dataList: [],
+      ['queryJson.page']: 1,
+      ['queryJson.query_name']: e.detail.value,
     })
     this.getData()
   },
@@ -339,7 +349,8 @@ Page({
         console.log('剧本', res)
         if (res.data.status) {
           this.setData({
-            dataList: []
+            dataList: [],
+            ['queryJson.page']: 1
           })
           this.getData()
         } else {
@@ -363,6 +374,8 @@ Page({
   },
   //滚动到底部加载下一页
   lower(e) {
+    // 缺少数据超过总数的判断
+    // console.log(this.data.queryJson.page)
     this.setData({
       ['queryJson.page']: this.data.queryJson.page + 1
     })
@@ -525,9 +538,9 @@ reset_filter() {
   })
   this.getData()
   this.getConfigList()
-  this.setData({
-    filterShow: false
-  })
+  // this.setData({
+  //   filterShow: false
+  // })
 },
   //删除弹框 俩按钮事件
   tapDialogButton(e) {
@@ -535,7 +548,7 @@ reset_filter() {
       dialogDeleteShow: false
     })
     if(e.detail.index==1){
-      console.log("确认删除")
+      console.log("确认删除",e)
     }
   },
   //下架弹框 俩按钮事件
@@ -567,7 +580,7 @@ reset_filter() {
   },
   // 同步修改表单字段数据
   formInputChange(e) {
-    // console.log('同步中')
+    console.log('同步中')
     const {
       field
     } = e.currentTarget.dataset
@@ -609,7 +622,8 @@ reset_filter() {
         if (res.data.status) {
           this.setData({
             dialogShow: false,
-            dataList: []
+            dataList: [],
+            ['queryJson.page']: 1
           })
           this.getData()
           this.up_down_script(this.data.script_detail.script_code,1)
@@ -653,6 +667,7 @@ reset_filter() {
         dialogDeleteShow: true,
 
       })
+      console.log('删除剧本ID',e.currentTarget.dataset.id)
 
     } else if (this.data[name][index].status === 1) {
       this.setData({

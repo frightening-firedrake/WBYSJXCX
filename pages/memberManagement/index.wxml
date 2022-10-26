@@ -7,7 +7,7 @@
     
       <view class="search_con">
       <input bindconfirm="" type="text" placeholder="请输入手机号内容" />
-      <icon class="search_icon" type="search" size="18"></icon>
+      <icon class="search_icon" type="search" color="#000" size="16"></icon>
       <view class="search_con_btn">搜索</view>
     </view>
   </view>
@@ -17,10 +17,10 @@
   <!--WXML示例代码-->
   
 
-  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+  <scroll-view class="card_list_scroll newList" scroll-y="true" bindscrolltolower="lower">
     <mp-cells title="">
         <mp-cell link hover url="../memberDetail/index?id={{itemName.id}}" value="账户：{{itemName.moble_phone}}" footer=""  wx:for="{{member_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
-            <image slot="icon" src="{{base_file_url+itemName.avatar}}" style="margin-right: 12px;vertical-align: middle;width:30px; height: 30px;"></image>
+            <image slot="icon" src="{{base_file_url+itemName.avatar}}" class="listimg"></image>
         </mp-cell>
   
     </mp-cells>

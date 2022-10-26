@@ -8,6 +8,7 @@ Page({
   data: {
     is_edit: false, //是否是在编辑页面还是添加页面
     imgurl: null,
+    error:'',
     base_file_url: app.globalData.baseUrl,
     businessCreateRoom: app.globalData.baseUrl + app.globalData.urlData.businessCreateRoom,
     //上传房间的数据
@@ -18,7 +19,21 @@ Page({
       detail: '',
       store_id: '',
       is_edit: false
-    }
+    },
+    rules: [ 
+      {
+        name: 'name',
+        rules: {required: true, message: '请填写房间名称'},
+      },
+      {
+        name: 'detail',
+        rules: {required: true, message: '请填写房间简介'}, 
+      },
+      {
+        name: 'name_number',
+        rules: {required: true, message: '请填写房间号码'}, 
+      },
+    ]
   },
 
   /**
@@ -106,20 +121,51 @@ Page({
       }
     })
   },
+
+  formInputChange(e){
+    const {field} = e.currentTarget.dataset
+    this.setData({
+        [`room_data.${field}`]: e.detail.value
+    })
+  },
+  // 表单验证
+  submitCheck(){
+    this.selectComponent('#SubmitForm').validate((valid, errors) => {
+      if (!valid) {
+          const firstError = Object.keys(errors)
+          if (firstError.length) {
+            this.setData({
+              error: errors[firstError[0]].message
+            })
+          }
+      } else {
+        console.log('通过验证')
+        if(this.data.imgurl){
+          this.save_room()
+        } else {
+          this.setData({
+              error: '请上传房间照片'
+          })
+        }
+      }
+    })
+  },
   //将图片数据一起打包发送过去
   save_room(e) {
-    let room_data = {}
+    console.log('进入提交环节')
+    // let room_data = {}
+    let room_data = this.data.room_data
     //如果是编辑的时候 先将已有的照片下载到本地
-    console.log( e.detail.value)
+    // console.log( e.detail.value)
     var imgurl=''
     if (this.data.room_data.is_edit) {
-      room_data = e.detail.value
+      // room_data = e.detail.value
       room_data['is_edit'] = true
       room_data['id'] =  this.data.room_data.id
       room_data['store_id'] = app.globalData.storeId
   
     } else {
-      room_data = e.detail.value
+      // room_data = e.detail.value
       room_data['store_id'] = app.globalData.storeId
       room_data['is_edit'] = false
       this.setData({
@@ -136,9 +182,12 @@ Page({
         'data': JSON.stringify(room_data)
       },
       success(res) {
-        wx.navigateTo({
-          url: '../roomManagement/index',
-          success: function (res) {}
+        // wx.navigateTo({
+        //   url: '../roomManagement/index',
+        //   success: function (res) {}
+        // })
+        wx.navigateBack({
+          delta: 1
         })
       },
       fail: function (res) {
@@ -172,7 +221,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  }
+  // }
 })

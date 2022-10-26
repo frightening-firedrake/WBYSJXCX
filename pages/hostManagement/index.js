@@ -72,9 +72,9 @@ this.getBusinessHostList()
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   detail_add_router(e){
 
     wx.navigateTo({

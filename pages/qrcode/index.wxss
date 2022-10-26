@@ -1,5 +1,5 @@
 Page {
-  background-color: #4e6efe;
+  background-color: var(--theme-color);
 }
 .main {
   width: 670rpx;
@@ -33,7 +33,7 @@ Page {
   text-align: center;
 }
 canvas {
-  margin: 58rpx auto 0;
+  margin: 32rpx auto 0;
 }
 .type {
   margin-top: 24rpx;
@@ -106,4 +106,113 @@ canvas {
   font-size: 32rpx;
   color: #191D21;
   line-height: 50rpx;
+}
+
+/* 新改样式 */
+.pay_page{
+  padding:90rpx 50rpx 0;
+}
+.payCard{
+  background:#fff;
+  border-radius: 24rpx;
+}
+.payCard .head{
+  display: flex;
+  height:184rpx;
+  align-items: center;
+  border-bottom: 1px dashed var(--theme-color);
+  position: relative;
+}
+.payCard .head::after{
+  content: "";
+  width:44rpx;
+  height:44rpx;
+  background-color: var(--theme-color);
+  position: absolute;
+  bottom:-22rpx;
+  left:-22rpx;
+  z-index: 5;
+  border-radius: 50%;
+}
+.payCard .head::before{
+  content: "";
+  width:44rpx;
+  height:44rpx;
+  background-color: var(--theme-color);
+  position: absolute;
+  bottom:-22rpx;
+  right:-22rpx;
+  z-index: 5;
+  border-radius: 50%;
+}
+.payCard .head image{
+  width:82rpx;
+  height:82rpx;
+  border-radius: 10rpx;
+  background-color: var(--theme-color);
+  margin-left:44rpx;
+  margin-right:20rpx;
+}
+.payCard .head .infobox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.payCard .head .infobox .storeTitle{
+  font-size:28rpx;
+  color:#000;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width:16em;
+}
+.payCard .head .infobox .price{
+  font-size:28rpx;
+  color:#F53A3A;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width:16em;
+}
+.codeWrap{
+  padding:86rpx 0 80rpx;
+  text-align: center;
+  position: relative;
+  z-index: 4;
+  border-radius: 0 0 24rpx 24rpx;
+  background:#fff;
+}
+.codeWrap::after{
+  content: "";
+  position: absolute;
+  height:10rpx;
+  border-radius: 0 0 24rpx 24rpx;
+  bottom:-10rpx;
+  left:20rpx;
+  right:20rpx;
+  background:#FBECCA;
+}
+.codeWrap::before{
+  content: "";
+  position: absolute;
+  height:10rpx;
+  border-radius: 0 0 24rpx 24rpx;
+  bottom:-20rpx;
+  left:40rpx;
+  right:40rpx;
+  background:#F6D079;
+}
+.tip{
+  font-size:28rpx;
+  color:#000;
+}
+.intros{
+  margin-top:40rpx;
+  color:#000;
+  font-size:28rpx;
+}
+.intros .title{
+  font-weight: bold;
+  font-size: 33rpx;
+  color:#000;
 }

@@ -2,48 +2,113 @@
 <view class="page_app index_container">
   <!--首页头部开始-->
   <view class="index_head_con">
-    <!--收付款开始-->
-    <!-- <view class="index_top_collection">
-      <navigator url="../payments/index">
-        <view class="collection_icon_view"><icon size="20" class="collection_icon iconfont icon-saomafukuan-"></icon></view>
-        <view class="collection_text">收付款</view>
-      </navigator>
-    </view> -->
-    <!--选中门店-->
-    <!-- <picker value="{{storeDate}}" range="{{storeRangeList}}" range-key="title" value="{storeIndex}" bindchange="bindStoreChange">
-      <view class="select_shop_con">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}<icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon></view>
-    </picker> -->
-    <!-- <view bindtap="showPicker" class="select_shop_con">
-      <text class="shopName">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
-    </view> -->
-
-    <view bindtap="showStorePicker" class="select_shop_con">
+    <!-- <view bindtap="showStorePicker" class="select_shop_con">
       <text class="shopName">{{storeTitle}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
     </view>
-    
 
-  <picker-view indicator-class='pickerCol' bindchange="bindStoreChange" class="{{ pickerShow ? 'show' : '' }}">
-    <!-- <view class="pickerColpanel"> -->
-      <view class='btns'>
-        <view bindtap="closePicker">取消</view>
-        <view bindtap="StoreIsChange">确认</view>
-      </view>
-      <picker-view-column>
-        <view wx:key="index" wx:for="{{storeRangeList}}" style="line-height: 50rpx" class="{{ pickerIndex === index ? 'pick-text' : '' }}">{{item.title}}</view>
-      </picker-view-column>
-      <!-- </view> -->
-    </picker-view>
-    <view hidden="{{!pickerShow}}" bindtap="closePicker" class="pickerColMask"></view>
-
-
-    
     <view class="index_head_title">
       <view class="head_title_img">
         <image class="title_img" src="../../assets/img/logo.png"></image>
       </view>
       <view class="head_title_text"><text>{{informationData.name}}</text></view>
+    </view> -->
+
+    <view class="shopSelect">
+      <image class="shopAvatar" src="{{logo||'../../assets/img/logo.png'}}"></image>
+      <view class="shopinfo">
+        <view class="shopNameS"><text>{{informationData.name}}</text></view>
+        <view bindtap="showStorePicker" class="selectShop">
+          <text class="shopName">{{storeTitle}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
+        </view>
+      </view>
     </view>
-    <view class="index_head_data">
+
+    <view class="summary">
+      <view class="summaryitem">
+        <view class="number">{{informationData.total_amount}}</view>
+        <view class="title">总收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.today_total_amount}}</view>
+        <view class="title">今日收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.month_total_amount}}</view>
+        <view class="title">本月收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.today_order_sum}}</view>
+        <view class="title">今日约车</view>
+      </view>
+    </view>
+  </view>
+  <!--首页头部结束-->
+  <!--
+    首页内容开始
+  -->
+    <view class="container">
+      <!-- 剧本统计 -->
+      <view class="card">
+        <view class="head">
+          <image class="titleicon" src="../../assets/img/jbtj.png"></image>
+          <view class="title">剧本统计</view>
+        </view>
+        <view class="boxwrap">
+          <view class="box">
+            <view class="number">{{informationData.script_total}}</view>
+            <view class="title">总计</view>
+          </view>
+          <view class="box">
+            <view class="number">{{informationData.put_on_total}}</view>
+            <view class="title">已上架</view>
+          </view>
+          <view class="box">
+            <view class="number">{{informationData.put_off_total}}</view>
+            <view class="title">已下架</view>
+          </view>
+        </view>
+      </view>
+      <!-- 订单统计 -->
+      <view class="card">
+        <view class="head">
+          <image class="titleicon" src="../../assets/img/ddtj.png"></image>
+          <view class="title">订单统计</view>        
+        </view>
+        <view class="boxwrap">
+          <view class="box">
+            <view class="number">{{informationData.yesterday_order_sum}}</view>
+            <view class="title">昨日</view>
+          </view>
+          <view class="box">
+            <view class="number">{{informationData.today_order_sum}}</view>
+            <view class="title">今日</view>
+          </view>
+          <view class="box">
+            <view class="number">{{informationData.month_order_sum}}</view>
+            <view class="title">本月</view>
+          </view>
+        </view>
+      </view>
+      <!-- 订单金额占比 -->
+      <view class="card">
+        <view class="head">
+          <image class="titleicon" src="../../assets/img/ddje.png"></image>
+          <view class="title">订单金额占比</view>
+          <!-- <view class="legends">
+            <view class="legend dd">订单</view>
+            <view class="legend">金额</view>
+          </view>       -->
+        </view>
+        <view class="chartWrap">
+          <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+        </view>
+      </view>
+
+
+    </view>
+
+
+    <!-- <view class="index_head_data">
       <view class="head_data_li">
         <view class="data_tit">总收益</view>
         <view class="data_num">{{informationData.total_amount}}</view>
@@ -63,15 +128,11 @@
         <view class="data_tit">今日约车</view>
         <view class="data_num">{{informationData.today_order_sum}}</view>
       </view>
-    </view>
-  </view>
-  <!--首页头部结束-->
-  <!--
-    首页内容开始
-  -->
-  <view class="index_content">
+    </view> -->
+
+  <!-- <view class="index_content"> -->
   <!--列表-->
-    <view class="index_content_list">
+    <!-- <view class="index_content_list">
       <view class="content_list_title">剧本统计</view>
       <view class="list_content">
         <view class="list_content_li">
@@ -103,7 +164,7 @@
         </view>
       </view>
     </view>
-  <!--列表-->
+
     <view class="index_content_list">
       <view class="content_list_title">订单统计</view>
       <view class="list_content">
@@ -135,19 +196,19 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
   <!--列表-->
-    <view class="index_content_list">
+    <!-- <view class="index_content_list">
       <view class="content_list_title">订单/金额占比</view>
       <view class="list_content_data">
         <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
       </view>
     </view>
-  </view>
+  </view> -->
   <!-- 门店选择picker -->
 <t-picker
   visible="{{storePickerVisible}}"
-  value="{{[]}}"
+  value="{{[storeId]}}"
   title="请选择门店"
   cancelBtn="取消"
   confirmBtn="确认"
@@ -156,3 +217,4 @@
   <t-picker-item options="{{storeRangeList}}"></t-picker-item>
 </t-picker>
 </view>
+

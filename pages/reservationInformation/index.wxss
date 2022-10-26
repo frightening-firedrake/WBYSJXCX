@@ -1,0 +1,5 @@
+/* pages/reservationInformation/index.wxss */
+.pageWrap{
+  background:#F0F2F5;
+  min-height: 100vh;
+}

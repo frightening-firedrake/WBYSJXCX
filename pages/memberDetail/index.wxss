@@ -1,4 +1,7 @@
 /* pages/memberManagement/index.wxss */
+.member_management_top{
+  background-color: #fff;
+}
 .member_head_portrait{
   text-align: center;
 }

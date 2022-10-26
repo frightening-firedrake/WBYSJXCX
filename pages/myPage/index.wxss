@@ -26,7 +26,21 @@
 
 /* 新改造我的 */
 .my_page_section2{
-  padding:0 36rpx;
+  padding:0 20rpx;
+  height:calc(100vh - 360rpx - 140rpx);
+  overflow: auto;
+  position: relative;
+  top:-96rpx;
+}
+.weui-cells__group{
+  border-radius: 21rpx;
+  overflow: hidden;
+}
+.my_page_section2 .iconImg{
+  margin-right: 15rpx;
+  vertical-align: middle;
+  width:40rpx; 
+  height: 40rpx;
 }
 .my_page_section2 .weui-cells_after-title{
   margin-top:0;
@@ -36,7 +50,8 @@
   color: #999;
 }
 .my_page_section2 .weui-cell {
-  padding: 4rpx 0;
+  padding: 0rpx 34rpx;
+  height:116rpx;
 }
 .my_page_section2 .iconbefore{
   font-size: 46rpx;

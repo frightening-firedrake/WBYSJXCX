@@ -1,0 +1,219 @@
+<!--pages/carpoolingDetails/index.wxml-->
+<view class="pageWrap white {{detaildata.status>2?'pageFull':''}}">
+  <view class="head">拼场信息</view>
+  <view class="scriptInfo">
+    <image src="{{base_file_url+detaildata.script_cover}}"></image>
+    <view class="info">
+      <view class="namebox">
+        <text class="name">{{detaildata.script_name}}</text>
+        <text class="room">房间：{{detaildata.room_number}}</text>
+      </view>
+      <view class="tags">
+        <view class="tag">{{detaildata.script_person}}</view>
+        <view class="tag">{{detaildata.subject_type}}</view>
+        <view class="tag">预计{{detaildata.duration}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="pcsj">
+    <!-- 拼车时间：10-10 17:00-20:00 -->
+    拼车时间：{{detaildata.appointment_date}} {{detaildata.appointment_time}}
+  </view>
+  <view class="short" wx:if="{{detaildata.sub_count}}">
+    差 {{detaildata.sub_count}}人可开场，点击可添加线下玩家
+  </view>
+  <view class="memberbox">
+    <view class="title">线上（{{detaildata.online_person}}）</view>
+    <view class="memberWrap">
+      <view class="member" bindlongpress="delPlayer" wx:for="{{detaildata.online_user}}" wx:key="id" data-id="{{item.id}}">
+        <image class="avatar" src="{{base_file_url+item.avatar}}"></image>
+        <view class="tagF">未付款</view>
+        <!-- <view class="gender" wx:if="{{item.gender==0}}">男</view>
+        <view class="gender" wx:if="{{item.gender==1}}">女</view> -->
+        <image class="gender" wx:if="{{item.gender==0}}" src="../../assets/img/boy.png"></image>
+        <image class="gender" wx:if="{{item.gender==1}}" src="../../assets/img/girl.png"></image>
+        <!-- <view class="tagT tagF">已付款</view> -->
+      </view>
+      <!-- <view class="member" bindlongpress="delPlayer">
+        <image></image>
+        <view class="tagF">未付款</view>
+      </view> -->
+    </view>
+  </view>
+  <view class="memberbox">
+    <view class="title">线下（{{detaildata.offline_person}}）</view>
+    <view class="memberWrap">
+      <view class="member" bindlongpress="delPlayer" bindtap="toReservationInformation" wx:for="{{detaildata.offline_user}}" wx:key="id" data-id="{{item.id}}">
+        <image class="avatar" src="{{base_file_url+item.avatar}}"></image>
+        <image class="gender" wx:if="{{item.gender==0}}" src="../../assets/img/boy.png"></image>
+        <image class="gender" wx:if="{{item.gender==1}}" src="../../assets/img/girl.png"></image>
+      </view>
+      <view class="member" wx:if="{{detaildata.status==1}}" hidden="{{detaildata.sub_count==0}}">
+        <view class="memberAdd" bindtap="openAddPlayer">
+          <mp-icon icon="add"  color="#ED6C1E" size="{{32}}"></mp-icon>
+        </view>
+      </view>
+    </view>
+    <view class="tip"  wx:if="{{detaildata.status==0||detaildata.status==1}}">接单后线下付给商家了  商家手动添加人数 凑车</view>
+  </view>
+  <view class="tips">
+    <view class="tip">
+      1、商家可添加线下玩家，进行拼场人员设置
+    </view>
+    <view class="tip">
+      2、拼场成功商家与线下玩家自行结款，若拼场失败线上玩家将自动退款
+    </view>
+    <view class="kickOut">
+      付款时间范围内，未付款玩家，商家可踢出，添加线下玩家
+    </view>
+  </view>
+  <view class="feedback" wx:if="{{Tipsuccess1}}">
+    <icon type="success" color="#33A954" size="16"></icon>
+    <view class="feedbackMsg">
+      <view class="title">接单成功</view>
+    </view>
+  </view>
+  <view class="feedback" wx:if="{{Tipsuccess2}}">
+    <icon type="success" class="onerow" color="#33A954" size="16"></icon>
+    <view class="feedbackMsg">
+      <view class="title">拼车成功</view>
+      <view class="msg">请按时联系玩家尽快锁车，到店玩本</view>
+    </view>
+  </view>
+  <view class="feedback" wx:if="{{Tiperror1}}">
+    <icon type="clear" class="onerow" color="#FF3333" size="16"></icon>
+    <view class="feedbackMsg">
+      <view class="title">拼车失败</view>
+      <view class="msg">预约有效时间内，拼车人数未达到开本人数</view>
+    </view>
+  </view>
+  <view class="feedback" wx:if="{{Tiperror2}}">
+    <icon type="clear" class="onerow" color="#FF3333" size="16"></icon>
+    <view class="feedbackMsg">
+      <view class="title">商家拒绝</view>
+      <view class="msg">{{Tiperror2Text}}</view>
+    </view>
+  </view>
+  
+  
+</view>
+<!-- 底部按钮 -->
+<view class="buttonPosition">
+  <t-button-group class="btngroup" wx:if="{{detaildata.status==0}}">
+    <t-button t-class="external-class" size="large" block shape="round"
+    bindtap="openRefuse" data-title="不接单">不接单</t-button
+    >
+    <t-button t-class="external-class" theme="primary" size="large" block shape="round"
+      bindtap="receiving">接单</t-button
+    >
+  </t-button-group>
+
+  <t-button-group class="btngroup" wx:if="{{detaildata.status==1||detaildata.status==2}}">
+    <t-button t-class="external-class" size="large" block shape="round" 
+    bindtap="openRefuse" data-title="我要流车">我要流车</t-button
+    >
+    <t-button t-class="external-class" theme="primary" size="large" block shape="round"
+      bindtap="lock">接单锁车</t-button
+    >
+  </t-button-group>
+</view>
+<!-- 新增线下玩家 -->
+<mp-dialog title="新增线下玩家" show="{{dialogShowAddPlay}}" bindbuttontap="tapDialogButtonAdd" buttons="{{buttonsD}}">
+  <view class="dialogcontent">
+    <view class="DLrow">
+      <view class="label">男生</view>
+      <t-stepper  value="{{schoolboy}}" max="{{schoolboyMax}}" bind:change="schoolboyChange" disable-input inputWidth="{{120}}" />
+    </view>
+    <view class="DLrow">
+      <view class="label">女生</view>
+      <view>
+        <t-stepper value="{{schoolgirl}}" max="{{schoolgirlMax}}" bind:change="schoolgirlChange"  inputWidth="{{120}}" />
+      </view>
+    </view>
+  </view>
+</mp-dialog>
+<!-- 不接单 -->
+<mp-dialog title="{{refuseTitle}}" show="{{dialogShowRefuse}}" bindbuttontap="tapDialogButtonRefuse" buttons="{{buttonsD}}">
+  <view class="dialogcontent">
+    <view class="reasonLabel">{{refuseTitle}}原因：</view>
+    <textarea bindinput="formInputChange" data-field="reason" value="{{reason}}" placeholder="请输入原因" cols="10" rows="5"></textarea>
+  </view>
+</mp-dialog>
+<!-- 锁车下弹出 -->
+<t-popup visible="{{lockVisible}}" bind:visible-change="onLockVisibleChange" placement="bottom" class="popLow">
+  <view class="coverbox">
+    <view class="formitem">
+      <view class="label">DM设置：</view>
+      <input type="text" placeholder="请选择开场DM" disabled value="{{DMLabel}}" />
+      <view class="btn" bindtap="showDMVisible">选择DM</view>
+    </view>
+    <view class="remarks">
+      备注：您可以选择开场DM
+    </view>
+    <view class="formitem">
+      <view class="label">拼车时间：</view>
+      <input type="text" placeholder="请选择日期" disabled value="{{date}}" />
+      <view class="btn" bindtap="showDateVisible">日期设置</view>
+    </view>
+    <view class="formitem">
+      <view class="label"> </view>
+      <input type="text" placeholder="请选择开始时间" disabled value="{{time1}}" />
+      <view class="btn" bindtap="showTimeVisible1">开始时间</view>
+    </view>
+    <view class="formitem">
+      <view class="label"> </view>
+      <input type="text" placeholder="请选择结束时间" disabled value="{{time2}}" />
+      <view class="btn" bindtap="showTimeVisible2">结束时间</view>
+    </view>
+    <view class="remarks">
+      备注：拼车时间如有冲突，可商家进行时间调整
+    </view>
+    <t-button-group class="btngroup">
+      <t-button t-class="external-class" size="large" block  shape="round"
+      bindtap="closeLock">取消</t-button
+      >
+      <t-button t-class="external-class" theme="primary" size="large" block  shape="round"
+        bindtap="lock">确定</t-button
+      >
+    </t-button-group>
+  </view>
+</t-popup>
+<!-- 选择主持人 -->
+<t-picker
+  visible="{{DMVisible}}"
+  value="{{[DMValue]}}"
+  title="请选择开场DM"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onDMPickerChange"
+>
+  <t-picker-item options="{{DMList}}"></t-picker-item>
+</t-picker>
+<!-- 日期 -->
+<t-date-time-picker
+  title="选择日期"
+  visible="{{dateVisible}}"
+  mode="date"
+  value="{{date}}"
+  format="YYYY-MM-DD"
+  bindchange="onDateConfirm"
+  start="{{start}}"
+  end="{{end}}"
+></t-date-time-picker>
+<!-- 时间 -->
+<t-date-time-picker
+  title="选择时间"
+  visible="{{timeVisible1}}"
+  mode="{{['null', 'minute']}}"
+  value="{{time1}}"
+  format="HH:mm"
+  bindchange="onTime1Confirm"
+></t-date-time-picker>
+<t-date-time-picker
+  title="选择时间"
+  visible="{{timeVisible2}}"
+  mode="{{['null', 'minute']}}"
+  value="{{time2}}"
+  format="HH:mm"
+  bindchange="onTime2Confirm"
+></t-date-time-picker>

@@ -1,52 +1,45 @@
 /* pages/order/index.wxss */
+.page_app{
+  padding-bottom:0;
+}
 .page_app .cards_search_con .share_btn{
   font-size: 24rpx;
 }
-.order_tab_navbar{
-  display: flex;
-  justify-content:space-around;
-  font-size:28rpx;
-  margin-bottom: 20rpx;
-}
-.order_tab_item{
-  height: 60rpx;
-  line-height: 60rpx;
-  border-bottom: solid 2px transparent;
-  transition: all linear 0.2s;
-}
-.order_tab_item.active{
-  border-bottom-color: #4e6eff;
-  color: #4e6eff;
-}
+/* 订单卡片样式 */
 .order_list_section{
-  padding:7px ;
+  padding:0 8rpx ;
 }
 .order_li_con{
   background-color: #ffffff;
   box-shadow: 0px 0px 10px #e7e7e7;
-  border-radius: 6px;
-  margin-bottom: 40rpx;
+  border-radius: 14rpx;
+  margin-bottom: 20rpx;
 }
 .order_li_top{
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid 1px #f1f1f1;
-  padding: 16rpx 30rpx;
+  padding: 0 34rpx;
+  line-height:80rpx;
+  height:80rpx;
 }
 .order_li_num{
   font-size: 28rpx;
+  font-weight: bold;
+  color:#333;
   width: 18em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 .order_li_state{
-  font-size: 24rpx;
-  color: #999999;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
 }
 .order_li_infor{
-  padding: 30rpx;
+  padding: 25rpx 30rpx;
 }
 .order_infor_ba{
   display: flex;
@@ -58,7 +51,7 @@
 }
 .store_icon{
   font-size: 14px;
-  color: #4e6eff;
+  color: var(--theme-color);
   margin-right: 10rpx;
 }
 .order_infor_con{
@@ -77,8 +70,11 @@
 }
 .order_infor_list .order_infor_li{
   display: flex;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #333333;
+  font-weight: bold;
+  height:46rpx;
+  line-height:46rpx;
   /* width: 50%; */
 }
 .order_infor_li{
@@ -90,22 +86,27 @@
   margin-right: 0;
 }
 .order_infor_label{
-  color: #999999;
+  color: #666;
+  font-weight: normal;
+  width: 5em;
+  text-align: justify;
+  text-align-last: justify;
 }
 .order_price{
   position: absolute;
-  font-size: 24rpx;
-  color: #ff4e4e;
+  font-size: 28rpx;
+  color: #F53A3A;
   right: 0;
   bottom: 0;
-  line-height: 60rpx;
+  line-height: 46rpx;
 }
 .card_list_scroll{
   /* height:calc(100vh - 196rpx); */
   /* height: calc(100vh - 72rpx - 1px - 28rpx - 20rpx - 2px - 60rpx - 56px); */
-  height: calc(100vh - 100rpx - 80rpx - 140rpx - 16rpx);
-  margin:0 -7px;
+  /* height: calc(100vh - 100rpx - 80rpx - 140rpx - 16rpx); */
+  height: calc(100vh - 100rpx - 80rpx - 16rpx);
+  /* margin:0 -7px; */
   width: auto;
-  border-top:1px solid rgba(103,103,103,0.1) ;
+  /* border-top:1px solid rgba(103,103,103,0.1) ; */
 
 }

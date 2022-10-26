@@ -8,5 +8,6 @@
     "mp-cell": "weui-miniprogram/cell/cell",
     "mp-dialog": "weui-miniprogram/dialog/dialog",
     "mp-slideview": "weui-miniprogram/slideview/slideview"
-  }
+  },
+  "navigationBarTitleText": "剧本"
 }

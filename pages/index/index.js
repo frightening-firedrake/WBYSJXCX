@@ -1,7 +1,7 @@
 // index.js
 // 获取应用实例
 import * as echarts from '../../ec-canvas/echarts';
-console.log("echarts.version",echarts.version);
+// console.log("echarts.version",echarts.version);
 const app = getApp()
 let chart = null
 function initChart(canvas, width, height, dpr) {
@@ -26,6 +26,7 @@ Page({
       title: {
         show: false
       },
+      color: ["#F2BB3F", "#FF0000"],
       legend: {
         data: ['订单', '金额'],
         top: 0,
@@ -86,7 +87,10 @@ Page({
       }
     ],
     storeIndex: 0,
+    storeId: '',
     storeTitle:"请选择门店",
+    logo:'',
+    shop:[],
     storePickerVisible:false,
     userInfo: {},
     hasUserInfo: false,
@@ -99,14 +103,14 @@ Page({
       storePickerVisible:!this.data.storePickerVisible
     })
   },
-  onShareAppMessage (res) {
-    return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
-    }
-  },
+  // onShareAppMessage (res) {
+  //   return {
+  //     title: 'ECharts 可以在微信小程序中使用啦！',
+  //     path: '/pages/index/index',
+  //     success: function () { },
+  //     fail: function () { }
+  //   }
+  // },
   onShow(){
     this.getBusinessStoreList()
     // this.getData()
@@ -160,7 +164,7 @@ Page({
       hasUserInfo: true
     })
   },
-  //选择店铺事件，查看该店铺下的信息，每次选择店铺 从新请求一下数据
+  //选择店铺事件，查看该店铺下的信息，每次选择店铺 从新请求一下数据目前应该是弃用了吧
   bindStoreChange(event){
     let choose_store_index=event.detail.value
     this.setData(
@@ -171,14 +175,26 @@ Page({
     //重新获取数据 
     this.getData()
   },
+  // 新的店铺选择方法
   onStorePickerChange(event){
-    // console.log(event)
+    console.log(event)
+    let logo
+    this.data.storeRangeList.forEach((v)=>{
+      if(v.store_id==event.detail.value[0]){
+        logo=app.globalData.baseUrl+v.store_cover
+      }
+    })
     this.setData(
-      {   storeTitle:event.detail.label[0]}
-       )
+      {   
+        storeTitle:event.detail.label[0],
+        storeId: event.detail.value[0],
+        logo:logo
+      }
+    )
     
     //修改全局store_id 
     app.globalData.storeId =event.detail.value[0]
+    // console.log('修改了店铺ID',app.globalData.storeId)
     //重新获取数据 
     this.getData()
   },
@@ -260,11 +276,32 @@ Page({
         wx.hideLoading()
         console.log('门店',res)
         if(res.data.code === 200){
+          // 判断全局店铺id有的话通过id过滤title没有取数组第一项
+          let shop=[];
+          if(app.globalData.storeId){
+            shop=res.data.data.filter((v)=>{
+              return v.store_id==app.globalData.storeId
+            })
+            this.data.storeTitle=shop[0].title
+            this.data.logo=app.globalData.baseUrl+shop[0].store_cover
+          }else{
+            this.data.storeTitle=res.data.data[0].title
+            this.data.logo=app.globalData.baseUrl+res.data.data[0].store_cover
+          }
           this.setData({
             storeRangeList: res.data.data,
-            storeTitle: res.data.data[0].title
+            shop: shop,
+            storeTitle: this.data.storeTitle,
+            logo: this.data.logo
           })
-          app.globalData.storeId = res.data.data[0].store_id
+          // console.log(this.data.shop)想设置picker默认值失败了
+          // console.log('店铺ID获取前',app.globalData.storeId)
+          app.globalData.storeId =app.globalData.storeId|| res.data.data[0].store_id
+          this.setData({
+            storeId: app.globalData.storeId,
+          })
+          // console.log('店铺ID获取修改',app.globalData.storeId)
+
           this.getData()
         } else {
           wx.showToast({

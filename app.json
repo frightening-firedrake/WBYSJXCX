@@ -4,7 +4,15 @@
     "pages/index/index",
     "pages/scriptList/index",
     "pages/importPage/index",
+    "pages/carpooling/index",
+    "pages/carpoolingDetails/index",
+    "pages/reservationInformation/index",
+    "pages/carpoolingRecord/index",
+    "pages/carpoolingRecordSearch/index",
+    "pages/carpoolingRecordScreen/index",
+    "pages/roomSettings/index",
     "pages/order/index",
+    "pages/orderList/index",
     "pages/myPage/index",
     "pages/businessInformation/index",
     "pages/roomManagement/index",
@@ -35,7 +43,7 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#F2BB3F",
     "navigationBarTitleText": "玩本鸭",
     "navigationBarTextStyle": "black"
   },
@@ -45,7 +53,9 @@
     "weui": true
   },
   "usingComponents":{
-    "calendar":"/pages/calendar/carlendar"
+    "calendar":"/pages/calendar/carlendar",
+    "calendarOnPage":"/pages/calendarOnPage/calendar",
+    "t-message": "tdesign-miniprogram/message/message"
   },
   "lazyCodeLoading": "requiredComponents",
   "tabBar": {
@@ -69,11 +79,11 @@
       {
         "pagePath": "pages/importPage/index",
         "text": "导入剧本",
-        "iconPath": "assets/img/add-icon1.png",
-        "selectedIconPath": "assets/img/add-icon1.png"
+        "iconPath": "assets/img/add-icon.png",
+        "selectedIconPath": "assets/img/add-icon.png"
       },
       {
-        "pagePath": "pages/order/index",
+        "pagePath": "pages/orderList/index",
         "text": "订单",
         "iconPath": "/assets/img/order-icon.png",
         "selectedIconPath": "/assets/img/order-icon1.png"

@@ -82,9 +82,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
 
-  },
+  // },
   formInputChange(e){
     const {field} = e.currentTarget.dataset
     this.setData({
@@ -98,7 +98,6 @@ Page({
     })
   },
   getVCode(e){
-    console.log(5)
     this.getvCodeRequest()
   },
   getvCodeRequest(){

@@ -3,5 +3,6 @@
     "ec-canvas": "../../ec-canvas/ec-canvas",
     "t-picker": "tdesign-miniprogram/picker/picker",
     "t-picker-item": "tdesign-miniprogram/picker/picker-item"
-  }
+  },
+  "navigationBarTitleText": "首页"
 }

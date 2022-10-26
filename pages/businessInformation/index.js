@@ -10,6 +10,7 @@ Page({
       base_file_url: app.globalData.baseUrl,
       businessCreateStore: app.globalData.baseUrl + app.globalData.urlData.businessCreateStore,
         date: '',
+        error:'',
         typeItems: [
           {value: '0', name: '基本推荐',checked:true},
           {value: '1', name: '场所照片',checked:false},
@@ -27,6 +28,7 @@ Page({
         },
         store_id:'',
         logoImgurl: null,
+        logoImgurls:[],
         recommendImgList0:[
           // {
             // url: 'http://mmbiz.qpic.cn/mmbiz_png/VUIF3v9blLsicfV8ysC76e9fZzWgy8YJ2bQO58p43Lib8ncGXmuyibLY7O3hia8sWv25KCibQb7MbJW3Q7xibNzfRN7A/0',
@@ -102,9 +104,9 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    // onShareAppMessage: function () {
 
-    },
+    // },
     //选择图片 放到data中
     upload() {
       let that = this
@@ -129,6 +131,18 @@ Page({
     },
     uploadSuccess(e) {
         console.log('upload success', e.detail)
+    },
+    uploadLogoSuccess(e) {
+      console.log('upload logo success', e.detail)
+      // logo上传成功并得到地址
+      that.setData({
+        logoImgurl: e.detail.urls[0]
+      })
+    },
+    deleLogo(e){
+      console.log(e)
+      // 图片删除事件需要处理数据
+      // console.log(this.data.logoImgurls)
     },
     selectFile(files) {
         console.log('files', files)
@@ -221,8 +235,10 @@ Page({
               if (res.statusCode === 200) {
                 console.log(res.tempFilePath, 'res.tempFilePath')
                 let tempFilePaths = res.tempFilePath
+                this.data.logoImgurls.push({url:tempFilePaths})
                 this.setData({
-                  logoImgurl: tempFilePaths
+                  logoImgurl: tempFilePaths,
+                  logoImgurls:this.data.logoImgurls
                 })
               }
             }
@@ -263,9 +279,12 @@ Page({
         'data': JSON.stringify(edit_store_params)
       },
       success(res) {
-        wx.navigateTo({
-          url: '../storeManagement/index',
-          success: function (res) {}
+        // wx.navigateTo({
+        //   url: '../storeManagement/index',
+        //   success: function (res) {}
+        // })
+        wx.navigateBack({
+          delta: 1
         })
       },
       fail: function (res) {

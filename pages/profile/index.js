@@ -22,21 +22,30 @@ Component({
       }
     ],
     storeIndex: 0,
+    storeId: '',
+    logo:'',
     storeTitle:"请选择门店",
     storePickerVisible:false,
     userInfo: {},
     hasUserInfo: false,
 
   }, 
-  onShareAppMessage (res) {
+  // onShareAppMessage (res) {
     
-  },
-  onShow(){
-    this.getBusinessStoreList()
-
-  },
-  onReady(){
-    
+  // },
+  // 这生命周期把我整的都吐了
+  pageLifetimes: {
+    show: function() {
+      console.log('组件show')
+      this.getBusinessStoreList();
+      // 页面被展示
+    },
+    hide: function() {
+      // 页面被隐藏
+    },
+    resize: function(size) {
+      // 页面尺寸变化
+    }
   },
   // 事件处理函数
   bindViewTap() {
@@ -45,10 +54,10 @@ Component({
     })
   },
   
-  ready: function (options) {
- this.getBusinessStoreList();
+//   ready: function (options) {
+//  this.getBusinessStoreList();
 
-  },
+//   },
   methods:{
     showStorePicker(){
       this.setData({
@@ -79,9 +88,19 @@ Component({
     },
     onStorePickerChange(event){
       // console.log(event)
+      let logo
+      this.data.storeRangeList.forEach((v)=>{
+        if(v.store_id==event.detail.value[0]){
+          logo=app.globalData.baseUrl+v.store_cover
+        }
+      })
       this.setData(
-        {   storeTitle:event.detail.label[0]}
-         )
+        {   
+          storeTitle:event.detail.label[0],
+          storeId: event.detail.value[0],
+          logo:logo
+        }
+      )
       
       //修改全局store_id 
       app.globalData.storeId =event.detail.value[0]
@@ -157,11 +176,34 @@ Component({
           wx.hideLoading()
           console.log('门店',res)
           if(res.data.code === 200){
+             // 判断全局店铺id有的话通过id过滤title没有取数组第一项
+            if(app.globalData.storeId){
+              let shop=res.data.data.filter((v)=>{
+                return v.store_id==app.globalData.storeId
+              })
+              console.log(shop)
+              this.data.storeTitle=shop[0].title
+              this.data.logo=app.globalData.baseUrl+shop[0].store_cover
+
+            }else{
+              this.data.storeTitle=res.data.data[0].title
+              this.data.logo=res.data.data[0].store_cover
+            }
+            console.log(res.data)
+            console.log(this)
+            console.log(app.globalData.storeId)
+            console.log('魔镜告诉我店铺id是多少',this.data.storeTitle)
             this.setData({
               storeRangeList: res.data.data,
-              storeTitle: res.data.data[0].title
+              storeTitle: this.data.storeTitle,
+              logo: this.data.logo
             })
-            app.globalData.storeId = res.data.data[0].store_id
+            // console.log('店铺ID获取前',app.globalData.storeId)
+            app.globalData.storeId =app.globalData.storeId|| res.data.data[0].store_id
+            this.setData({
+              storeId: app.globalData.storeId,
+            })
+            // console.log('店铺ID获取修改',app.globalData.storeId)
             this.getData()
           } else {
             wx.showToast({

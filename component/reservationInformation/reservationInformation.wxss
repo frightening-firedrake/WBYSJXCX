@@ -1,0 +1,74 @@
+/* component/scriptInfo.wxss */
+.reservationInformationWrap{
+  height:628rpx;
+  background:#fff;
+  margin-bottom:15rpx;
+}
+.head{
+  padding:0 46rpx;
+  line-height: 90rpx;
+  color:#333;
+  font-size:33rpx;
+  font-weight: bold;
+}
+.row{
+  padding:0 46rpx;
+  font-size:28rpx;
+  color:#666;
+  display: flex;
+  height:46rpx;
+}
+.lastrow{
+  margin-bottom:10rpx;
+}
+.row .label{
+  font-size:28rpx;
+  color:#666;
+  width:4em;
+  text-align: justify;
+  text-align-last: justify;
+  padding-right:1em;
+  position: relative;
+}
+.row .label::after{
+  content: '：';
+  position: absolute;
+}
+.row .value{
+  font-size:28rpx;
+  color:#333;
+  width:calc(100% - 5em);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  overflow: hidden;
+}
+.infobox{
+  margin:0 46rpx;
+  border-top:1px solid #D2D2D2;
+  height:120rpx;
+  display: flex;
+  align-items: center;
+}
+.infobox image{
+  margin-right:22rpx;
+  flex: none;
+}
+.infobox .infoWrap{
+  display: flex;
+  flex-direction: column;
+  width:calc(100% - 70rpx);
+
+}
+.infobox .infoWrap .title{
+  font-size:28rpx;
+  color:#333;
+  font-weight: bold;
+}
+.infobox .infoWrap .details{
+  font-size:28rpx;
+  color:#666;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

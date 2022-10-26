@@ -46,7 +46,7 @@
             </checkbox-group>
           </form>
           <button class="add_times" type="primary" plain="true" bindtap="toggleTimeDialog">
-            <mp-icon extClass="del_icon" type="field" icon="add" color="#4e6eff" size="{{18}}"></mp-icon>添加
+            <mp-icon extClass="del_icon" type="field" icon="add" color="var(--theme-color)" size="{{18}}"></mp-icon>添加
           </button>
         </view>
       </view>

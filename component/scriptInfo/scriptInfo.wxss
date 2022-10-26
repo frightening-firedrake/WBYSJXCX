@@ -1,0 +1,67 @@
+/* component/scriptInfo.wxss */
+.scriptInfoWrap{
+  height:285rpx;
+  background:#fff;
+  padding-bottom:20rpx;
+  box-sizing: border-box;
+  margin-bottom:15rpx;
+}
+.head{
+  padding:0 46rpx;
+  line-height: 90rpx;
+  color:#333;
+  font-size:33rpx;
+  font-weight: bold;
+}
+.scriptInfo{
+  padding:0 46rpx;
+  height:175rpx;
+  display: flex;
+  align-items: center;
+}
+.scriptInfo image{
+  height:175rpx;
+  width:140rpx;
+  margin-right:22rpx;
+  background:hotpink;
+  /* border-radius: 4px; */
+}
+.scriptInfo .info{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.scriptInfo .info .namebox{
+  display: flex;
+  justify-content: space-between;
+  font-size:33rpx;
+  font-weight: bold;
+  color:#333;
+  margin-bottom:21rpx;
+  line-height:50rpx;
+}
+.scriptInfo .info .namebox .room{
+  font-size:28rpx;
+  font-weight: normal;
+  color:#666;
+}
+.scriptInfo .info .tags{
+  display: flex;
+  /* margin:0 -12rpx; */
+  color:#666;
+  font-size:28rpx;
+}
+.scriptInfo .info .tags .tag{
+  /* padding:0 12rpx; */
+  position: relative;
+}
+.scriptInfo .info .tags .tag+.tag::before{
+  border-left:1px solid #9FA1B7;
+  content: "";
+  margin:0 10rpx;
+}
+.scriptInfo .info .price{
+  text-align: right;
+  color: #F53A3A;
+  font-size:28rpx;
+}

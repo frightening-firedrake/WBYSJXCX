@@ -1,6 +1,7 @@
 <!--pages/hostManagement/index.wxml-->
-<view class="page_app page_pd_app business_information_section">
-    <form class="form_view"  catchsubmit="save_host">
+<view class="page_app page_pd_app business_information_section white">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+    <mp-form id="SubmitForm" rules="{{rules}}" models="{{host_data}}" class="form_view"  catchsubmit="save_host">
         <view class="form_view_li">
             <view class="from_title">*<text>DM照片</text></view>
             <view class="from_view_con from_view_flex">
@@ -18,7 +19,8 @@
             <view class="from_title">*<text>DM姓名</text></view>
             <view class="from_view_con">
                 <input class="from_input" type="text" 
-                
+                data-field="name"
+                bindinput="formInputChange"
                 value="{{host_data.name}}" name="name"
                 placeholder="请输入DM姓名" />
             </view>
@@ -27,11 +29,13 @@
             <view class="from_title">*<text>DM手机号</text></view>
             <view class="from_view_con">
                 <input class="from_input" type="number" 
+                data-field="mobile_phone"
+                bindinput="formInputChange"
                 value="{{host_data.mobile_phone}}" name="mobile_phone" placeholder="请输入DM手机号" />
             </view>
         </view>
         <view class="from_view_btn">
-          <button style="margin: 30rpx 0" type="primary" formType="submit">保存</button>
+          <button style="margin: 30rpx 0" type="primary" bindtap="submitCheck" formType="submit">保存</button>
         </view>
-    </form>
+    </mp-form>
 </view>

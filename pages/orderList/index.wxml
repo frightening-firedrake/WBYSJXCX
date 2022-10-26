@@ -1,0 +1,10 @@
+<view class="orderList newList">
+  <mp-cells>
+    <mp-cell link url="../carpooling/index" value="拼车管理">
+        <!-- <icon  slot="icon" class="iconbefore iconfont icon-stores"></icon> -->
+    </mp-cell>
+    <mp-cell link url="../order/index" value="订单管理">
+        <!-- <icon  slot="icon" class="iconbefore iconfont icon-huiyuanguanli"></icon> -->
+    </mp-cell>
+  </mp-cells>
+</view>

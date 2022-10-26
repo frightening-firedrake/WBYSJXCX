@@ -1,0 +1,65 @@
+<!--pages/carpooling/index.wxml-->
+<view class="page_app page_pd_app cards_page_section order_page_section">
+  <!--搜索开始-->
+  <!-- <view class="cards_search_con">
+    <view class="search_con">
+      <input  bindconfirm="searchScriptName" type="text" placeholder="请输入搜索内容" />
+      <icon class="search_icon" type="search" color="#000" size="16"></icon>
+      <view class="search_con_btn">搜索</view>
+    </view>
+    <button class="share_btn aux_btn" type="primary" plain="true" size="mini" bindtap="shareOrderHandle">分享今日预约订单</button>
+  </view> -->
+  <!--订单列表开始-->
+  <view class="order_tab_section">
+    <!--tab切换开始-->
+    <!-- <view class="order_tab_navbar">
+      <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">全部</view>
+      <view class="order_tab_item {{orderState==='1'?'active':''}}" data-index="1" bindtap="changeState">待使用</view>
+      <view class="order_tab_item {{orderState==='3'?'active':''}}" data-index="3" bindtap="changeState">已完成</view>
+      <view class="order_tab_item {{orderState==='4'?'active':''}}" data-index="4" bindtap="changeState">已取消</view>
+    </view> -->
+    <view class="order_tab_navbar">
+      <!-- <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">全部</view> -->
+      <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">在拼中</view>
+      <view class="order_tab_item {{orderState==='1'?'active':''}}" data-index="1" bindtap="changeState">拼车成功</view>
+      <view class="order_tab_item {{orderState==='2'?'active':''}}" data-index="2" bindtap="changeState">拼车失败</view>
+      <view class="order_tab_item {{orderState==='3'?'active':''}}" data-index="3" bindtap="changeState">已锁车</view>
+      <view class="order_tab_item {{orderState==='4'?'active':''}}" data-index="4" bindtap="changeState">已流车</view>
+    </view>
+  </view>
+  <!--列表内容开始-->
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <view class="order_list_section">
+      <!--列表开始-->
+      <view class="order_li_con"  wx:for="{{dataList}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+        <navigator url="../carpoolingRecord/index?id={{itemName.script_code}}">
+          <view class="order_li_infor">
+            <image class="detail_con_img" src="{{base_file_url+itemName.script_cover}}" alt=""></image>
+            <view class="info">
+              <view class="title">{{itemName.script_name}}</view>
+              <view class="tags">
+                <view class="tag">{{itemName.script_person}}</view>
+                <view class="tag">{{itemName.subject_type}}</view>
+                <view class="tag">预计{{itemName.duration}}</view>
+              </view>
+              <!-- <view class="room">
+                房间：103
+              </view> -->
+            </view>
+            <mp-icon icon="arrow" class="arrow" color="#AEAEAE" size="{{18}}"></mp-icon>
+          </view>
+          <!-- <view class="order_li_bottom">
+            <text wx:if="{{itemName.status==1}}" style="color:#D50000;" class="order_li_state">差 4人可开场，点击可添加线下玩家</text>
+            <text wx:if="{{itemName.status==2}}" style="color:#649D00;" class="order_li_state">拼车成功</text>
+            <text wx:if="{{itemName.status==3}}" style="color:#D50000;" class="order_li_state">拼车失败</text>
+            <text wx:if="{{itemName.status==4}}" style="color:#000;" class="order_li_state">已锁车</text>
+            <text wx:if="{{itemName.status==5}}" style="color:#D50000;" class="order_li_state">已流车</text>
+            <mp-icon icon="arrow" color="#5C6075" size="{{12}}"></mp-icon>
+          </view> -->
+        </navigator>
+      </view>
+      
+    </view>
+  </scroll-view>
+</view>
+

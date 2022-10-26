@@ -1,0 +1,17 @@
+<!--pages/reservationInformation/index.wxml-->
+<!--pages/carpoolingDetails/index.wxml-->
+<view class="pageWrap">
+  <scriptInfo></scriptInfo>
+  <reservationInformation></reservationInformation>
+ 
+  
+ 
+
+
+ 
+
+  
+</view>
+
+
+

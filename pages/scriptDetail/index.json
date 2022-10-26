@@ -9,5 +9,6 @@
     "mp-dialog": "weui-miniprogram/dialog/dialog",
     "mp-slideview": "weui-miniprogram/slideview/slideview",
     "t-rate": "tdesign-miniprogram/rate/rate"
-  }
+  },
+  "navigationBarTitleText": "剧本详情"
 }

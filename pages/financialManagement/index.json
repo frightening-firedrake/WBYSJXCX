@@ -7,5 +7,6 @@
     "t-overlay": "tdesign-miniprogram/overlay/overlay",
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-cell": "weui-miniprogram/cell/cell"
-  }
+  },
+  "navigationBarTitleText": "财务管理"
 }

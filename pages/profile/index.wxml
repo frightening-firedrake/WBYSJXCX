@@ -17,9 +17,9 @@
       <text class="shopName">{{storeRangeList.length>0?storeRangeList[storeIndex].title:'选择门店'}}</text>
       <icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
     </view> -->
-    <view bindtap="showStorePicker" class="select_shop_con">
+    <!-- <view bindtap="showStorePicker" class="select_shop_con">
       <text class="shopName">{{storeTitle}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
-    </view>
+    </view> -->
 
   <!-- <picker-view indicator-class='pickerCol' bindchange="bindStoreChange" class="{{ pickerShow ? 'show' : '' }}">
       <view class='btns'>
@@ -33,7 +33,7 @@
     <view hidden="{{!pickerShow}}" bindtap="closePicker" class="pickerColMask"></view> -->
 
 
-    <view class="index_head_title">
+    <!-- <view class="index_head_title">
       <view class="head_title_img">
         <image class="title_img" src="../../assets/img/logo.png"></image>
       </view>
@@ -62,12 +62,42 @@
         <view class="data_tit">今日约车</view>
         <view class="data_num">{{informationData.today_order_sum}}</view>
       </view>
+    </view> -->
+
+
+    <view class="shopSelect">
+      <!-- <image class="shopAvatar" src="../../assets/img/logo.png"></image> -->
+      <image class="shopAvatar" src="{{logo||'../../assets/img/logo.png'}}"></image>
+      <view class="shopinfo">
+        <view class="shopNameS"><text>{{informationData.name}}</text></view>
+        <view bindtap="showStorePicker" class="selectShop">
+          <text class="shopName">{{storeTitle}}</text><icon size="12" class="select_shop_icon iconfont icon-jiantouxia"></icon>
+        </view>
+      </view>
     </view>
 
+    <view class="summary">
+      <view class="summaryitem">
+        <view class="number">{{informationData.total_amount}}</view>
+        <view class="title">总收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.today_total_amount}}</view>
+        <view class="title">今日收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.month_total_amount}}</view>
+        <view class="title">本月收益</view>
+      </view>
+      <view class="summaryitem">
+        <view class="number">{{informationData.today_order_sum}}</view>
+        <view class="title">今日约车</view>
+      </view>
+    </view>
 <!-- 门店选择picker -->
 <t-picker
   visible="{{storePickerVisible}}"
-  value="{{[]}}"
+  value="{{[storeId]}}"
   title="请选择门店"
   cancelBtn="取消"
   confirmBtn="确认"

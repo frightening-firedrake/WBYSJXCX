@@ -38,11 +38,11 @@ Page({
    */
   onShow() {
     this.getOrderList(1)
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      this.getTabBar().setData({
-        selected: 3
-      })
-    }
+    // if(typeof this.getTabBar === 'function' && this.getTabBar()){
+    //   this.getTabBar().setData({
+    //     selected: 3
+    //   })
+    // }
   },
 
   /**
@@ -76,9 +76,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   changeState(e) {
     console.log(e)
     this.setData({
@@ -143,5 +143,11 @@ Page({
     wx.navigateTo({
       url: '../orderToday/index',
     })
+  },
+  searchScriptName(e){
+    // this.setData({
+    //   'queryJson.phone_number': e.detail.value
+    // })
+    // this.getOrderList(1)
   }
 })

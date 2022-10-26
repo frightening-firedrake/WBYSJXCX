@@ -18,7 +18,9 @@ App({
     token: '',
     userCode: '',
     storeId: '',
-    baseUrl: 'https://wanbenya.9zdz.com',
+    // baseUrl: 'https://wanbenya.9zdz.com',
+    baseUrl: 'https://wanbenya.jyoujia.com:10333',
+
     urlData: {
       login: '/login/access-token',//登录
       getcode: '/getcode',//获取验证码
@@ -59,8 +61,16 @@ App({
       businessAppointmentDetail: '/appointment-detail',//商家订单详情
       scriptConfigList:'/get-script-config',//侧边筛选
       scriptImportList:'/script-filter',//导入剧本中的剧本列表
-      scriptImport:'/import-script'//导入剧本
-     
+      scriptImport:'/import-script',//导入剧本
+      
+      // 约车
+      businessCarpooling:'/business-carpooling',//店铺约车
+      carpoolingRecord:'/carpooling-record',//约车记录
+      recordDetail:'/record-detail',//约车记录详情
+      getConfig:'/get-config',//获取订单/拼车 状态
+      cancelAppointment:'/cancel-appointment',//拒绝接单
+      acceptAppointment:'/accept-appointment',//接单
+      addOffline:'/add-offline'//添加线下玩家
     }
   }
 })

@@ -1,0 +1,45 @@
+<view class="page_app page_pd_app">
+  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+    <!-- <t-radio-group bind:change="onChange" defaultValue="radio1"> -->
+    <t-radio-group bind:change="onRoomChange" class="setRoom"  value="{{roomNumber}}">
+      <t-radio 
+        wx:for="{{room_list}}" 
+        wx:for-index="idx" 
+        wx:for-item="itemName" 
+        wx:key="idx" 
+        data-id="{{itemName.id}}"
+        value="{{itemName.room_code}}" 
+        color="#F2BB3F"
+      > 
+        <view class="roomWrap">
+          <image src="{{base_file_url+itemName.path}}" mode="aspectFit"></image>
+          <view class="roombox">
+            <view class="li_mp_title">房间名称：{{itemName.room_name}}</view>
+            <view class="li_mp_sub">房间号：{{itemName.room_code}}</view>
+          </view>
+        </view>
+      </t-radio>
+    </t-radio-group>
+
+    <!-- <mp-cells title="" footer="">
+
+      <mp-slideview show="{{false}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{room_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.id}}"> 
+      <mp-cell link hover 
+      bindtap="detail_add_router" data-room="{{itemName}}"
+      ext-class="revenue_li" value="" footer="" >
+          <view class="financial_mp_cells">
+            <view class="li_mp_title">房间名称：{{itemName.room_name}}</view>
+            <view class="li_mp_sub">房间号：{{itemName.room_code}}</view>
+          </view>
+          <image slot="icon" src="{{base_file_url+itemName.path}}" style="margin-right: 12px;vertical-align: middle;width:40px; height: 40px;"></image>
+      </mp-cell>
+    </mp-slideview>
+    </mp-cells> -->
+  </scroll-view>
+
+<view class="add_view_btn">
+  <!-- <navigator url="../addRoom/index" class="weui-cell weui-cell_access"> -->
+    <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="setRoom">确定</button>
+  <!-- </navigator> -->
+  </view>
+</view>

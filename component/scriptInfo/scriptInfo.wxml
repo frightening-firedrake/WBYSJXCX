@@ -1,0 +1,19 @@
+<!--component/scriptInfo.wxml-->
+<view class="scriptInfoWrap">
+  <view class="head">{{title}}</view>
+  <view class="scriptInfo">
+      <image src="{{base_file_url+order.script_cover}}"></image>
+      <view class="info">
+        <view class="namebox">
+          <text class="name">{{order.script_name}}</text>
+          <text class="room">房间：{{order.room_number}}</text>
+        </view>
+        <view class="tags">
+          <view class="tag">{{order.script_person}}</view>
+          <view class="tag">{{order.subject_type}}</view>
+          <view class="tag">预计{{order.duration}}</view>
+        </view>
+        <text class="price">￥{{order.publish_price}}元</text>
+      </view>
+    </view>
+</view>

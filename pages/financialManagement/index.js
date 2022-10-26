@@ -10,6 +10,9 @@ Page({
     businessFinaceList: app.globalData.baseUrl + app.globalData.urlData.businessFinaceList,
     store_list:[],
     financial_list:[],
+    // 充值消费
+    chongzhi:0,
+    xiaofei:0,
     startDate: '2022-07-16',
     endDate: '2022-07-27',
     start1: '2022-01-01',
@@ -87,9 +90,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   bindStartDateChange(detail) {
     // console.log('原始的开始时间',detail)
     this.setData({
@@ -208,8 +211,19 @@ Page({
           wx.hideLoading()
           console.log('剧本',res)
           if(res.data.code === 200){
+            this.data.chongzhi=0
+            this.data.xiaofei=0
+            res.data.data.forEach((v)=>{
+              if(v.type==1){
+                this.data.chongzhi+=v.amount
+              }else{
+                this.data.xiaofei+=v.amount
+              }
+            })
             this.setData({
-              financial_list: res.data.data
+              financial_list: res.data.data,
+              chongzhi: this.data.chongzhi,
+              xiaofei: this.data.xiaofei,
             })
           } else {
             wx.showToast({
@@ -267,5 +281,12 @@ Page({
     },
   lower(e){
     console.log(e)
+  },
+  phoneSearch(e){
+    // console.log(e.detail.value)
+    this.setData({
+      'queryJson.phone_number': e.detail.value
+    })
+    this.getFinanciaList(1)
   }
 })

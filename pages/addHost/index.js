@@ -9,6 +9,7 @@ Page({
     imgurl:null,
     base_file_url: app.globalData.baseUrl,
       businessAddHost: app.globalData.baseUrl + app.globalData.urlData.businessAddHost,
+    error:'',
     host_data:{
       name:'',
       mobile_phone:'',
@@ -18,6 +19,16 @@ Page({
       
    
     },
+    rules: [ 
+      {
+        name: 'name',
+        rules: {required: true, message: '请填写DM姓名'},
+      },
+      {
+        name: 'mobile_phone',
+        rules: [{required: true, message: '请填写DM手机号'}, {mobile: true, message: '手机号格式不正确'}],
+      },
+    ]
   },
 
   /**
@@ -94,9 +105,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   
   //选择图片 放到data中
   uploadImg() {
@@ -117,14 +128,40 @@ Page({
       }
     })
   },
-
-
+  formInputChange(e){
+    const {field} = e.currentTarget.dataset
+    this.setData({
+        [`host_data.${field}`]: e.detail.value
+    })
+  },
+  // 表单验证
+  submitCheck(){
+    this.selectComponent('#SubmitForm').validate((valid, errors) => {
+      if (!valid) {
+          const firstError = Object.keys(errors)
+          if (firstError.length) {
+            this.setData({
+              error: errors[firstError[0]].message
+            })
+          }
+      } else {
+        console.log('通过验证')
+        if(this.data.imgurl){
+          this.save_host()
+        } else {
+          this.setData({
+              error: '请上传DM照片'
+          })
+        }
+      }
+    })
+  },
   save_host(e){
 
     // let host_data=e.detail.value
     this.setData({
-      ['host_data.mobile_phone']:e.detail.value.mobile_phone,
-      ['host_data.name']:e.detail.value.name,
+      // ['host_data.mobile_phone']:e.detail.value.mobile_phone,
+      // ['host_data.name']:e.detail.value.name,
       ['host_data.store_id']:app.globalData.storeId,
       ['host_data.user_code']: app.globalData.userCode,
     })
@@ -137,9 +174,12 @@ Page({
         'data': JSON.stringify(this.data.host_data)
       },
       success(res) {
-        wx.navigateTo({
-          url: '../hostManagement/index',
-          success: function (res) {}
+        // wx.navigateTo({
+        //   url: '../hostManagement/index',
+        //   success: function (res) {}
+        // })
+        wx.navigateBack({
+          delta: 1
         })
       },
       fail: function (res) {

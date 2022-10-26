@@ -28,6 +28,7 @@ Page({
     dataList: [],
     storeDate: 0,
     storeIndex: 0,
+    storeId: '',
     storeTitle:"请选择门店",
     storePickerVisible:false,
     ScriptIndex: 0,
@@ -106,9 +107,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   //获取店铺
   getBusinessStoreList() {
 
@@ -130,13 +131,27 @@ Page({
         wx.hideLoading()
         console.log('门店', res)
         if (res.data.code === 200) {
+          let shop=[];
+          if(app.globalData.storeId){
+            shop=res.data.data.filter((v)=>{
+              return v.store_id==app.globalData.storeId
+            })
+            this.data.storeTitle=shop[0].title
+          }else{
+            this.data.storeTitle=res.data.data[0].title
+          }
           this.setData({
             storeRangeList: res.data.data,
-            store_id: res.data.data[0].store_id,
-            ['payment_data.store_id']:res.data.data[0].store_id,
-            storeTitle: res.data.data[0].title
-
+            storeTitle: this.data.storeTitle
           })
+          app.globalData.storeId =app.globalData.storeId|| res.data.data[0].store_id
+          this.setData({
+            storeId: app.globalData.storeId,
+            store_id: app.globalData.storeId,
+            ['payment_data.store_id']: app.globalData.storeId,
+          })
+
+
           this.getData()
         } else {
           wx.showToast({
@@ -170,6 +185,8 @@ Page({
     this.setData(
       {   
         storeTitle:event.detail.label[0],
+        storeId: event.detail.value[0],
+        store_id: event.detail.value[0],
         ['payment_data.store_id']:event.detail.value[0],
       })
     
@@ -224,7 +241,7 @@ Page({
         wx.hideLoading()
         console.log('剧本', res)
         if (res.data.code === 200) {
-
+          
           this.setData({
             dataList: res.data.data,
             ['payment_data.script_code']: res.data.data[0].script_code,
@@ -250,6 +267,12 @@ Page({
   //保存跳转二维码页面
   submitForm(e) {
     let that =this
+    that.data.payment_data.storeTitle=that.data.storeTitle
+    let shop=that.data.storeRangeList.filter((v)=>{
+        return v.store_id==that.data.storeId
+      })
+    that.data.payment_data.logo=app.globalData.baseUrl+shop[0].store_cover
+
     wx.navigateTo({
       url: '../qrcode/index',
       events: {},

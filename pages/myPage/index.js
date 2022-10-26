@@ -11,7 +11,9 @@ Page({
       ],
       myHeadRange: [
         '退出登录'
-      ]
+      ],
+      room:3,
+      operate:5,
     },
 
     /**
@@ -70,9 +72,9 @@ Page({
     /**
      * 用户点击右上角分享
      */
-    onShareAppMessage: function () {
+    // onShareAppMessage: function () {
 
-    },
+    // },
     linkTo(e){
         wx.navigateTo({
           url: e.currentTarget.dataset.url,

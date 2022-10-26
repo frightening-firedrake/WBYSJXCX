@@ -8,31 +8,40 @@ Page({
    */
   data: {
     base_file_url: app.globalData.baseUrl,
-
     businessHostList: app.globalData.baseUrl + app.globalData.urlData.businessHostList,
     businessDeleteHost: app.globalData.baseUrl + app.globalData.urlData.businessDeleteHost,
    link_list:[
     {
-      name: '设置预约时间',
-      value: '../setScriptTime/index',
-      link: true
-    }, {
-      name: '评价管理',
-      value: '../evaluationManagement/index',
-      link: true
-    }, {
-      name: '店长评价',
-      value: '../storeManagerEvaluation/index',
-      link: true
-    },
-    {
-      name: '收付款',
+      name: '收款码',
       value: '../payments/index',
       query: true,
       link: true
     },
+    {
+      name: '房间设置',
+      value: '../roomSettings/index',
+      query: true,
+      link: true
+    },
+    {
+      name: '设置预约时间',
+      value: '../setScriptTime/index',
+      link: true
+    }, 
+    {
+      name: '评价管理',
+      value: '../evaluationManagement/index',
+      link: true
+    }, 
+    {
+      name: '店长评价',
+      value: '../storeManagerEvaluation/index',
+      link: true
+    },
+    
    ],
    script_data:{},
+   roomNumber:'',
   },
 
   /**
@@ -40,10 +49,16 @@ Page({
    */
   onLoad(options) {
     console.log(options,'op')
+    // const eventChannel = this.getOpenerEventChannel()
+    // eventChannel.on('set_room', (data)=> {
+    //   this.setData({
+    //     roomNumber:data,
+    //   })
+    // })
     this.setData({
       ['script_data.script_code']:options.id,
       ['script_data.script_name']: decodeURIComponent(options.name),
-      
+      roomNumber:options.room_number,
     })
   },
 
@@ -92,19 +107,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   detail_add_router(e){
    let link =e.currentTarget.dataset.link
    console.log(link)
    wx.navigateTo({
-    url:link+`?scriptCode=${this.data.script_data.script_code}&scriptName=${this.data.script_data.script_name}`,
+    url:link+`?scriptCode=${this.data.script_data.script_code}&scriptName=${this.data.script_data.script_name}&roomNumber=${this.data.roomNumber}`,
     success: function (res) {}
   })
   },
-
   lower(){
     
-  }
+  },
+  setRoomNumber(roomNumber){
+    this.setData({
+      roomNumber:roomNumber
+    })
+  },
 })

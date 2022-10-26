@@ -2,7 +2,7 @@
 picker-view .btns {
   width: 100%;
   height: 100rpx;
-  /* color: #4e6eff; */
+  /* color: var(--theme-color); */
   color: #609CF7;
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@ picker-view-column {
 .pickerCol {
   width: 100%;
   height: 50rpx;
-  color: #4e6eff;
+  color: var(--theme-color);
   border-top: 1px solid #f2f3f5;
   border-bottom: 1px solid #f2f3f5;
 }
@@ -95,6 +95,52 @@ picker-view-column {
 
 /* 自定义选中的时候字体颜色和大小 */
 .pick-text {
-  color: #4e6eff;
+  color: var(--theme-color);
   font-size: 34rpx;
+}
+
+/* 重写样式 */
+.shopSelect{
+  height: 144rpx;
+  display: flex;
+  align-items: center;
+}
+.shopSelect .shopAvatar{
+  height: 90rpx;
+  width: 90rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border:2px solid #fff;
+  margin:0 15rpx 0 7rpx;
+}
+.shopSelect .shopinfo{
+  display: flex;
+  flex-direction: column;
+}
+.shopSelect .shopNameS{
+  font-size:28rpx;
+  font-weight: bold;
+  color:#000;
+}
+.shopSelect .shopName{
+  font-size:28rpx;
+  color:#000;
+}
+.summary{
+  height:154rpx;
+  padding:0 17rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.summary .summaryitem{
+  text-align: center;
+}
+.summary .summaryitem .number{
+  font-size:42rpx;
+  color: #010101;
+  font-weight: bold;
+}
+.summary .summaryitem .title{
+  font-size:28rpx;
+  color: #010101;
 }

@@ -3,7 +3,27 @@
   "projectname": "WBYSJXCX",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": true
+    "urlCheck": false
   },
-  "libVersion": "2.19.2"
+  "libVersion": "2.19.2",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "页面优先",
+          "pathName": "pages/carpoolingDetails/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "跳过登录",
+          "pathName": "pages/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

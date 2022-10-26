@@ -1,6 +1,7 @@
 <!--pages/roomManagement/index.wxml catchsubmit="save_room"-->
-<view class="page_app page_pd_app business_information_section">
-    <form class="form_view"   catchsubmit="save_room">
+<view class="page_app page_pd_app business_information_section white">
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+    <mp-form id="SubmitForm" rules="{{rules}}" models="{{room_data}}" class="form_view"   catchsubmit="save_room">
         <view class="form_view_li">
             <view class="from_title">*<text>房间照片</text></view>
             <view class="from_view_con from_view_flex">
@@ -17,30 +18,51 @@
         <view class="form_view_li">
             <view class="from_title">*<text>房间名称</text></view>
             <view class="from_view_con">
-                <input class="from_input" type="text" value="{{room_data.name}}" name="name" placeholder="请输入房间名称" />
+                <input class="from_input" 
+                type="text" value="{{room_data.name}}" 
+                name="name" 
+                data-field="name"
+                bindinput="formInputChange"
+                placeholder="请输入房间名称" />
             </view>
         </view>
         <view class="form_view_li">
             <view class="from_title">*<text>房间简介</text></view>
             <view class="from_view_con">
-                <textarea placeholder="请输入房间简介"   name="detail"  value="{{room_data.detail}}"   />
+                <textarea placeholder="请输入房间简介"  
+                name="detail"
+                data-field="detail"
+                bindinput="formInputChange"  
+                value="{{room_data.detail}}"   />
             </view>
         </view>
         <view class="form_view_li">
             <view class="from_title">*<text>房间号</text></view>
             <view class="from_view_con">
-                <input class="from_input" type="number" placeholder="请输入房间号" name="name_number"  value="{{room_data.name_number}}"/>
+                <input class="from_input" 
+                type="number" 
+                placeholder="请输入房间号" 
+                name="name_number"
+                data-field="name_number"
+                bindinput="formInputChange"   
+                value="{{room_data.name_number}}"/>
             </view>
         </view>
         <view class="form_view_li">
             <view class="from_title"><text>房间可容纳人数</text></view>
             <view class="from_view_con">
-                <input class="from_input" type="number" placeholder="请输入人数数量"  name="room_person"  value="{{room_data.room_person}}" />
+                <input class="from_input" 
+                type="number" 
+                placeholder="请输入人数数量"  
+                name="room_person"
+                data-field="room_person"
+                bindinput="formInputChange"   
+                value="{{room_data.room_person}}" />
             </view>
         </view>
         <view class="from_view_btn">
-          <button style="margin: 30rpx 0" type="primary" formType="submit">保存</button>
+          <button style="margin: 30rpx 0" type="primary" bindtap="submitCheck" formType="submit">保存</button>
         </view>
-    </form>
+    </mp-form>
 </view>
 

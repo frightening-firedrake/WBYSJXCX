@@ -6,7 +6,7 @@
 
       <form bindsubmit="formSubmit">
       <input type="text"  bindconfirm="name_filter" placeholder="请输入搜索内容"  bindinput="input_name"  name="query_name"/>
-      <icon class="search_icon" type="search" size="18"></icon>
+      <icon class="search_icon" type="search" color="#000" size="16"></icon>
       <view class="search_con_btn" bindtap="name_filter">搜索</view>
 	<!-- <button class="wehx-foot-btn" hover-class="wehx-button_hover" formType="submit">确定</button> -->
 </form>
@@ -14,16 +14,10 @@
     </view>
     <view class="screen_btn" bindtap="filterBtn">
       <icon class="icon_sx iconfont icon-shaixuan"></icon>
-      <text>筛选</text>
+      <!-- <text>筛选</text> -->
     </view>
   </view>
-  <!--筛选开始-->
-  <view class="import_page_select">
-    <label class="checkbox">
-      <checkbox value="cb"  />全选
-    </label>
-    <view class="daoru" bindtap="import_script">导入</view>
-  </view>
+  
   <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
     <view class="import_card_section">
       <view class="import_card_list">
@@ -54,6 +48,16 @@
       </view>
     </view>
   </scroll-view>
+  <!--全选-->
+  <view class="import_page_select">
+    <checkbox-group bindchange="checkAll">
+      <label class="checkbox">
+        <checkbox value="全选"  style="vertical-align: bottom;" />
+        <text class="label">全选</text>
+      </label>
+    </checkbox-group>
+    <view class="daoru" bindtap="import_script">导入</view>
+  </view>
 <!-- <button class="import_button" type="primary" bindtap="import_script">导入</button> -->
 <!-- <butto type="primary" formType="submit">保存</button> -->
   <!--筛选开始-->
@@ -82,7 +86,7 @@
         <view class="filter_list">
           <view class="filter_tit">时长</view>
           <view class="filter_list_con">
-            <radio-group  class="filter_group" bindchange="checkboxChange" data-filed="duration"  data-object="duration_list">
+            <radio-group  class="filter_group filter_group2" bindchange="checkboxChange" data-filed="duration"  data-object="duration_list">
               <label class="weui-cell {{item.checked?'active':''}} weui-check__label" wx:for="{{duration_list}}" wx:key="{{item.id}}">
                 <view class="weui-cell__hd">
                   <radio value="{{item.name}}" checked="{{item.checked}}"/>

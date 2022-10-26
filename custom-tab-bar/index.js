@@ -1,9 +1,9 @@
 Component({
   data: {
     selected: 0,
-    color: "#333333",
-    // selectedColor: "#4e6eff",
-    selectedColor: "#7089FF",
+    color: "#000",
+    // selectedColor: "var(--theme-color)",
+    selectedColor: "#F2BB3F",
     backgroundColor: "#eff6f9",
     list: [
       {
@@ -22,11 +22,11 @@ Component({
         pagePath: "../importPage/index",
         // text: "导入剧本",
         text: "",
-        iconPath: "../assets/img/add-icon2.png",
-        selectedIconPath: "../assets/img/add-icon2.png"
+        iconPath: "../assets/img/add-icon.png",
+        selectedIconPath: "../assets/img/add-icon.png"
       },
       {
-        pagePath: "../order/index",
+        pagePath: "../orderList/index",
         text: "订单",
         iconPath: "../assets/img/order-icon.png",
         selectedIconPath: "../assets/img/order-icon1.png"

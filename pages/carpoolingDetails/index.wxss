@@ -1,0 +1,287 @@
+/* pages/carpoolingDetails/index.wxss */
+.btngroup .t-button-group{
+  gap: 20rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+/* .btngroup .t-button--primary {
+  color: #fff;
+  background-color: rgba(66, 120, 223, 1);
+  border: 1px solid rgba(66, 120, 223, 1);
+} */
+.pageWrap{
+  height:calc(100vh - 88rpx);
+  overflow-y: auto;
+}
+.pageFull{
+  height:100vh;
+  overflow-y: auto;
+}
+.pageWrap .head{
+  padding:0 46rpx;
+  line-height: 90rpx;
+  color:#333;
+  font-size:33rpx;
+  font-weight: bold;
+}
+.scriptInfo{
+  padding:0 46rpx 20rpx;
+  height:175rpx;
+  border-bottom:1px solid rgb(242,242,242);
+  display: flex;
+  /* align-items: center; */
+}
+.scriptInfo image{
+  height:175rpx;
+  width:140rpx;
+  margin-right:22rpx;
+  background:hotpink;
+  border-radius: 4px;
+}
+.scriptInfo .info{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.scriptInfo .info .namebox{
+  display: flex;
+  justify-content: space-between;
+  font-size:33rpx;
+  color:#333;
+  margin-bottom:20rpx;
+}
+.scriptInfo .info .namebox .name{
+  font-weight: bold;
+}
+.scriptInfo .info .namebox .room{
+  color:#666;
+  font-size:28rpx;
+}
+.scriptInfo .info .tags{
+  display: flex;
+  margin:0 -12rpx;
+  color:#666;
+  font-size:28rpx;
+}
+.scriptInfo .info .tags .tag{
+  padding:0 12rpx;
+}
+.scriptInfo .info .tags .tag+.tag{
+  border-left:1px solid #9FA1B7;
+}
+.pcsj{
+  line-height: 96rpx;
+  color:#666;
+  padding:0 46rpx;
+  font-size:28rpx;
+  border-bottom:1px solid rgb(242,242,242);
+}
+.short{
+  line-height: 96rpx;
+  color:#D50000;
+  padding:0 46rpx;
+  font-size:24rpx;
+  /* border-bottom:1px solid rgb(242,242,242); */
+}
+.memberbox{
+  padding:0 46rpx 20rpx;
+}
+.memberbox .title{
+  color:#666;
+  font-size:28rpx;
+  line-height: 72rpx;
+}
+.memberbox .memberWrap{
+  display: flex;
+  flex-wrap: wrap;
+}
+.memberbox .memberWrap .member{
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width:120rpx;
+  position: relative;
+}
+.memberbox .memberWrap .member .avatar{
+  width:76rpx;
+  height:76rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  /* border: 1px solid #4576D7; */
+  border: 1px solid var(--theme-color);
+}
+.memberbox .memberWrap .member .gender{
+  width:24rpx;
+  height:24rpx;
+  background-color: hotpink;
+  border-radius: 50%;
+  position: absolute;
+  top:52rpx;
+  left:50%;
+  margin-left: 20rpx;
+}
+.memberbox .memberWrap .member .tagF{
+  height:40rpx;
+  width:100rpx;
+  line-height:40rpx;
+  text-align: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color:#fff;
+  font-size:24rpx;
+  background-color:#6F6F6F;
+  margin-top:20rpx;
+}
+.memberbox .memberWrap .member .tagT{
+  background-color:#FF9B00;
+}
+.memberbox .memberWrap .memberAdd{
+  width:76rpx;
+  height:76rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid #ED6C1E;
+  color:#ED6C1E;
+}
+.memberbox>.tip{
+  border-bottom:1px solid rgb(242,242,242);
+  color:#D50000;
+  font-size:24rpx;
+  line-height:60rpx;
+  text-align: center;
+  margin:0 -50rpx;
+}
+.tips{
+  padding:0 46rpx;
+  border-bottom:1px solid rgb(242,242,242);
+}
+.tips .tip{
+  color:#9FA1B7;
+  font-size:24rpx;
+  line-height:60rpx;
+}
+.tips .kickOut{
+  color:#D50000;
+  font-size:24rpx;
+  line-height:60rpx;
+}
+.feedback{
+  display: flex;
+  padding:0 46rpx;
+  align-items: center;
+  min-height:110rpx;
+  background-color: #F6F6F6;
+}
+.feedback icon.onerow{
+  margin-top:-44rpx;
+}
+.feedback .feedbackMsg{
+  margin-left:24rpx;
+  line-height: 44rpx;
+}
+.feedback .feedbackMsg .title{
+  color:#333;
+  font-weight: bold;
+  font-size:28rpx;
+}
+.feedback .feedbackMsg .msg{
+  color:#999;
+  font-size:28rpx;
+}
+.dialogcontent{
+  text-align: left;
+}
+.dialogcontent .tip{
+  text-align: center;
+  padding:20rpx 10rpx 0 10rpx;
+  font-size:30rpx;
+}
+.dialogcontent .reasonLabel{
+  font-size:24rpx;
+  color:#757575;
+  margin:30rpx 0;
+}
+.dialogcontent textarea{
+  border:1px solid rgba(196, 196, 196, 1);
+  width:auto;
+  font-size:26rpx;
+  padding:10rpx;
+}
+.weui-dialog__bd{
+  margin-bottom:32rpx;
+}
+.DLrow{
+  display: flex;
+  justify-content: center;
+  height:140rpx;
+  align-items: center;
+}
+.DLrow .label{
+  color:#333;
+  font-size:28rpx;
+  margin-right:60rpx;
+}
+.DLrow .t-stepper.t-stepper--normal .t-stepper__input {
+  border:1px solid rgba(220, 222, 226, 1);
+}
+.coverbox{
+  background-color: #fff;
+  padding:50rpx 0 20rpx;
+}
+.coverbox .formitem{
+  padding:0 50rpx;
+  display: flex;
+  align-items: center;
+}
+.coverbox .formitem+.formitem{
+  margin-top:20rpx;
+}
+.formitem .label{
+  color:#757575;
+  font-size:24rpx;
+  width:130rpx;
+}
+.formitem input{
+  height:64rpx;
+  line-height:64rpx;
+  font-size:24rpx;
+  border:1px solid rgba(232, 234, 236, 1);
+  border-radius: 4px;
+  padding-left:20rpx;
+  flex: 1;
+}
+.formitem .btn{
+  height:56rpx;
+  line-height:56rpx;
+  text-align: center;
+  width:124rpx;
+  font-size:24rpx;
+  border-radius: 4px;
+  color:#fff;
+  background:rgba(255, 155, 0, 1);
+  margin-left:20rpx;
+}
+.coverbox .remarks{
+  color:#B3B3B3;
+  font-size:24rpx;
+  padding:20rpx 50rpx;
+}
+.popLow .t-popup {
+  z-index: 999998!important;
+}
+.popLow .t-overlay {
+  z-index: 999991!important;
+}
+.btngroup .t-button-group {
+  background:#F6F6F6;
+}
+.buttonPosition{
+  width:100%;
+  position: fixed;
+  bottom:0;
+  left:0;
+}

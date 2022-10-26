@@ -3,20 +3,27 @@
   <!--搜索开始-->
   <view class="cards_search_con">
     <view class="search_con">
-      <input  bindconfirm="" type="text" placeholder="请输入搜索内容" />
-      <icon class="search_icon" type="search" size="18"></icon>
+      <input  bindconfirm="searchScriptName" type="text" placeholder="请输入搜索内容" />
+      <icon class="search_icon" type="search" color="#000" size="16"></icon>
       <view class="search_con_btn">搜索</view>
     </view>
-    <button class="share_btn aux_btn" type="primary" plain="true" size="mini" bindtap="shareOrderHandle">分享今日预约订单</button>
+    <image src="/assets/img/fx.png" class="share" bindtap="shareOrderHandle"></image>
+    <!-- <button class="share_btn aux_btn" type="primary" plain="true" size="mini" bindtap="shareOrderHandle">分享今日预约订单</button> -->
   </view>
   <!--订单列表开始-->
   <view class="order_tab_section">
     <!--tab切换开始-->
-    <view class="order_tab_navbar">
+    <!-- <view class="order_tab_navbar">
       <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">全部</view>
       <view class="order_tab_item {{orderState==='1'?'active':''}}" data-index="1" bindtap="changeState">待使用</view>
       <view class="order_tab_item {{orderState==='3'?'active':''}}" data-index="3" bindtap="changeState">已完成</view>
       <view class="order_tab_item {{orderState==='4'?'active':''}}" data-index="4" bindtap="changeState">已取消</view>
+    </view> -->
+    <view class="order_tab_navbar">
+      <view class="order_tab_item {{orderState==='0'?'active':''}}" data-index="0" bindtap="changeState">全部</view>
+      <view class="order_tab_item {{orderState==='1'?'active':''}}" data-index="1" bindtap="changeState">已付款</view>
+      <view class="order_tab_item {{orderState==='3'?'active':''}}" data-index="3" bindtap="changeState">退款申请</view>
+      <view class="order_tab_item {{orderState==='4'?'active':''}}" data-index="4" bindtap="changeState">申请记录</view>
     </view>
   </view>
   <!--列表内容开始-->
@@ -29,10 +36,14 @@
             <!-- <text class="order_li_num">订单号：123456789</text> -->
 
             <view class="order_li_num">
-              <icon class="store_icon iconfont icon-stores" size="14" ></icon>
-              门店：{{itemName.title}}
+              <!-- <icon class="store_icon iconfont icon-stores" size="14" ></icon> -->
+              <!-- 门店： -->
+              {{itemName.title}}
             </view>
-            <text class="order_li_state">已使用</text>
+            <text wx:if="{{itemName.status==1}}" style="color:#FF9B00;" class="order_li_state">已付款</text>
+            <text wx:if="{{itemName.status==2}}" style="color:#FFB800;" class="order_li_state">退款申请</text>
+            <text wx:if="{{itemName.status==3}}" style="color:#939393;" class="order_li_state">已退款</text>
+            <text wx:if="{{itemName.status==4}}" style="color:#FF0000;" class="order_li_state">拒绝退款</text>
           </view>
           <view class="order_li_infor">
             <!-- <view class="order_infor_ba">
@@ -62,6 +73,10 @@
                 <view class="order_infor_li">
                   <view class="order_infor_label">预约人：</view>
                   <text class="order_infor_text">{{itemName.name}}</text>
+                </view>
+                <view class="order_infor_li">
+                  <view class="order_infor_label">预约人数：</view>
+                  <text class="order_infor_text">{{itemName.person_count}}</text>
                 </view>
                 <view class="order_infor_li">
                   <view class="order_infor_label">预约电话：</view>

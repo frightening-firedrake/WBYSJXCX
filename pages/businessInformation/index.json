@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "amap-wx": "../map/map",
-    "mp-uploader": "weui-miniprogram/uploader/uploader"
+    "mp-uploader": "weui-miniprogram/uploader/uploader",
+    "mp-toptips": "weui-miniprogram/toptips/toptips",
+    "mp-form": "weui-miniprogram/form/form"
   }
 
 }

@@ -18,7 +18,7 @@
   line-height: 36rpx;
 }
 .screen_li.active{
-  background-color: #7089FF;
+  background-color: var(--theme-color);
   color: #ffffff;
 }
 .screen_label{
@@ -37,7 +37,7 @@
   color: #333333;
 }
 .card_list_section{
-  margin-top: 28rpx;
+  /* margin-top: 28rpx; */
   margin-left: -7px;
   margin-right: -7px;
   /* margin:0 -32rpx; 
@@ -65,7 +65,7 @@
   border-radius:6px ;
   /* border: 1px solid rgba(0, 0, 0, 0.1); */
   background-color: #fff;
-  margin: 7px;
+  margin: 0 7px;
   /* box-shadow: 3px 3px 10px rgba(100,100,100,0.1); */
 
   box-shadow: 0px 0px 10px #e7e7e7;
@@ -84,7 +84,7 @@
   background-color: rgba(55, 134, 235, 1);
 }
 .card_li_wrap .weui-slideview__btn{
-  margin-top:7px;
+  /* margin-top:7px; */
   /* 显示图标时去掉
   height: 100%; */
 }
@@ -141,8 +141,8 @@
   margin-bottom: 18rpx;
 }
 .card_head_fr{
-  font-size: 24rpx;
-  color: #666666;
+  font-size: 28rpx;
+  color: #999;
   margin-right: 1em;
 }
 .card_type{
@@ -184,7 +184,7 @@
 }
 .card_price_edit .iconfont{
   font-size: 20px;
-  color: #4e6eff;
+  color: var(--theme-color);
 }
 .card_price_fr .iconfont{
   font-size: 22px;
@@ -192,12 +192,14 @@
 .card_list_scroll{
   /* height:calc(100vh - 196rpx); */
   /* height: calc(100vh - 72rpx - 1px - 28rpx - 36rpx - 40rpx - 72rpx - 36rpx - 16rpx - 56px); */
-  height: calc(100vh - 100rpx - 36rpx - 28rpx - 140rpx - 16rpx);
-  border-top:1px solid rgba(103,103,103,0.1) ;
+  /* height: calc(100vh - 100rpx - 36rpx - 28rpx - 140rpx - 16rpx); */
+  height: calc(100vh - 100rpx - 140rpx - 16rpx);
+  /* border-top:1px solid rgba(103,103,103,0.1) ; */
 }
 .screen_btn{
   display: flex;
   align-items: center;
+  margin-left:26rpx;
 }
 
 /* 

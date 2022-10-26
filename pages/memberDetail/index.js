@@ -152,9 +152,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   //选择等级
   bindLevelChange(event) {
     let choose_store_index = event.detail.value
@@ -290,8 +290,11 @@ Page({
       success: (res) => {
         if (res.data.status) {
           this.getbusinessMemberDetail()
-          wx.navigateTo({
-            url: '../memberManagement/index',
+          // wx.navigateTo({
+          //   url: '../memberManagement/index',
+          // })
+          wx.navigateBack({
+            delta: 1
           })
         } else {
           wx.showToast({

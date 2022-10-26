@@ -18,13 +18,13 @@
       </view>
       <view class="right">
         <view class="yuanjia">原价￥{{script_detail.publish_price}}元/人</view>
-        <view>￥{{script_detail.publish_price}}元/人</view>
-        <view bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;color:#4e6eff;" size="20" class="iconfont icon-bianji"></icon></view>
+        <view>￥{{script_detail.discounted_price}}元/人</view>
+        <view hidden="{{shareMode}}" bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;color:var(--theme-color);" size="20" class="iconfont icon-bianji"></icon></view>
       </view>
     </view>
   </view>
   <view>
-    <scroll-view scroll-y="true" class="scroll-view-y">
+    <scroll-view scroll-y="true" class="scroll-view-y {{shareMode?'scroll-view-share':''}}">
       <view class="title">故事简介</view>
       <view class="article">
         <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
@@ -61,7 +61,7 @@
 
 
   <!-- 上下架按钮们 -->
-  <view class="upordown">
+  <view class="upordown" hidden="{{shareMode}}">
     <view bindtap="buttonShowDialog"  wx:if="{{script_detail.status===0}}" class="btn btnup">上架</view>
     <view bindtap="buttonShowDialogDown" wx:if="{{script_detail.status===1}}" class="btn btndown">下架</view>
   </view>
@@ -78,7 +78,7 @@
           <!-- </label> -->
           <!-- <label> -->
             <mp-cell prop="discount" title="折扣" ext-class="">
-              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入折扣如0.1" />
             </mp-cell>
           <!-- </label> -->
           <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>

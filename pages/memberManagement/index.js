@@ -77,9 +77,9 @@ this.getBusinessMemberList()
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   
   slideButtonTap(e) {
     console.log('slide button tap', e.detail)

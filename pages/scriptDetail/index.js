@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    shareMode:false,
     base_file_url: app.globalData.baseUrl,
     businessScriptDetail: app.globalData.baseUrl + app.globalData.urlData.businessScriptDetail,
     businessScriptChangePrice: app.globalData.baseUrl + app.globalData.urlData.businessScriptChangePrice,
@@ -96,7 +97,12 @@ Page({
   buttonShowDialog(){
     this.setData({
       dialogShow: true,
-      dialog_title:'上架剧本'
+      dialog_title:'上架剧本',
+      ['script_detail_Price.price']: this.data.script_detail.publish_price,
+      ['script_detail_Price.discount']: this.data.script_detail.discount,
+      ['script_detail_Price.script_code']: this.data.script_detail.script_code,
+      ['script_detail_Price.store_id']: app.globalData.storeId,
+      ['script_detail_Price.user_code']: app.globalData.userCode,
     })
   },
   // 下架按钮点击弹窗
@@ -115,7 +121,7 @@ Page({
       dialogDownShow: false
     })
   },
-  //编辑价格事件
+  //编辑价格事件弹出
   editChange(e) {
     console.log(e)
     let script_data = e.currentTarget.dataset.scriptinfo
@@ -137,9 +143,24 @@ Page({
     this.setData({
       script_code: options.id
     })
-    this.getScriptDetail()
+    // 判断进入方式为分享页面
+    if(options.type=='share'){
+      wx.hideHomeButton()
+      // script_detail
+      const {id,store_id}=options
+      this.setData({
+        shareMode: true
+      })
+      // this.data.script_detail=JSON.parse(options.script_detail)
+      // console.log(this.data.script_detail)
+      this.getScriptDetailOnShare(id,store_id)
+    }else{
+      this.setData({
+        shareMode: false
+      })
+      this.getScriptDetail()
+    }
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -186,8 +207,17 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
-
+    return {
+      title: this.data.script_detail.script_name,
+      // path: '/pages/scriptDetail/index?id='+this.data.script_code+'&store_id='+app.globalData.storeId+'&type=share&script_detail='+JSON.stringify(this.data.script_detail),
+      path: '/pages/scriptDetail/index?id='+this.data.script_code+'&store_id='+app.globalData.storeId+'&type=share',
+    }
+    
   },
+  // 分享朋友圈
+  // onShareTimeline(){
+
+  // },
   //获取剧本详情
   getScriptDetail() {
     wx.request({
@@ -203,6 +233,42 @@ Page({
       success: (res) => {
         wx.hideLoading()
  
+        if (res.data.code === 200) {
+          this.setData({
+            script_detail: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
+      fail() {
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络连接错误，请稍后重试',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+  // 分享模式的剧本详情获取
+  getScriptDetailOnShare(id,store_id){
+    wx.request({
+      url: this.data.businessScriptDetail,
+      method: 'POST',
+      data: {
+        script_code: id,
+        store_id:store_id
+      },
+      header: {
+        token: app.globalData.token
+      },
+      success: (res) => {
+        wx.hideLoading()
         if (res.data.code === 200) {
           this.setData({
             script_detail: res.data.data
@@ -310,8 +376,11 @@ Page({
         if (res.data.status) {
           this.setData({
             dialogShow: false,
-            dataList: []
+            ['script_detail.publish_price']: this.data.script_detail_Price.price,
+            ['script_detail.discount']: this.data.script_detail_Price.discount,
+            ['script_detail.discounted_price']: this.data.script_detail_Price.discount*this.data.script_detail_Price.price,
           })
+          console.log(this)
           // this.getData()
           this.up_down_script(this.data.script_detail.script_code,1)
         } else {

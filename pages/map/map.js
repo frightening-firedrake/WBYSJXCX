@@ -37,6 +37,8 @@ Component({
     //   value:that.data.address
     //  }
     // })
+    // console.log(that)
+    // console.log(that.data.address)
     myAmapFun.getInputtips({
       keywords: that.data.address,
       location: '',
@@ -65,7 +67,6 @@ Component({
 
       }
     })
-    console.log(that.data.address, 'this.data.address')
     that.triggerEvent('getAddress', {
       address: that.data.address
     });

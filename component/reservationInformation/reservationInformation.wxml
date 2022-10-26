@@ -1,0 +1,42 @@
+<!--component/scriptInfo.wxml-->
+<view class="reservationInformationWrap">
+  <view class="head">预约信息</view>
+  <view class="row">
+    <text class="label">门店</text>
+    <view class="value">{{order.title}}</view>
+  </view>
+  <view class="row">
+    <text class="label">预约剧本</text>
+    <view class="value">{{order.script_name}}</view>
+  </view>
+  <view class="row">
+    <text class="label">预约人</text>
+    <view class="value">{{order.name}}</view>
+  </view>
+  <view class="row">
+    <text class="label">预约时间</text>
+    <view class="value">{{order.appointment_date}} {{order.appointment_time}}</view>
+  </view>
+  <view class="row">
+    <text class="label">预约房间</text>
+    <view class="value">{{order.room_number}}</view>
+  </view>
+  <view class="row lastrow">
+    <text class="label">预约电话</text>
+    <view class="value">{{order.phone}}</view>
+  </view>
+  <view class="infobox"  bindtap="navigation" data-locale="{{order.address}}">
+    <image style="width: 45rpx;height:58rpx;margin:0 25rpx 0 3rpx;" src="/assets/img/locale.png"></image>
+    <view class="infoWrap">
+      <view class="title">店铺地址</view>
+      <view class="details">{{order.address}}</view>
+    </view>
+  </view>
+  <view class="infobox" bindtap="makePhoneCall" data-phonenumber="{{order.store_phone}}">
+    <image style="width: 51rpx;height:51rpx;" src="/assets/img/phone.png"></image>
+    <view class="infoWrap">
+      <view class="title">店铺电话</view>
+      <view class="details">{{order.store_phone}}</view>
+    </view>
+  </view>
+</view>

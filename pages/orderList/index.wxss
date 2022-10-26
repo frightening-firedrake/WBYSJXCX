@@ -1,0 +1,8 @@
+/* pages/orderList/index.wxss */
+.orderList .weui-cell__bd{
+  font-size:28rpx;
+  color:#515A6E;
+}
+.orderList{
+  padding:0 20rpx;
+}

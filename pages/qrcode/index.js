@@ -5,6 +5,9 @@ import drawQrcode from '../../utils/weapp.qrcode.js'
 Page({
   data: {
     payment_data:'',
+    storeTitle:'',
+    logo:'',
+    imageResource: '../../assets/img/logo.png',
     price:'',
     inputValue: ''
   },
@@ -29,21 +32,21 @@ Page({
   },
   draw() {
     drawQrcode({
-      width: 160,
-      height: 160,
-      x: 20,
-      y: 20,
+      width: 187,
+      height: 187,
+      x: 0,
+      y: 0,
       canvasId: 'myQrcode',
       // ctx: wx.createCanvasContext('myQrcode'),
       typeNumber: 10,
       text: this.data.payment_data,
-      image: {
-        imageResource: '../../assets/img/logo.png',
-        dx: 70,
-        dy: 70,
-        dWidth: 60,
-        dHeight: 60
-      },
+      // image: {
+      //   imageResource: '../../assets/img/logo.png',
+      //   dx: 70,
+      //   dy: 70,
+      //   dWidth: 60,
+      //   dHeight: 60
+      // },
       callback(e) {
         console.log('e: ', e)
       }
@@ -52,10 +55,10 @@ Page({
   repaint() {
     // 设置二维码起始位置 x,y
     drawQrcode({
-      width: 160,
-      height: 160,
-      x: 20,
-      y: 20,
+      width: 187,
+      height: 187,
+      x: 0,
+      y: 0,
       canvasId: 'myQrcode',
       typeNumber: 10,
       text: this.payment_data,
@@ -151,8 +154,14 @@ Page({
     let that = this
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('payment_data', function (data) {
+      console.log(data)
+      let payment_data=JSON.parse(JSON.stringify(data));
+      delete payment_data.storeTitle
+      delete payment_data.logo
       that.setData({
-        payment_data:JSON.stringify(data),
+        payment_data:JSON.stringify(payment_data),
+        storeTitle:data.storeTitle,
+        logo:data.logo,
         price:data.price
       })
 

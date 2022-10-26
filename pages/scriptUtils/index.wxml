@@ -1,12 +1,27 @@
 <!--pages/memberManagement/index.wxml-->
 <view class="page_app page_pd_app member_management_section">
 
-  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+  <scroll-view class="card_list_scroll newList" scroll-y="true" bindscrolltolower="lower">
     <mp-cells title="">
-      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" wx:for="{{link_list}}" 
+      <!-- <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" wx:for="{{link_list}}" 
       wx:for-index="idx" wx:for-item="itemName" wx:key="idx"  data-link="{{itemName.value}}"   >
         <text>{{itemName.name}}</text>
+      </mp-cell> -->
+      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" data-link="../payments/index"  >
+        <text>收款码</text>
       </mp-cell>
+      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="{{roomNumber}}" data-link="../roomSettings/index"  >
+        <text>房间设置</text>
+      </mp-cell>
+      <!-- <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" data-link="../setScriptTime/index"  >
+        <text>设置预约时间</text>
+      </mp-cell>
+      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" data-link="../evaluationManagement/index"  >
+        <text>评价管理</text>
+      </mp-cell>
+      <mp-cell link hover bindtap="detail_add_router" ext-class="revenue_li" value="" footer="" data-link="../storeManagerEvaluation/index"  >
+        <text>店长评价</text>
+      </mp-cell> -->
     </mp-cells>
   </scroll-view>
 

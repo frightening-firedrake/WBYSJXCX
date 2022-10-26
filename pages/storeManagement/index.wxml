@@ -1,10 +1,10 @@
 <!--pages/storeManagement/index.wxml-->
 <view class="page_app page_pd_app">
-  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+  <scroll-view class="card_list_scroll newList" scroll-y="true" bindscrolltolower="lower">
     <mp-cells title="">
       <mp-slideview show="{{false}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{store_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.store_id}}"> 
           <mp-cell link hover url="../businessInformation/index?id={{itemName.store_id}}" value="{{itemName.title}}" footer="">
-              <image slot="icon" src="{{base_file_url+itemName.store_cover}}" style="margin-right: 12px;vertical-align: middle;width:40px; height: 40px;"></image>
+              <image slot="icon" src="{{base_file_url+itemName.store_cover}}" class="listimg"></image>
               <!-- <mp-slideview show="{{true}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
                     <mp-cell value="左滑可以删除" footer=""></mp-cell>
                 </mp-slideview> -->

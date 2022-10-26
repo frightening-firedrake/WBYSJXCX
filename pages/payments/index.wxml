@@ -1,5 +1,5 @@
 <!--pages/payments/index.wxml-->
-<view class="page_app page_pd_app payments_box">
+<view class="page_app page_pd_app payments_box white">
 
     <mp-form id="form" rules="{{rules}}" models="{{payment_data}}">
       <mp-cells title="">
@@ -47,7 +47,7 @@
 <!-- 门店选择picker -->
 <t-picker
   visible="{{storePickerVisible}}"
-  value="{{[]}}"
+  value="{{[storeId]}}"
   title="请选择门店"
   cancelBtn="取消"
   confirmBtn="确认"

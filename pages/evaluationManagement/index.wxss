@@ -17,6 +17,7 @@
   padding: 10px;
   border-radius: 10rpx;
   margin-bottom: 40rpx;
+  background:#fff;
 }
 .evaluation_user_infor{
   font-size: 24rpx;

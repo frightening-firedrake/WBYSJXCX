@@ -1,17 +1,19 @@
 <!--pages/businessInformation/index.wxml-->
-<view class="page_app page_pd_app business_information_section">
+<view class="page_app page_pd_app business_information_section white">
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
     <form class="form_view"   bindsubmit="edit_store" catchsubmit="edit_store">
         <view class="form_view_li">
             <view class="from_title">*<text>logo</text></view>
             <view class="from_view_con from_view_flex">
-                <view class="form_view_upload" bindtap="upload">
+                <!-- <view class="form_view_upload" bindtap="upload">
                     <icon size="20" class="upload_add_icon iconfont icon-tianjia"></icon>
                 </view>
                 <view class="form_img_list">
                   <view wx:if="{{logoImgurl!==null}}" class="form_img">
                     <image src="{{logoImgurl}}" mode="aspectFill" />
                   </view>
-                </view>
+                </view> -->
+                <mp-uploader bindfail="uploadError" binddelete="deleLogo" bindsuccess="uploadLogoSuccess" upload="{{uplaodFile}}" files="{{logoImgurls}}" max-count="1" title="" ></mp-uploader>
             </view>
         </view>
         <view class="form_view_li">
@@ -54,7 +56,7 @@
                 <!-- <input class="from_input" type="textarea" placeholder="请输入店铺位置" name="address" value="{{address}}"/> -->
                 <!-- <textarea placeholder="请输入店铺位置"  value="{{address}}"  /> -->
                 <!-- <button class="input_map_search" size="mini" type="primary" plain="true">搜索</button> -->
-                <text class="from_input">{{address}}</text>
+                <!-- <text class="from_input">{{address}}</text> -->
             </view>
             <view class="from_map_con">
                 <!-- <map class="from_map"></map> -->

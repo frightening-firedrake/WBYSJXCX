@@ -1,7 +1,8 @@
 
 <view class="map_box">
   <!-- <input bindinput="bindInput" placeholder="搜索" focus="true" /> -->
-  <input bindinput="bindInput" placeholder="搜索" />
+  <input bindinput="bindInput" placeholder="搜索" value="{{address}}" />
+  <!-- 搜索下拉 -->
   <view class="text_box_wrap">
     <view bindtouchstart="bindSearch" data-keywords="{{i}}" class="text_box" wx:for="{{tips}}" wx:for-item="i" wx:key="{{index}}"> 
     {{i.name}}

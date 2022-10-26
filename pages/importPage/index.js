@@ -72,6 +72,7 @@ Page({
    */
   onShow() {
     console.log(55)
+    console.log(this.data.script_list)
     this.getScriptList()
     this.getConfigList()
     if(typeof this.getTabBar === 'function' && this.getTabBar()){
@@ -112,9 +113,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   filterBtn() {
     console.log(this.data.filterShow)
     this.setData({
@@ -182,6 +183,7 @@ Page({
     let script_detail = item.currentTarget.dataset.item
     for (let j = 0, lenJ = this.data.script_list.length; j < lenJ; ++j) {
       if (script_detail.script_code == this.data.script_list[j].script_code) {
+        // 初始undefind直接取反好家伙
         this.data.script_list[j].checked = !script_detail.checked
       }
     }
@@ -189,6 +191,25 @@ Page({
       script_list: this.data.script_list
     })
 
+  },
+  // 全选
+  checkAll(e){
+    // console.log(e)
+    // console.log(e.detail.value)
+    if(e.detail.value.length){
+      this.data.script_list.forEach((v)=>{
+        v.checked=true
+      })
+    }else{
+      this.data.script_list.forEach((v)=>{
+        v.checked=false
+      })
+    }
+    this.setData({
+      script_list: this.data.script_list
+    })
+
+    
   },
   getScriptList() {
 
@@ -340,9 +361,9 @@ reset_filter() {
   })
   this.getScriptList()
   this.getConfigList()
-  this.setData({
-    filterShow: false
-  })
+  // this.setData({
+  //   filterShow: false
+  // })
 },
 
   name_filter(e) {

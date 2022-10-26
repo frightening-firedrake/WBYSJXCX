@@ -74,9 +74,9 @@ this.getBusinessRoomList()
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
+  // onShareAppMessage() {
 
-  },
+  // },
   
   slideButtonTap(e) {
     console.log('slide button tap', e)
@@ -98,7 +98,7 @@ this.getBusinessRoomList()
         wx.hideLoading()
         console.log('门店',res)
         if(res.data.status){
-    
+          this.getBusinessRoomList()
         } else {
           wx.showToast({
             title: res.data.msg,

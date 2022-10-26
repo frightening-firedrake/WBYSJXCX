@@ -1,9 +1,9 @@
 <!--pages/memberLevels/index.wxml-->
 <view class="page_app page_pd_app member_levels_section">
-  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+  <scroll-view class="card_list_scroll newList" scroll-y="true" bindscrolltolower="lower">
     <mp-cells title="">
         <mp-cell  value="{{itemName.level_name}}" footer=""  wx:for="{{level_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
-            <image slot="icon" src="../../assets/img/img.png" style="margin-right: 12px;vertical-align: middle;width:40px; height: 40px;"></image>
+            <image slot="icon" src="../../assets/img/wg1.png" class="listimg" style="width:43rpx;height:34rpx;vertical-align:text-top;"></image>
         </mp-cell>
  
     </mp-cells>

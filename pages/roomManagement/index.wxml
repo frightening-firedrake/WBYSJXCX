@@ -1,6 +1,6 @@
 <!--pages/roomManagement/index.wxml-->
 <view class="page_app page_pd_app">
-  <scroll-view class="card_list_scroll" scroll-y="true" bindscrolltolower="lower">
+  <scroll-view class="card_list_scroll newList" scroll-y="true" bindscrolltolower="lower">
     <mp-cells title="" footer="">
 
       <mp-slideview show="{{false}}" buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" wx:for="{{room_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.id}}"> 
@@ -11,7 +11,7 @@
             <view class="li_mp_title">房间名称：{{itemName.room_name}}</view>
             <view class="li_mp_sub">房间号：{{itemName.room_code}}</view>
           </view>
-          <image slot="icon" src="{{base_file_url+itemName.path}}" style="margin-right: 12px;vertical-align: middle;width:40px; height: 40px;"></image>
+          <image slot="icon" src="{{base_file_url+itemName.path}}" class="listimg"></image>
       </mp-cell>
     </mp-slideview>
     </mp-cells>

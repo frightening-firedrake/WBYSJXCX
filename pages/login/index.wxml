@@ -10,13 +10,13 @@
         <mp-cells title="" footer="">
         <mp-cell prop="phone">
           <view class="login_input_li" >
-            <mp-icon class="login_input_icon" icon="me" size="{{20}}" color="#999"></mp-icon>
+            <!-- <mp-icon class="login_input_icon" icon="me" size="{{20}}" color="#999"></mp-icon> -->
             <input class="login_input" type="number" name="input" placeholder="请输入手机号" bindinput="formInputChange" data-field="phone" value="{{formData.phone}}"  />
           </view>
         </mp-cell>
         <mp-cell prop="verification_code">
           <view class="login_input_li" >
-            <mp-icon class="login_input_icon" icon="lock" size="{{20}}" color="#999"></mp-icon>
+            <!-- <mp-icon class="login_input_icon" icon="lock" size="{{20}}" color="#999"></mp-icon> -->
             <input class="login_input" type="number" name="input" placeholder="请输入验证码" data-field="verification_code"      bindinput="formInputChange"   value="{{formData.verification_code}}" />
             <view wx:if="{{timesShow}}" class="login_vcode_time">{{times}}s后重新发送</view>
             <button wx:else class="verification_code_btn" type="primary" size="mini" plain="true" bindtap="getVCode">获取验证码</button>

@@ -7,7 +7,7 @@
 
       <form bindsubmit="formSubmit">
         <input bindconfirm="name_filter" type="text" placeholder="请输入搜索内容" bindinput="input_name" name="query_name" />
-        <icon class="search_icon" type="search" size="18"></icon>
+        <icon class="search_icon" type="search" color="#000" size="16"></icon>
         <view class="search_con_btn" bindtap="name_filter">搜索</view>
         <!-- <button class="wehx-foot-btn" hover-class="wehx-button_hover" formType="submit">确定</button> -->
       </form>
@@ -15,12 +15,12 @@
     </view>
     <view class="screen_btn" bindtap="filterBtn">
       <icon class="icon_sx iconfont icon-shaixuan"></icon>
-      <text>筛选</text>
+      <!-- <text>筛选</text> -->
     </view>
   </view>
   <!--筛选开始-->
   <view class="screen_content">
-    <view class="screen_con_li">
+    <!-- <view class="screen_con_li">
       <view class="screen_label">排序</view>
       <view class="screen_list">
         <view class="screen_li active">全部</view>
@@ -28,7 +28,7 @@
         <view class="screen_li">最新</view>
         <view class="screen_li">热门</view>
       </view>
-    </view>
+    </view> -->
     <!-- <view class="screen_con_li">
       <view class="screen_label">类型</view>
       <view class="screen_list">
@@ -114,7 +114,7 @@
                     </view>
                   </view>
                   <view class="card_price_fr" catchtap="stop">
-                    <navigator hover-class="none" url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}">
+                    <navigator hover-class="none" url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}&room_number={{itemName.room_number}}">
                       <icon size="22" class="iconfont icon-qita"></icon>
                     </navigator>
                   </view>
@@ -319,6 +319,7 @@
       </view>
     </view>
   </view>
+  
   <mp-dialog title="{{dialog_title}}" show="{{dialogShow}}" bindbuttontap="tapDialogButton" ext-class="nobutton">
     <!-- <mp-form-page title="" subtitle=""> -->
       <mp-form ext-class="dialog_form" id="form_change_price" models="{{script_detail}}" rules="{{rules}}">
@@ -330,7 +331,7 @@
           <!-- </label> -->
           <!-- <label> -->
             <mp-cell prop="discount" title="折扣" ext-class="">
-              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail.discount}}" class="weui-input" placeholder="请输入购买折扣" />
+              <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail.discount}}" class="weui-input" placeholder="请输入折扣例如0.1" />
             </mp-cell>
           <!-- </label> -->
           <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>

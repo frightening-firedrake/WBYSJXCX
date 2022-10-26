@@ -39,27 +39,33 @@
                 <icon size="40" class="li_icon iconfont icon-caiwuguanli"></icon>
             </view>
             <view class="my_li_text">财务管理</view>
-        </view>
+        </view> style="margin-right: 15rpx;vertical-align: middle;width:50rpx; height: 50rpx;"
     </view> -->
     <view class="my_page_section2">
       <mp-cells>
             <mp-cell link url="../storeManagement/index" value="商家资料">
-                <icon  slot="icon" class="iconbefore iconfont icon-stores"></icon>
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-stores"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/sjzl.png"></image>
             </mp-cell>
             <mp-cell link url="../memberManagement/index" value="会员管理">
-                <icon  slot="icon" class="iconbefore iconfont icon-huiyuanguanli"></icon>
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-huiyuanguanli"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/hygl.png"></image>
             </mp-cell>
             <mp-cell link url="../hostManagement/index" value="主持人管理">
-                <icon  slot="icon" class="iconbefore iconfont icon-people"></icon>
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-people"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/zcrgl.png"></image>
             </mp-cell>
-            <mp-cell link url="../roomManagement/index" value="房间管理" footer="3">
-                <icon  slot="icon" class="iconbefore iconfont icon-fangjianshu"></icon>
+            <mp-cell link url="../roomManagement/index" value="房间管理" footer="{{room}}">
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-fangjianshu"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/fjgl.png"></image>
             </mp-cell>
-            <mp-cell link url="../memberLevels/index" value="运营中心" footer="5">
-                <icon  slot="icon" class="iconbefore iconfont icon-yunyingzhongxintianchong"></icon>
+            <mp-cell link url="../memberLevels/index" value="运营中心" footer="{{operate}}">
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-yunyingzhongxintianchong"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/yyzx.png"></image>
             </mp-cell>
             <mp-cell link url="../financialManagement/index" value="财务管理">
-                <icon  slot="icon" class="iconbefore iconfont icon-caiwuguanli"></icon>
+                <!-- <icon  slot="icon" class="iconbefore iconfont icon-caiwuguanli"></icon> -->
+                <image class="iconImg" slot="icon" src="/assets/img/cwgl.png"></image>
             </mp-cell>
         </mp-cells>
     </view>

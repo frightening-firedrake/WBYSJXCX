@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "scriptInfo":"/component/scriptInfo/scriptInfo",
+    "reservationInformation":"/component/reservationInformation/reservationInformation"
+  }
+}

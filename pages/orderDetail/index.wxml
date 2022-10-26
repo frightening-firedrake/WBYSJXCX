@@ -1,8 +1,11 @@
 <!--pages/orderDetail/index.wxml-->
 <!--pages/scriptDetail/index.wxml-->
-<view class="page_app page_pd_app script_detail_section">
-  <view class="detail_tip" wx:if="{{order_detail.status===4}}">您的订单已取消</view>
-  <view class="detail_content_li">
+<view class="script_detail_section">
+  <t-message id="t-message" />
+  <!-- <view class="detail_tip" wx:if="{{order_detail.status===4}}">您的订单已取消</view> -->
+  <scriptInfo title='剧本信息' order="{{order_detail}}"></scriptInfo>
+  <reservationInformation order="{{order_detail}}"></reservationInformation>
+  <!-- <view class="detail_content_li">
     <view class="detail_content_tit">剧本信息</view>
     <view class="detail_content">
         <image class="detail_con_img" src="{{base_file_url+order_detail.script_cover}}" alt=""></image>
@@ -15,7 +18,7 @@
                 <view class="detail_infor_fl">
                     <view class="detail_infor_text">{{order_detail.subject_type}}</view>
                     <view class="detail_infor_text">{{order_detail.duration}}</view>
-                    <!-- <view class="detail_infor_text detail_infor_p">剧本描述很好的本子很好玩，结局很悲伤！</view> -->
+                    <view class="detail_infor_text detail_infor_p">剧本描述很好的本子很好玩，结局很悲伤！</view>
                 </view>
                 <view class="detail_infor_ft"></view>
             </view>
@@ -28,35 +31,130 @@
        <view class="detail_content_text">门店：<text>{{order_detail.title}}</text></view>
        <view class="detail_content_text">预约时间：<text>{{order_detail.appointment_date}}{{order_detail.appointment_time}}</text></view>
        <view class="detail_content_text">预约剧本：<text>{{order_detail.subject_type}} </text></view>
-       <view class="detail_content_text">预约模式：<text>{{order_detail.mode}}</text></view>
+       <view class="detail_content_text" style="opacity: 0;">预约模式：<text>{{order_detail.mode}}</text></view>
        <view class="detail_content_text">预约人：<text>{{order_detail.name}}</text></view>
-       <view class="detail_content_text">预约电话：<text>{{order_detail.phone}}</text></view>
-       <view class="detail_content_text"><icon size="16" class="text_icon iconfont icon-shouhuodizhi"></icon>门店地址：<text>{{order_detail.address}}</text></view>
-       <view class="detail_content_text"><icon size="16" class="text_icon iconfont icon-dianhua"></icon>电话：<text>{{order_detail.store_phone}}</text></view>
+       <view class="detail_content_text"  bindtap="phoneCall" data-phoneNumber="{{order_detail.phone}}">预约电话：<text>{{order_detail.phone}}</text></view>
+       <view class="detail_content_text">预约房间：<text>{{order_detail.room_number}}</text></view>
+       <view class="detail_content_text"></view>
+       <view class="detail_content_text"><icon size="16" class="text_icon iconfont icon-shouhuodizhi bgicon"></icon>门店地址：<text>{{order_detail.address}}</text></view>
+       <view class="detail_content_text" ><icon size="16" class="text_icon iconfont icon-dianhua bgicon"></icon>门店电话：<text>{{order_detail.store_phone}}</text></view>
     </view>
-  </view>
+  </view> -->
   <view class="detail_content_li">
     <h6 class="detail_content_tit">订单信息</h6>
-    <view class="detail_content detail_content_bot order_list">
+    <!-- <view class="detail_content detail_content_bot order_list">
        <view class="detail_content_text">订单编号：<text>011111111</text></view>
        <view class="detail_content_text">下单时间：<text>{{order_detail.pay_time}}</text></view>
        <view class="detail_content_text">支付方式：<text>{{order_detail.pay_mode}}</text></view>
-       <!-- <view class="detail_content_text">订单取消时间：<text>2022-04-06 15:30:10</text></view> -->
+       <view class="detail_content_text">订单取消时间：<text>2022-04-06 15:30:10</text></view>
+    </view> -->
+    <view class="row">
+      <view class="label">订单编号</view>
+      <view class="value">011111111</view>
+    </view>
+    <view class="row">
+      <view class="label">下单时间</view>
+      <view class="value">{{order_detail.pay_time}}</view>
+    </view>
+    <view class="row">
+      <view class="label">支付方式</view>
+      <view class="value">{{order_detail.pay_mode}}</view>
+    </view>
+    <view class="row">
+      <view class="label">取消时间</view>
+      <view class="value">2022-04-06 15:30:10</view>
     </view>
   </view>
   <view class="detail_content_li detail_price_li">
-    <view class="detail_li">
-        <view class="detail_li_fl">支付金额：</view>
-        <view class="detail_li_fr">￥{{order_detail.publish_price}}</view>
-    </view>
-    <view class="detail_li">
-        <view class="detail_li_fl">优惠金额：</view>
-        <view class="detail_li_fr">￥0</view>
-    </view>
-    <view class="detail_li">
-        <view class="detail_li_fl">应付金额：</view>
-        <view class="detail_li_fr price_num">￥{{order_detail.publish_price}}</view>
+    <view style="padding:0 12px;">
+      <view class="detail_li">
+          <view class="detail_li_fl">支付金额：</view>
+          <view class="detail_li_fr">￥{{order_detail.publish_price}}</view>
+      </view>
+      <view class="detail_li">
+          <view class="detail_li_fl">优惠金额：</view>
+          <view class="detail_li_fr">￥0</view>
+      </view>
+      <view class="detail_li">
+          <view class="detail_li_fl">应付金额：</view>
+          <view class="detail_li_fr price_num">￥{{order_detail.publish_price}}</view>
+      </view>
     </view>
   </view>
+  <view class="detail_content_li detail_dm_li row"  style="height:80rpx;">
+    <view class="label">开场DM</view>
+    <view class="value">张三</view>
+  </view>
+  <t-button-group class="btngroup">
+    <t-button t-class="external-class" size="large" block 
+    bindtap="openDialogTKN" shape="round">拒绝退款</t-button
+    >
+    <t-button t-class="external-class" theme="primary" size="large" block
+       bindtap="openDialogTK" shape="round">同意退款</t-button
+    >
+  </t-button-group>
+
+  <view class="detail_content_li">
+    <h6 class="detail_content_tit">退款信息</h6>
+    <!-- <view class="detail_content detail_content_bot order_list">
+       <view class="detail_content_text">订单编号：<text>A1451451451</text></view>
+       <view class="detail_content_text">退款时间：<text>2022-04-06 15:30:10</text></view>
+       <view class="detail_content_text">退款方式：<text>原支付返回</text></view>
+       <view class="detail_content_text">退款原因<text>不想玩了</text></view>
+    </view> -->
+    <view class="row">
+      <view class="label">订单编号</view>
+      <view class="value">A1451451451</view>
+    </view>
+    <view class="row">
+      <view class="label">退款时间</view>
+      <view class="value">2022-04-06 15:30:10</view>
+    </view>
+    <view class="row">
+      <view class="label">退款方式</view>
+      <view class="value">原支付返回</view>
+    </view>
+    <view class="row">
+      <view class="label">退款原因</view>
+      <view class="value">不想玩了</view>
+    </view>
+  </view>
+
+  <view class="detail_content_li">
+    <h6 class="detail_content_tit">退款信息</h6>
+    <!-- <view class="detail_content detail_content_bot order_list">
+       <view class="detail_content_text">商家拒绝退款<text></text></view>
+       <view class="detail_content_text">处理时间：<text>2022-04-06 15:30:10</text></view>
+    </view> -->
+    <view class="row">
+      <view class="value">商家拒绝退款</view>
+      <!-- <view class="value">2022-04-06 15:30:10</view> -->
+    </view>
+    <view class="row">
+      <view class="label">处理时间</view>
+      <view class="value">2022-04-06 15:30:10</view>
+    </view>
+  </view>
+
+  <mp-dialog title="退款提示" show="{{dialogShowTK}}" bindbuttontap="tapDialogButtonTK" buttons="{{buttonsTK}}">
+    <view class="dialogcontent">
+      <t-radio-group bind:change="onChangeTKFS" defaultValue="all">
+        <t-radio color="#F2BB3F" value="all"> 全额退款 </t-radio>
+        <t-radio color="#F2BB3F" value="some"> 
+          <input type="digit" bindinput="formInputChange" data-field="priceTK" value="{{priceTK}}" placeholder="请输入退款金额" type="text"/>
+        </t-radio>
+      </t-radio-group>
+      <view class="tip">
+        您确认同意退款吗？确认后订单状态将关闭，系统将完成自动退款
+      </view>
+    </view>
+  </mp-dialog>
+
+  <mp-dialog title="拒绝退款" show="{{dialogShowTKN}}" bindbuttontap="tapDialogButtonTKN" buttons="{{buttonsTK}}">
+    <view class="dialogcontent">
+      <view class="reasonLabel">拒绝退款原因：</view>
+      <textarea bindinput="formInputChange" data-field="reason" value="{{reason}}" placeholder="请输入拒绝退款原因" cols="10" rows="5"></textarea>
+    </view>
+  </mp-dialog>
 </view>
 
