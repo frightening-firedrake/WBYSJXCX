@@ -32,8 +32,8 @@ Page({
   },
   draw() {
     drawQrcode({
-      width: 187,
-      height: 187,
+      width: 200,
+      height: 200,
       x: 0,
       y: 0,
       canvasId: 'myQrcode',
@@ -55,8 +55,8 @@ Page({
   repaint() {
     // 设置二维码起始位置 x,y
     drawQrcode({
-      width: 187,
-      height: 187,
+      width: 200,
+      height: 200,
       x: 0,
       y: 0,
       canvasId: 'myQrcode',

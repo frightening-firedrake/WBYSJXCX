@@ -9,7 +9,7 @@
     </view>
     <view class="screen_btn" bindtap="filterBtn">
       <icon class="icon_sx iconfont icon-shaixuan"></icon>
-      <text>筛选</text>
+      <!-- <text>筛选</text> -->
     </view>
   </view>
   <!--内容开始-->

@@ -45,8 +45,9 @@ export default {
             instance._onCancel = reject;
         });
     },
-    close() {
-        const instance = getInstance();
+    close(options) {
+        const { context, selector = '#t-dialog' } = Object.assign({}, options);
+        const instance = getInstance(context, selector);
         if (instance) {
             instance.close();
             return Promise.resolve();

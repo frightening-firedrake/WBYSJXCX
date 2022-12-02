@@ -83,10 +83,10 @@
         <mp-slideview  class="card_slideview" buttons="{{itemName.status===1 ?slideButtons1:slideButtons}}" bindbuttontap="slideButtonTap" duration="500" wx:for="{{dataList}}" ext-class="card_li_wrap" wx:for-index="idx" wx:for-item="itemName" wx:key="idx" data-id="{{itemName.script_code}}" data-status="{{itemName.status}}" data-name="{{itemName.script_name}}" data-data="{{itemName}}">
           <view class="card_li">
             <navigator  hover-class="none" url="../scriptDetail/index?id={{itemName.script_code}}">
-              <view class="card_li_img">
+              <!-- <view class="card_li_img">
                 <image src="{{base_file_url+itemName.script_cover}}"></image>
-              </view>
-              <view class="card_li_infor">
+              </view> -->
+              <!-- <view class="card_li_infor">
                 <view class="card_li_head card_li_l">
                   <text class="card_li_tit">{{itemName.script_name}}</text>
                   <view class="card_head_fr">开本次数:{{itemName.opening_count}}</view>
@@ -119,6 +119,37 @@
                     </navigator>
                   </view>
                 </view>
+              </view> -->
+              <view class="infoBox">
+                <image src="{{base_file_url+itemName.script_cover}}"></image>
+                <view class="info">
+                  <view class="row">
+                    <view class="status" wx:if="{{itemName.status===1}}">已上架</view>
+                    <view class="status" style="background:#E6E6E6;" wx:else>未上架</view>
+                    <view class="name">{{itemName.script_name}}</view>
+                  </view>
+                  <view class="row">
+                    <view class="tagWrap">
+                      <view class="tag">{{itemName.script_person}}</view>
+                      <view class="tag">{{itemName.duration}}</view>
+                      <view class="tag">{{itemName.subject_type}}</view>
+                      <view class="tag">{{itemName.script_difficulty}}</view>
+                    </view>
+                  </view>
+                  <view class="row">
+                    <view class="price">￥{{itemName.publish_price}}元</view>
+                    <view class="price">折扣价：￥{{itemName.discounted_price}}元</view>
+                  </view>
+                </view>
+              </view>
+              <view class="more">
+                <view class="count">已开{{itemName.opening_count}}次</view>
+                <view class="morebtn" catchtap="stop">
+                  <navigator hover-class="none" url="../scriptUtils/index?id={{itemName.script_code}}&name={{itemName.script_name}}&room_number={{itemName.room_number}}">
+                    查看更多
+                  </navigator>
+                </view>
+                <view class="editpricebtn" catchtap="editChange" data-scriptinfo="{{itemName}}">修改价格</view>
               </view>
             </navigator>
           </view>

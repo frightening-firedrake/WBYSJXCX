@@ -67,7 +67,7 @@ page {
   color: var(--td-tab-bar-item-color, rgba(0, 0, 0, 0.6));
 }
 .t-tab-bar-item__content.t-is-checked {
-  color: var(--td-tab-bar-item-active-color);
+  color: var(--td-tab-bar-item-active-color, #0052d9);
 }
 .t-tab-bar-item__content.t-is-checked .t-tab-bar-item__icon-menu {
   background-color: var(--td-tab-bar-item-active-color, #0052d9);

@@ -1,73 +1,100 @@
 <!--pages/scriptDetail/index.wxml-->
-<view class="page_wrap">
-  <!-- 表单验证提示小工具 -->
-  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
-  <view class="detailBanner">
-    <view class="titleH">剧本详情</view>
-    <image class="detail_con_img" mode="aspectFill" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
-    <view class="intro">
-      <view class="left">
-        <view class="titleH2">{{script_detail.script_name}}</view>
-        <view class="tags">
-          <view>{{script_detail.script_person}}</view>
-          <view>{{script_detail.duration}}</view>
-          <view>{{script_detail.subject_type}}</view>
-          <view>{{script_detail.script_difficulty}}</view>
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+<!-- <scroll-view scroll-y="{{!dialogShow}}" enhanced="true" class="scrollPage" binddragend="binddragend" scroll-into-view="{{scrollInto}}" scroll-with-animation="true"> -->
+<t-navbar title="剧本详情" style="position: fixed;width:100vw;z-index: 6;" background="transparent" leftIcon="chevron-left" class="fixedNav" />
+<scroll-view class="scrollPage">
+  <view id="banner">
+    <image class="bannerFull" mode="aspectFill" src="{{base_file_url+script_detail.script_cover}}" alt=""></image>
+    <view id="shop" style="background-color: transparent;">
+      <!-- <view class="shopWrap">
+        <image class="shopImg"  src="{{base_file_url+script_detail.store_cover}}" alt=""></image>
+        <view class="info">
+          <view class="title">{{script_detail.title}}</view>
+          <view>{{script_detail.address}}</view>
         </view>
-        <t-rate value="{{score}}" variant="filled" bind:change="onScoreChange" />
-      </view>
-      <view class="right">
-        <view class="yuanjia">原价￥{{script_detail.publish_price}}元/人</view>
-        <view>￥{{script_detail.discounted_price}}元/人</view>
-        <view hidden="{{shareMode}}" bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;color:var(--theme-color);" size="20" class="iconfont icon-bianji"></icon></view>
+        <image class="location"  src="/assets/img/location.png" alt="" bindtap="location" data-title="{{script_detail.title}}" data-address="{{script_detail.address}}" data-longitude="{{script_detail.longitude}}" data-latitude="{{script_detail.latitude}}"></image>
+      </view> -->
+      <view class="border">
+      <!--<view class="borderMore {{scrollInto=='details'?'border':''}}">
+         <view class="more" bindtap="showMore">
+          <image class="arrow"  hidden="{{scrollInto=='details'}}" src="/assets/img/arrow.png" alt=""></image>
+          <view hidden="{{scrollInto=='details'}}">下拉更多</view>
+          <view hidden="{{scrollInto=='details'}}" class="line"></view>
+        </view> -->
       </view>
     </view>
   </view>
-  <view>
-    <scroll-view scroll-y="true" class="scroll-view-y {{shareMode?'scroll-view-share':''}}">
-      <view class="title">故事简介</view>
-      <view class="article">
-        <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
-        <view class="see_more" bindtap="readmore" >
-          <view hidden="{{!more}}">查看更多</view>
-          <view hidden="{{more}}">收起</view>
-          <icon size="10" class="{{more?'more_icon iconfont icon-jiantouxia':'more_icon iconfont icon-jiantouxia back'}}"></icon>
+  <view id="details">
+    <view class="detailsWrap">
+      <view class="intro">
+        <view class="left">
+          <view class="titleH2">{{script_detail.script_name}}</view>
+          <view class="tags">
+            <view>{{script_detail.script_person}}</view>
+            <view>{{script_detail.duration}}</view>
+            <view>{{script_detail.subject_type}}</view>
+            <view>{{script_detail.script_difficulty}}</view>
+          </view>
+          <t-rate value="{{score}}" gap="1" size="16" variant="filled" bind:change="onScoreChange" />
+        </view>
+          <view class="yuanjia">原价￥{{script_detail.publish_price}}元/人</view>
+        <view class="right">
+          <view>￥{{script_detail.discounted_price}}元/人</view>
+          <!-- <view hidden="{{shareMode}}" bindtap="editChange"  data-scriptinfo="{{script_detail}}" class="price_edit_btn"><icon style="font-size: 40rpx;color:var(--theme-color);" size="20" class="iconfont icon-bianji"></icon></view> -->
+          <view  hidden="{{shareMode}}" bindtap="editChange"  data-scriptinfo="{{script_detail}}"  class="editPrice">
+            修改价格
+          </view>
+        </view>
+        
+      </view>
+
+      <view class="detailsBox {{shareMode?'detailsBoxShare':''}}">
+        <view class="title">故事简介</view>
+        <view class="article">
+          <rich-text class='{{more?"readmore":""}}' nodes=" {{script_detail.script_introduce}}"></rich-text>
+          <view class="see_more" bindtap="readmore" >
+            <view hidden="{{!more}}">查看更多</view>
+            <view hidden="{{more}}">收起</view>
+            <icon size="10" class="{{more?'more_icon iconfont icon-jiantouxia':'more_icon iconfont icon-jiantouxia back'}}"></icon>
+          </view>
+        </view>
+        <view class="roles" wx:if="{{script_detail.role_list.length>0}}">
+          <view class="title">角色介绍</view>
+          <view>
+            <scroll-view class="scroll_view_role" enable-flex scroll-x="true" style="width: 100%">
+              <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
+                <view class="role_li_img">
+                  <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
+                </view>
+                <view class="role_li_infor">
+                  <view class="role_li_name"><text>{{itemName.name}}</text></view>
+                  <view class="role_li_name">{{itemName.sex}}，{{itemName.age}}</view>
+                  <view class="role_li_text role_li_name">{{itemName.introduce}}</view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
         </view>
       </view>
-      <view class="roles" wx:if="{{script_detail.role_list.length>0}}">
-        <view class="title">角色介绍</view>
-        <view>
-          <scroll-view class="scroll_view_role" enable-flex scroll-x="true" style="width: 100%">
-            <view class="role_li"  wx:for="{{script_detail.role_list}}" wx:for-index="idx" wx:for-item="itemName" wx:key="idx">
-              <view class="role_li_img">
-                <image src="{{base_file_url+itemName.role_cover}}" alt=""></image>
-              </view>
-              <view class="role_li_infor">
-                <view class="role_li_name"><text>{{itemName.name}}</text></view>
-                <view class="role_li_name">{{itemName.sex}}，{{itemName.age}}</view>
-                <view class="role_li_text role_li_name">{{itemName.introduce}}</view>
-              </view>
-            </view>
-          </scroll-view>
-        </view>
+
+      <!-- 上下架按钮们 -->
+      <view class="upordown" hidden="{{shareMode}}">
+        <view bindtap="buttonShowDialog"  wx:if="{{script_detail.status===0}}" class="btn btnup">上架</view>
+        <view bindtap="buttonShowDialogDown" wx:if="{{script_detail.status===1}}" class="btn btndown">下架</view>
       </view>
-    </scroll-view>
+
+
+    </view>
   </view>
+</scroll-view>
 
+  
+  
 
-
-
-
-
-
-  <!-- 上下架按钮们 -->
-  <view class="upordown" hidden="{{shareMode}}">
-    <view bindtap="buttonShowDialog"  wx:if="{{script_detail.status===0}}" class="btn btnup">上架</view>
-    <view bindtap="buttonShowDialogDown" wx:if="{{script_detail.status===1}}" class="btn btndown">下架</view>
-  </view>
+  
 
   <!-- 价格修改与上架弹窗 -->
-  <mp-dialog title="{{dialog_title}}" show="{{dialogShow}}" bindbuttontap="tapDialogButton" ext-class="nobutton">
+  <mp-dialog title="{{dialog_title}}" show="{{dialogShow}}" bindbuttontap="tapDialogButton" ext-class="nobutton" bindclose="dialogHide">
     <!-- <mp-form-page title="" subtitle=""> -->
       <mp-form ext-class="dialog_form" id="form_change_price" models="{{script_detail_Price}}" rules="{{rules}}">
         <!-- <mp-cells title="" footer=""> -->
@@ -81,7 +108,7 @@
               <input type="digit" bindinput="formInputChange" data-field="discount" value="{{script_detail_Price.discount}}" class="weui-input" placeholder="请输入折扣如0.1" />
             </mp-cell>
           <!-- </label> -->
-          <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price">保存</button>
+          <button style="margin: 30rpx 0" type="primary" formType="submit" bindtap="check_change_price" hover-class="none">保存</button>
         <!-- </mp-cells> -->
       </mp-form>
     <!-- </mp-form-page> -->
@@ -90,4 +117,3 @@
   <mp-dialog title="剧本下架" show="{{dialogDownShow}}" bindbuttontap="tapDialogDownButton" buttons="{{down_buttons}}" >
     <text class="card_head_fr">您确定要下架剧本 '{{script_detail.script_name}}' 么？</text>
   </mp-dialog>
-</view>

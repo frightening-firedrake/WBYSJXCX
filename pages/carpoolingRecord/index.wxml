@@ -101,27 +101,27 @@
             <view class="order_infor_con">
               <view class="order_infor_list">
                 <view class="order_infor_li">
-                  <view class="order_infor_label">预约剧本：</view>
+                  <view class="order_infor_label">预约剧本</view>
                   <text class="order_infor_text">{{itemName.script_name}}</text>
                 </view>
                 <view class="order_infor_li">
-                  <view class="order_infor_label">预约时间：</view>
+                  <view class="order_infor_label">预约时间</view>
                   <text class="order_infor_text">{{itemName.appointment_date}} {{itemName.appointment_time}}</text>
                 </view>
                 <view wx:if="{{itemName.mode}}" class="order_infor_li">
-                  <view class="order_infor_label">预约模式：</view>
+                  <view class="order_infor_label">预约模式</view>
                   <text class="order_infor_text">{{itemName.mode}}</text>
                 </view>
                 <!-- <view class="order_infor_li">
-                  <view class="order_infor_label">预约人：</view>
+                  <view class="order_infor_label">预约人</view>
                   <text class="order_infor_text">{{itemName.name}}</text>
                 </view> -->
                 <view class="order_infor_li">
-                  <view class="order_infor_label">预约人数：</view>
+                  <view class="order_infor_label">预约人数</view>
                   <text class="order_infor_text">{{itemName.person_count}}</text>
                 </view>
                 <!-- <view class="order_infor_li">
-                  <view class="order_infor_label">预约电话：</view>
+                  <view class="order_infor_label">预约电话</view>
                   <text class="order_infor_text">{{itemName.phone}}</text>
                 </view> -->
               </view>

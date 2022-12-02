@@ -50,7 +50,9 @@ Page({
         value: 'JPN',
         name: '热门'
       }
-    ]
+    ],
+    checkTip:'全选'
+
   },
 
   /**
@@ -194,15 +196,21 @@ Page({
   },
   // 全选
   checkAll(e){
-    // console.log(e)
+    console.log(e)
     // console.log(e.detail.value)
     if(e.detail.value.length){
       this.data.script_list.forEach((v)=>{
         v.checked=true
       })
+      this.setData({
+        checkTip:'取消'
+      })
     }else{
       this.data.script_list.forEach((v)=>{
         v.checked=false
+      })
+      this.setData({
+        checkTip:'全选'
       })
     }
     this.setData({
@@ -341,13 +349,14 @@ Page({
   //侧边过滤 点击确定
   start_filter() {
     this.setData({
+      filterShow: false
+    })
+    this.setData({
       script_list: [],
       ['queryJson.page']: 1
     })
     this.getScriptList()
-    this.setData({
-      filterShow: false
-    })
+    
   },
   //侧边过滤 点击重置
 reset_filter() {

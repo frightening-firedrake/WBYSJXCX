@@ -1,5 +1,7 @@
 <!--pages/carpoolingDetails/index.wxml-->
-<view class="pageWrap white {{detaildata.status>2?'pageFull':''}}">
+<mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <t-message id="t-message" />
+<view class="pageWrap white {{detaildata.status>2||detaildata.status==1?'pageFull':''}}">
   <view class="head">拼场信息</view>
   <view class="scriptInfo">
     <image src="{{base_file_url+detaildata.script_cover}}"></image>
@@ -25,14 +27,18 @@
   <view class="memberbox">
     <view class="title">线上（{{detaildata.online_person}}）</view>
     <view class="memberWrap">
-      <view class="member" bindlongpress="delPlayer" wx:for="{{detaildata.online_user}}" wx:key="id" data-id="{{item.id}}">
+      <!-- <view class="member" bindlongpress="delPlayer" wx:for="{{detaildata.online_user}}" wx:key="id" data-id="{{item.id}}"> -->
+      <view class="member" wx:for="{{detaildata.online_user}}" wx:key="id" data-id="{{item.id}}">
         <image class="avatar" src="{{base_file_url+item.avatar}}"></image>
-        <view class="tagF">未付款</view>
+        <block wx:if="{{detaildata.status==3}}">
+          <view wx:if="{{item.pay_mode}}" class="tagT tagF">已付款</view>
+          <view wx:else class="tagF" bindtap="delPlayer"  data-id="{{item.id}}">未付款</view>
+        </block>
+        <image class="delPlayer"  wx:if="{{detaildata.status==3}}" hidden="item.pay_mode" bindtap="delPlayer"  data-id="{{item.id}}" src="../../assets/img/del.png"></image>
         <!-- <view class="gender" wx:if="{{item.gender==0}}">男</view>
         <view class="gender" wx:if="{{item.gender==1}}">女</view> -->
         <image class="gender" wx:if="{{item.gender==0}}" src="../../assets/img/boy.png"></image>
         <image class="gender" wx:if="{{item.gender==1}}" src="../../assets/img/girl.png"></image>
-        <!-- <view class="tagT tagF">已付款</view> -->
       </view>
       <!-- <view class="member" bindlongpress="delPlayer">
         <image></image>
@@ -43,18 +49,22 @@
   <view class="memberbox">
     <view class="title">线下（{{detaildata.offline_person}}）</view>
     <view class="memberWrap">
-      <view class="member" bindlongpress="delPlayer" bindtap="toReservationInformation" wx:for="{{detaildata.offline_user}}" wx:key="id" data-id="{{item.id}}">
+      <!-- 详情页跳转取消了 -->
+      <!-- <view class="member" bindlongpress="delPlayer" bindtap="toReservationInformation" wx:for="{{detaildata.offline_user}}" wx:key="id" data-id="{{item.id}}"> -->
+      <view class="member" wx:for="{{detaildata.offline_user}}" wx:key="id" data-id="{{item.id}}">
         <image class="avatar" src="{{base_file_url+item.avatar}}"></image>
+        <image class="delPlayer"  wx:if="{{detaildata.status==1||detaildata.status==2||detaildata.status==3}}" bindtap="delPlayer"  data-id="{{item.id}}" src="../../assets/img/del.png"></image>
+
         <image class="gender" wx:if="{{item.gender==0}}" src="../../assets/img/boy.png"></image>
         <image class="gender" wx:if="{{item.gender==1}}" src="../../assets/img/girl.png"></image>
       </view>
-      <view class="member" wx:if="{{detaildata.status==1}}" hidden="{{detaildata.sub_count==0}}">
+      <view class="member" wx:if="{{detaildata.status==1||detaildata.status==3}}" hidden="{{detaildata.sub_count==0}}">
         <view class="memberAdd" bindtap="openAddPlayer">
-          <mp-icon icon="add"  color="#ED6C1E" size="{{32}}"></mp-icon>
+          <mp-icon icon="add"  color="#333" size="{{32}}"></mp-icon>
         </view>
       </view>
     </view>
-    <view class="tip"  wx:if="{{detaildata.status==0||detaildata.status==1}}">接单后线下付给商家了  商家手动添加人数 凑车</view>
+    <!-- <view class="tip"  wx:if="{{detaildata.status==0||detaildata.status==1}}">接单后线下付给商家了  商家手动添加人数 凑车</view> -->
   </view>
   <view class="tips">
     <view class="tip">
@@ -63,37 +73,70 @@
     <view class="tip">
       2、拼场成功商家与线下玩家自行结款，若拼场失败线上玩家将自动退款
     </view>
-    <view class="kickOut">
+    <!-- <view class="kickOut">
       付款时间范围内，未付款玩家，商家可踢出，添加线下玩家
-    </view>
+    </view> -->
   </view>
-  <view class="feedback" wx:if="{{Tipsuccess1}}">
+
+<!-- <view class="feedback" wx:if="{{Tipsuccess1}}"> -->
+  <view class="feedback" wx:if="{{detaildata.status==1||detaildata.status==2}}">
     <icon type="success" color="#33A954" size="16"></icon>
     <view class="feedbackMsg">
       <view class="title">接单成功</view>
     </view>
   </view>
-  <view class="feedback" wx:if="{{Tipsuccess2}}">
+  <!-- <view class="feedback" wx:if="{{Tipsuccess2}}"> -->
+  <view class="feedback" wx:if="{{detaildata.status==3}}">
     <icon type="success" class="onerow" color="#33A954" size="16"></icon>
     <view class="feedbackMsg">
       <view class="title">拼车成功</view>
       <view class="msg">请按时联系玩家尽快锁车，到店玩本</view>
     </view>
   </view>
-  <view class="feedback" wx:if="{{Tiperror1}}">
+  <!-- <view class="feedback" wx:if="{{Tiperror1}}"> -->
+  <view class="feedback" wx:if="{{detaildata.status==5}}">
     <icon type="clear" class="onerow" color="#FF3333" size="16"></icon>
     <view class="feedbackMsg">
       <view class="title">拼车失败</view>
       <view class="msg">预约有效时间内，拼车人数未达到开本人数</view>
     </view>
   </view>
-  <view class="feedback" wx:if="{{Tiperror2}}">
+  <!-- <view class="feedback" wx:if="{{Tiperror2}}"> -->
+  <view class="feedback" wx:if="{{detaildata.status==4}}">
     <icon type="clear" class="onerow" color="#FF3333" size="16"></icon>
     <view class="feedbackMsg">
       <view class="title">商家拒绝</view>
       <view class="msg">{{Tiperror2Text}}</view>
     </view>
   </view>
+
+
+  <view class="appointmentInformation">
+    <view class="title">预约人信息</view>
+    <view class="infoBox" wx:for="{{detaildata.person_list}}" wx:key="phone" bindtap="makePhoneCall" data-phone="{{item.phone}}">
+      <image class="avatar" src="{{base_file_url+item.avatar}}"></image>
+      <view class="info1">
+        <view class="name">
+          <view class="label">预约人：</view>
+          <view class="value" style="max-width: 6em;">{{item.name}}</view>
+        </view>
+        <view class="name">
+          <view class="label">电话：</view>
+          <view class="value">{{item.phone}}</view>
+        </view>
+      </view>
+      <view class="info2">
+        <view class="appointment">
+          <view class="label">预约人数：</view>
+          <view class="value">{{item.count}}</view>
+        </view>
+        <image class="phoneIcon" style="width: 40rpx;height:40rpx;" src="/assets/img/phone.png"></image>
+      </view>
+    </view>
+
+    
+  </view>
+  
   
   
 </view>
@@ -108,7 +151,8 @@
     >
   </t-button-group>
 
-  <t-button-group class="btngroup" wx:if="{{detaildata.status==1||detaildata.status==2}}">
+  <!-- <t-button-group class="btngroup" wx:if="{{detaildata.status==1||detaildata.status==2}}"> -->
+  <t-button-group class="btngroup" wx:if="{{detaildata.status==2}}">
     <t-button t-class="external-class" size="large" block shape="round" 
     bindtap="openRefuse" data-title="我要流车">我要流车</t-button
     >
@@ -142,38 +186,45 @@
 <!-- 锁车下弹出 -->
 <t-popup visible="{{lockVisible}}" bind:visible-change="onLockVisibleChange" placement="bottom" class="popLow">
   <view class="coverbox">
-    <view class="formitem">
-      <view class="label">DM设置：</view>
-      <input type="text" placeholder="请选择开场DM" disabled value="{{DMLabel}}" />
-      <view class="btn" bindtap="showDMVisible">选择DM</view>
+    
+    <view class="formitem" bindtap="showRoomVisible">
+      <view class="label">房间设置：</view>
+      <input type="text" placeholder="请选择房间" disabled value="{{roomLabel}}" />
+      <!-- <view class="btn" bindtap="showRoomVisible">选择房间</view> -->
     </view>
-    <view class="remarks">
-      备注：您可以选择开场DM
-    </view>
-    <view class="formitem">
+    <view class="formitem" bindtap="showDateVisible">
       <view class="label">拼车时间：</view>
       <input type="text" placeholder="请选择日期" disabled value="{{date}}" />
-      <view class="btn" bindtap="showDateVisible">日期设置</view>
+      <!-- <view class="btn" bindtap="showDateVisible">日期设置</view> -->
     </view>
-    <view class="formitem">
+    <view class="formitem" bindtap="showTimeVisible1">
       <view class="label"> </view>
       <input type="text" placeholder="请选择开始时间" disabled value="{{time1}}" />
-      <view class="btn" bindtap="showTimeVisible1">开始时间</view>
+      <!-- <view class="btn" bindtap="showTimeVisible1">开始时间</view> -->
     </view>
-    <view class="formitem">
+    <!-- <view class="remarks">
+      备注：拼车时间如有冲突，可商家进行时间调整
+    </view> -->
+    <view class="formitem" bindtap="showDMVisible" style="margin-bottom:20rpx;">
+      <view class="label">DM设置：</view>
+      <input type="text" placeholder="请选择开场DM" disabled value="{{DMLabel}}" />
+      <!-- <view class="btn" bindtap="showDMVisible">选择DM</view> -->
+    </view>
+    <!-- <view class="remarks">
+      备注：您可以选择开场DM
+    </view> -->
+    <!-- <view class="formitem">
       <view class="label"> </view>
       <input type="text" placeholder="请选择结束时间" disabled value="{{time2}}" />
       <view class="btn" bindtap="showTimeVisible2">结束时间</view>
-    </view>
-    <view class="remarks">
-      备注：拼车时间如有冲突，可商家进行时间调整
-    </view>
+    </view> -->
+    
     <t-button-group class="btngroup">
       <t-button t-class="external-class" size="large" block  shape="round"
       bindtap="closeLock">取消</t-button
       >
       <t-button t-class="external-class" theme="primary" size="large" block  shape="round"
-        bindtap="lock">确定</t-button
+        bindtap="lockOn">确定</t-button
       >
     </t-button-group>
   </view>
@@ -188,6 +239,17 @@
   bindchange="onDMPickerChange"
 >
   <t-picker-item options="{{DMList}}"></t-picker-item>
+</t-picker>
+<!-- 选择房间 -->
+<t-picker
+  visible="{{roomVisible}}"
+  value="{{[roomValue]}}"
+  title="请选择开场DM"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  bindchange="onRoomPickerChange"
+>
+  <t-picker-item options="{{roomList}}"></t-picker-item>
 </t-picker>
 <!-- 日期 -->
 <t-date-time-picker
@@ -217,3 +279,16 @@
   format="HH:mm"
   bindchange="onTime2Confirm"
 ></t-date-time-picker>
+<!-- 锁车 -->
+<mp-dialog title="锁车提示" show="{{dialogShowLock}}" bindbuttontap="tapDialogButtonLock" buttons="{{buttonsD}}">
+  <view class="dialogcontentMsg">
+    锁车成功后，玩家将进行付款
+  </view>
+</mp-dialog>
+<!-- 踢人 -->
+<mp-dialog title="删除提示" show="{{dialogShowDel}}" bindbuttontap="tapDialogButtonDel" buttons="{{buttonsD}}">
+  <view class="dialogcontentMsg">
+    <!-- 是否踢出玩家“{{players}}"提出后玩家将不能锁车付款 -->
+    是否踢出该玩家,踢出后玩家将不能锁车付款
+  </view>
+</mp-dialog>

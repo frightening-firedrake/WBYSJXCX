@@ -30,6 +30,7 @@ App({
       businessHome: '/business-home',//首页
       businessScriptList: '/business-script-list',//剧本列表
       businessScriptChangePrice: '/change-price',//修改剧本价格
+      businessScriptDeleteScript:'/delete-script',//删除剧本
 
       businessScriptPut: '/put-script',//上下架剧本
       
@@ -70,7 +71,8 @@ App({
       getConfig:'/get-config',//获取订单/拼车 状态
       cancelAppointment:'/cancel-appointment',//拒绝接单
       acceptAppointment:'/accept-appointment',//接单
-      addOffline:'/add-offline'//添加线下玩家
+      addOffline:'/add-offline',//添加线下玩家
+      checkDate:'/check-date'//拼车接单校验
     }
   }
 })

@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-toptips": "weui-miniprogram/toptips/toptips",
+    "mp-form-page": "weui-miniprogram/form-page/form-page",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-dialog": "weui-miniprogram/dialog/dialog",
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "t-rate": "tdesign-miniprogram/rate/rate"
+  },
+  "navigationBarTitleText": "剧本详情",
+  "enablePullDownRefresh": false,
+  "disableScroll": false,
+  "navigationStyle": "custom"
+}

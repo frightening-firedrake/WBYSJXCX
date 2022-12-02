@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import config from '../common/config';
 import { SuperComponent, wxComponent } from '../common/src/index';
-import Props from '../radio/radio-group-props';
+import Props from './props';
 const { prefix } = config;
 const name = `${prefix}-radio-group`;
 let RadioGroup = class RadioGroup extends SuperComponent {
@@ -30,18 +30,16 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                 },
             },
         };
-        this.properties = Object.assign({}, Props);
+        this.properties = Object.assign(Object.assign({}, Props), { borderless: {
+                type: Boolean,
+                value: false,
+            } });
         this.controlledProps = [
             {
                 key: 'value',
                 event: 'change',
             },
         ];
-        this.lifetimes = {
-            attached() {
-                this.initWithOptions();
-            },
-        };
         this.observers = {
             value() {
                 this.getChilds().forEach((item) => {
@@ -49,6 +47,9 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                         checked: this.data.value === item.data.value,
                     });
                 });
+            },
+            options() {
+                this.initWithOptions();
             },
         };
         this.methods = {
@@ -63,8 +64,8 @@ let RadioGroup = class RadioGroup extends SuperComponent {
                 this._trigger('change', { value });
             },
             handleRadioChange(e) {
-                const { value } = e.target.dataset;
-                this.updateValue(value);
+                const { value, index } = e.target.dataset;
+                this._trigger('change', { value, index });
             },
             initWithOptions() {
                 const { options } = this.data;

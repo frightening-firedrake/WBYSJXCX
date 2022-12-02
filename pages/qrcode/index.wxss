@@ -120,7 +120,7 @@ canvas {
   display: flex;
   height:184rpx;
   align-items: center;
-  border-bottom: 1px dashed var(--theme-color);
+  border-bottom: 2px dashed var(--theme-color);
   position: relative;
 }
 .payCard .head::after{

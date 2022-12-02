@@ -53,7 +53,7 @@
     <checkbox-group bindchange="checkAll">
       <label class="checkbox">
         <checkbox value="全选"  style="vertical-align: bottom;" />
-        <text class="label">全选</text>
+        <text class="label">{{checkTip}}</text>
       </label>
     </checkbox-group>
     <view class="daoru" bindtap="import_script">导入</view>

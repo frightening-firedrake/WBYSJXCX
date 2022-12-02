@@ -33,7 +33,7 @@
     </view>
     <view class="codeWrap">
       <view class="tip">扫描下面的二维码收款</view>
-      <canvas style="width: 375rpx; height: 375rpx;" canvas-id="myQrcode"></canvas>
+      <canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
     </view>
   </view>
   <view class="intros">

@@ -40,10 +40,11 @@
               <!-- 门店： -->
               {{itemName.title}}
             </view>
-            <text wx:if="{{itemName.status==1}}" style="color:#FF9B00;" class="order_li_state">已付款</text>
+            <!-- 订单状态待完善 -->
+            <!-- <text wx:if="{{itemName.status==1}}" style="color:#FF9B00;" class="order_li_state">已付款</text>
             <text wx:if="{{itemName.status==2}}" style="color:#FFB800;" class="order_li_state">退款申请</text>
             <text wx:if="{{itemName.status==3}}" style="color:#939393;" class="order_li_state">已退款</text>
-            <text wx:if="{{itemName.status==4}}" style="color:#FF0000;" class="order_li_state">拒绝退款</text>
+            <text wx:if="{{itemName.status==4}}" style="color:#FF0000;" class="order_li_state">拒绝退款</text> -->
           </view>
           <view class="order_li_infor">
             <!-- <view class="order_infor_ba">

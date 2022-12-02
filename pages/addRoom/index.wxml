@@ -60,7 +60,7 @@
                 value="{{room_data.room_person}}" />
             </view>
         </view>
-        <view class="from_view_btn">
+        <view class="from_view_btn  add_view_btn">
           <button style="margin: 30rpx 0" type="primary" bindtap="submitCheck" formType="submit">保存</button>
         </view>
     </mp-form>

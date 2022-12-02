@@ -3,6 +3,11 @@
 }
 .detailBanner{
   position: relative;
+  padding-top:100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height:100vh; */
 }
 .titleH{
   position: absolute;
@@ -22,10 +27,10 @@
 }
 .intro{
   position: relative;
-  margin-top:-10rpx;
+  /* margin-top:-10rpx; */
   /* height: 254rpx; */
   background-color: #fff;
-  border-radius: 16rpx 16rpx 0 0;
+  /* border-radius: 16rpx 16rpx 0 0; */
   /* display: flex; */
   padding:30rpx 40rpx 0rpx;
   box-sizing: border-box;
@@ -39,13 +44,29 @@
   font-size: 32rpx;
   color: #F53A3A;
   display: flex;
-  gap: 60rpx;
-  border-bottom: 1px solid #eee;
-  margin-top:20rpx;
+  /* gap: 60rpx; */
+  justify-content: space-between;
+  border-bottom: 1px solid #D2D2D2;
+  padding-bottom:16rpx;
+  /* margin-top:20rpx;
+  height:80rpx; */
+  height:64rpx;
+  line-height:64rpx;
+}
+.editPrice{
+  width: 146rpx;
+  height: 58rpx;
+  border: 1px solid #FF0000;
+  border-radius: 7rpx;
+  font-size:28rpx;
+  line-height:58rpx;
+  text-align: center;
 }
 .yuanjia{
   color:#999;
   text-decoration: line-through;
+  height:64rpx;
+  line-height: 64rpx;
 }
 .titleH2{
   font-size: 42rpx;
@@ -84,6 +105,7 @@
   font-weight: bold;
   color: #333333;
   line-height: 64rpx;
+  padding-top: 20rpx;
 }
 .article{
   font-size: 25rpx;
@@ -92,12 +114,12 @@
   line-height: 33rpx;
 }
 .see_more{
-  height:60rpx;
+  height:100rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10rpx;
-  font-size: 26rpx;
+  font-size: 25rpx;
   color: #333333;
 }
 .see_more .more_icon{
@@ -105,7 +127,7 @@
   transition: all 0.2s;
 }
 .roles{
-  border-top: 1px solid #eee;
+  border-top: 1px solid #D2D2D2;
 }
 .scroll_view_role{
   height:144rpx;
@@ -117,6 +139,13 @@
   display: flex;
   flex: none;
   overflow: hidden;
+  /* width: 316px; */
+  /* height: 145px; */
+  background: #FFFFFF;
+  border: 1px solid #D2D2D2;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin-right:20rpx;
 }
 .role_li_img image{
   width: 96rpx;
@@ -150,7 +179,8 @@
 
 /* 底部的上下架按钮 */
 .upordown{
-  position: fixed;
+  /* position: fixed; */
+  position: absolute;
   bottom: 3px;
   left: 0;
   height: 100rpx;
@@ -184,23 +214,161 @@
   -webkit-box-orient: vertical;
   overflow: hidden; 
 }
-.page_wrap button[type=primary]{
+page button[type=primary]{
   /* background-image: linear-gradient(#8b8cff,var(--theme-color)); */
   background-color: var(--theme-color);
   border-radius: 40rpx;
   font-size: 34rpx;
   /* margin-top: 60rpx; */
 }
-.page_wrap button[type=primary][plain]{
+page button[type=primary][plain]{
   background-color: transparent;
   background-image: none;
   border: solid 1px var(--theme-color);
   color: var(--theme-color);
 }
-.page_wrap button:not([size=mini]){
+page button:not([size=mini]){
   width: 100%
 }
 .back{
   transform: rotate(180deg);
 }
+.scrollPage{
+  height:100vh;
+  /* background:yellowgreen; */
+}
+#banner{
+  /* height:100vh; */
+  height:460rpx;
+  /* background:palegoldenrod; */
+  position: relative;
+}
+#details{
+  /* height:calc(100vh - 290rpx); */
+  height:calc(100vh - 460rpx);
+  /* background: darkcyan; */
+  position: relative;
+  background:#fff;
+}
+#shop{
+  /* height:150rpx; */
+  position: absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  color:#fff;
+  font-size:24rpx;
+  background:rgba(0,0,0,0.4);
+  /* display: flex;
+  align-items: center;
+  padding:0 30rpx 16rpx;
+  box-sizing: border-box;
+  overflow: hidden; */
+}
+#shop .shopWrap{
+  /* height:134rpx; */
+  height:164rpx;
+  display: flex;
+  align-items: center;
+  padding:0 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.bannerFull{
+  width:100%;
+  height:100%;
+}
+#shop .shopImg{
+  width:104rpx;
+  height:104rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background:#fff;
+  flex: none;
+}
+#shop .borderMore{
+  height:192rpx;
+  background:#fff;
+  /* transition: height 0.1s; */
+}
+#shop .border{
+  height:16rpx;
+  background:#fff;
+  border-radius: 16rpx 16rpx 0 0;
+  overflow: hidden;
+}
+#shop .borderMore .more{
+  font-size: 24rpx;
+  color:#000;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height:100%;
+  width:100%;
+}
+#shop .borderMore .more .arrow{
+  width:40rpx;
+  height:30rpx;
+  margin-bottom:19rpx;
+}
+#shop .borderMore .more .line{
+  margin-top:40rpx;
+  width: 266rpx;
+  height: 10rpx;
+  background: #000000;
+  border-radius: 5rpx;
+}
 
+#shop .info {
+  color:#fff;
+  font-size:24rpx;
+  width:calc(100% - 104rpx - 40rpx);
+  padding-left:24rpx;
+  box-sizing: border-box;
+}
+#shop .info .title{
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+  color:#fff;
+  white-space: nowrap;
+  max-width: 13em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#shop .location {
+  width:40rpx;
+  height:50rpx;
+}
+.detailsBox{
+  /* padding:20rpx 40rpx 0; */
+  padding:0 40rpx;
+  background:#fff;
+  height:calc(100% - 400rpx - 100rpx);
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.detailsBoxShare{
+  height:calc(100% - 400rpx);
+}
+.detailsWrap{
+  height:100%;
+  position: relative;
+}
+.weui-toptips{
+  z-index: 999999999999;
+  top:160rpx;
+}
+
+/* 自定义导航 */
+.fixedNav .t-navbar__content{
+  color:#fff;
+}
+.fixedNav .t-navbar__center-title{
+  font-size:14px;
+}
+.fixedNav .t-icon-base{
+  font-size:28px;
+}

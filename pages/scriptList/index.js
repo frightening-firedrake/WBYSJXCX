@@ -6,9 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    deleteId:'',
     error:"",
     base_file_url: app.globalData.baseUrl,
     businessScriptList: app.globalData.baseUrl + app.globalData.urlData.businessScriptList,
+    businessScriptDeleteScript:app.globalData.baseUrl + app.globalData.urlData.businessScriptDeleteScript,
     scriptConfigList: app.globalData.baseUrl + app.globalData.urlData.scriptConfigList,
     businessScriptChangePrice: app.globalData.baseUrl + app.globalData.urlData.businessScriptChangePrice,
     businessScriptPut: app.globalData.baseUrl + app.globalData.urlData.businessScriptPut,
@@ -516,15 +518,15 @@ Page({
   },
   //侧边过滤 点击确定
   start_filter() {
-
+    
+    this.setData({
+      filterShow: false
+    })
     this.setData({
       dataList: [],
       ['queryJson.page']: 1
     })
     this.getData()
-    this.setData({
-      filterShow: false
-    })
   },
 //侧边过滤 点击重置
 reset_filter() {
@@ -548,7 +550,8 @@ reset_filter() {
       dialogDeleteShow: false
     })
     if(e.detail.index==1){
-      console.log("确认删除",e)
+      console.log("确认删除",this.data.deleteId)
+      this.delete_script(this.data.deleteId)
     }
   },
   //下架弹框 俩按钮事件
@@ -665,9 +668,10 @@ reset_filter() {
     if (this.data[name][index].status === -1) {
       this.setData({
         dialogDeleteShow: true,
-
+        deleteId:e.currentTarget.dataset.id
       })
-      console.log('删除剧本ID',e.currentTarget.dataset.id)
+      // console.log('删除剧本ID',e.currentTarget.dataset.id)
+      // this.delete_script(e.currentTarget.dataset.id)
 
     } else if (this.data[name][index].status === 1) {
       this.setData({
@@ -683,6 +687,47 @@ reset_filter() {
     }
 
   },
-
+  // 删除剧本
+  delete_script(script_code) {
+    // console.log(this.data.script_detail)
+    // return
+    let params={};
+    params.script_code=script_code
+    params.user_code=app.globalData.userCode
+    params.store_id=app.globalData.storeId 
+    wx.request({
+      url: this.data.businessScriptDeleteScript,
+      method: 'POST',
+      data: params,
+      header: {
+        token: app.globalData.token
+      },
+      success: (res) => {
+        wx.hideLoading()
+        if (res.data.status) {
+          this.setData({
+            dialogDeleteShow: false,
+            dataList: [],
+            ['queryJson.page']: 1
+          })
+          this.getData()
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
+      fail() {
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络连接错误，请稍后重试',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
 
 })

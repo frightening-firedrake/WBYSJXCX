@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "mp-icon": "weui-miniprogram/icon/icon",
     "mp-toptips": "weui-miniprogram/toptips/toptips",
     "mp-form-page": "weui-miniprogram/form-page/form-page",
@@ -10,5 +11,6 @@
     "mp-slideview": "weui-miniprogram/slideview/slideview",
     "t-rate": "tdesign-miniprogram/rate/rate"
   },
-  "navigationBarTitleText": "剧本详情"
+  "navigationBarTitleText": "剧本详情",
+  "navigationStyle": "custom"
 }

@@ -34,7 +34,7 @@
                 value="{{host_data.mobile_phone}}" name="mobile_phone" placeholder="请输入DM手机号" />
             </view>
         </view>
-        <view class="from_view_btn">
+        <view class="from_view_btn add_view_btn">
           <button style="margin: 30rpx 0" type="primary" bindtap="submitCheck" formType="submit">保存</button>
         </view>
     </mp-form>

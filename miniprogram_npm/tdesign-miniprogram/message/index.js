@@ -35,8 +35,9 @@ export default {
     error(options) {
         return showMessage(options, MessageType.error);
     },
-    hide() {
-        const instance = getInstance();
+    hide(options) {
+        const { context, selector = '#t-message' } = Object.assign({}, options);
+        const instance = getInstance(context, selector);
         if (!instance) {
             return;
         }

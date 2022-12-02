@@ -24,6 +24,7 @@
     "pages/storeManagement/index",
     "pages/memberLevels/index",
     "pages/scriptDetail/index",
+    "pages/detailsSharing/index",
     "pages/orderDetail/index",
     "pages/payments/index",
     "pages/setScriptTime/index",

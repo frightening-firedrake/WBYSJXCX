@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    scrollInto:'',
+    error:'',
     shareMode:false,
     base_file_url: app.globalData.baseUrl,
     businessScriptDetail: app.globalData.baseUrl + app.globalData.urlData.businessScriptDetail,
@@ -93,6 +95,11 @@ Page({
       score,
     });
   },
+  dialogHide(){
+    this.setData({
+      dialogShow: false,
+    })
+  },
   // 上架按钮点击弹窗
   buttonShowDialog(){
     this.setData({
@@ -139,18 +146,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options)
+    // console.log(options)
+    // console.log(app.globalData)
+    
     this.setData({
       script_code: options.id
     })
     // 判断进入方式为分享页面
     if(options.type=='share'){
-      wx.hideHomeButton()
+      // wx.hideHomeButton()
       // script_detail
       const {id,store_id}=options
       this.setData({
         shareMode: true
       })
+      app.globalData.storeId=store_id
+
       // this.data.script_detail=JSON.parse(options.script_detail)
       // console.log(this.data.script_detail)
       this.getScriptDetailOnShare(id,store_id)
@@ -210,9 +221,8 @@ Page({
     return {
       title: this.data.script_detail.script_name,
       // path: '/pages/scriptDetail/index?id='+this.data.script_code+'&store_id='+app.globalData.storeId+'&type=share&script_detail='+JSON.stringify(this.data.script_detail),
-      path: '/pages/scriptDetail/index?id='+this.data.script_code+'&store_id='+app.globalData.storeId+'&type=share',
+      path: '/pages/detailsSharing/index?id='+this.data.script_code+'&store_id='+app.globalData.storeId+'&type=share',
     }
-    
   },
   // 分享朋友圈
   // onShareTimeline(){
@@ -310,10 +320,10 @@ Page({
         wx.hideLoading()
         // console.log('剧本', res)
         if (res.data.status) {
-          this.setData({
-            "script_detail.status":status
-          })
-          // this.getData()
+          // this.setData({
+          //   "script_detail.status":status
+          // })
+          this.getScriptDetail()
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -376,11 +386,12 @@ Page({
         if (res.data.status) {
           this.setData({
             dialogShow: false,
-            ['script_detail.publish_price']: this.data.script_detail_Price.price,
-            ['script_detail.discount']: this.data.script_detail_Price.discount,
-            ['script_detail.discounted_price']: this.data.script_detail_Price.discount*this.data.script_detail_Price.price,
+          //   ['script_detail.publish_price']: this.data.script_detail_Price.price,
+          //   ['script_detail.discount']: this.data.script_detail_Price.discount,
+          //   // 这里有bug小数保留有问题
+          //   ['script_detail.discounted_price']: this.data.script_detail_Price.discount*this.data.script_detail_Price.price,
           })
-          console.log(this)
+          // console.log(this)
           // this.getData()
           this.up_down_script(this.data.script_detail.script_code,1)
         } else {
@@ -406,6 +417,48 @@ Page({
     // console.log('查看更多')
     this.setData({
       more:!this.data.more
+    })
+  },
+  // 返回首页
+  onGoHome() {
+    wx.reLaunch({
+      url: '/pages/login/index',
+    });
+  },
+  // 上下滚动的两种方式
+  pagescroll(e){
+    if(e.detail.deltaY>0){
+      this.setData({
+        scrollInto:'banner'
+      })
+    }else{
+      this.setData({
+        scrollInto:'details'
+      })
+    }
+  },
+  binddragend(e){
+    console.log(e.detail.velocity.y,'binddragend')
+    if(e.detail.velocity.y>0.2){
+      this.setData({
+        scrollInto:'details'
+      })
+    }else if(e.detail.velocity.y<-0.2){
+      this.setData({
+        scrollInto:'banner'
+      })
+    }
+  },
+  // 导航
+  location(e){
+    // console.log(e.currentTarget.dataset)
+    const {title,address,latitude,longitude}=e.currentTarget.dataset
+    wx.openLocation({
+      latitude:Number(latitude),
+      longitude:Number(longitude),
+      name:title,
+      address:address,
+      scale: 18
     })
   }
 })

@@ -32,7 +32,6 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
         this.options = {
             multipleSlots: true,
         };
-        this.initValue = null;
         this.observers = {
             'start, end, value': function () {
                 this.updateColumns();
@@ -54,14 +53,12 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
             fullModes: [],
             locale: defaultLocale,
         };
-        this.lifetimes = {
-            attached() {
-                const { value, defaultValue } = this.properties;
-                if (value == null && defaultValue != null) {
-                    this.initValue = defaultValue;
-                }
+        this.controlledProps = [
+            {
+                key: 'value',
+                event: 'change',
             },
-        };
+        ];
         this.methods = {
             updateColumns() {
                 this.date = this.getParseDate();
@@ -75,7 +72,7 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 const { value, defaultValue } = this.properties;
                 const minDate = this.getMinDate();
                 const isTimeMode = this.isTimeMode();
-                let currentValue = this.initValue || value || defaultValue;
+                let currentValue = value || defaultValue;
                 if (isTimeMode) {
                     const dateStr = dayjs(minDate).format('YYYY-MM-DD');
                     currentValue = dayjs(`${dateStr} ${currentValue}`);
@@ -352,21 +349,26 @@ let DateTimePicker = class DateTimePicker extends SuperComponent {
                 const { format } = this.properties;
                 const date = this.getDate();
                 const value = format ? date.format(format) : date.valueOf();
-                this.triggerEvent('change', { value });
+                this._trigger('change', { value });
+                this.resetColumns();
             },
             onCancel() {
-                const { value } = this.properties;
-                const parseDate = dayjs(value || DEFAULT_MIN_DATE);
-                this.setData({
-                    date: parseDate,
-                });
+                this.resetColumns();
+                this.triggerEvent('cancel');
+            },
+            onVisibleChange(e) {
+                if (!e.detail.visible) {
+                    this.resetColumns();
+                }
+            },
+            resetColumns() {
+                const parseDate = this.getParseDate();
                 this.date = parseDate;
                 const { columns, columnsValue } = this.getValueCols();
                 this.setData({
                     columns,
                     columnsValue,
                 });
-                this.triggerEvent('cancel');
             },
         };
     }

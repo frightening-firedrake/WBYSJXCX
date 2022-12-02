@@ -26,7 +26,6 @@ let Textarea = class Textarea extends SuperComponent {
             prefix,
             classPrefix: name,
             count: 0,
-            maxchars: -1,
         };
         this.lifetimes = {
             ready() {
@@ -36,31 +35,20 @@ let Textarea = class Textarea extends SuperComponent {
         };
         this.methods = {
             updateValue(value) {
-                const { maxcharacter } = this.properties;
-                const maxcharacterValue = Number(maxcharacter);
-                if (maxcharacter && maxcharacter > 0 && !Number.isNaN(maxcharacter)) {
-                    const { length = 0, characters, overflow } = getCharacterLength(value, maxcharacter);
-                    if (length < maxcharacterValue) {
-                        this.setData({
-                            value,
-                            count: length,
-                            maxchars: -1,
-                        });
-                    }
-                    else if (!overflow) {
-                        this.setData({
-                            value,
-                            count: length,
-                            maxchars: value.length,
-                        });
-                    }
-                    else {
-                        this.setData({
-                            value: characters,
-                            count: length,
-                            maxchars: value.length - 1,
-                        });
-                    }
+                const { maxcharacter, maxlength } = this.properties;
+                if (maxcharacter > 0 && !Number.isNaN(maxcharacter)) {
+                    const { length, characters } = getCharacterLength('maxcharacter', value, maxcharacter);
+                    this.setData({
+                        value: characters,
+                        count: length,
+                    });
+                }
+                else if (maxlength > 0 && !Number.isNaN(maxlength)) {
+                    const { length, characters } = getCharacterLength('maxlength', value, maxlength);
+                    this.setData({
+                        value: characters,
+                        count: length,
+                    });
                 }
                 else {
                     this.setData({
@@ -72,7 +60,7 @@ let Textarea = class Textarea extends SuperComponent {
             onInput(event) {
                 const { value } = event.detail;
                 this.updateValue(value);
-                this.triggerEvent('change', { value });
+                this.triggerEvent('change', { value: this.data.value });
             },
             onFocus(event) {
                 this.triggerEvent('focus', Object.assign({}, event.detail));

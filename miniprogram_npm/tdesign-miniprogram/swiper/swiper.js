@@ -107,6 +107,27 @@ let Swiper = class Swiper extends SuperComponent {
             prefix,
             classPrefix: `${prefix}-swiper`,
         };
+        this.methods = {
+            init() {
+                if (this.hasInited)
+                    return;
+                this.createSelectorQuery()
+                    .select('#swiper')
+                    .boundingClientRect((rect) => {
+                    if (rect.width === 0)
+                        return;
+                    this.hasInited = true;
+                    this.setData({
+                        _width: rect.width,
+                        _height: rect.height,
+                    });
+                    this.initItem();
+                    this.initNav();
+                    this.initCurrent();
+                })
+                    .exec();
+            },
+        };
     }
     attached() {
         this.control = useControl.call(this, {
@@ -118,18 +139,7 @@ let Swiper = class Swiper extends SuperComponent {
         this.pause();
     }
     ready() {
-        this.createSelectorQuery()
-            .select('#swiper')
-            .boundingClientRect((rect) => {
-            this.setData({
-                _width: rect.width,
-                _height: rect.height,
-            });
-            this.initItem();
-            this.initNav();
-            this.initCurrent();
-        })
-            .exec();
+        this.init();
     }
     initItem() {
         const { direction } = this.properties;

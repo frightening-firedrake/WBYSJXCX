@@ -93,7 +93,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getRecordList(1)
+    // this.getRecordList(1)
     this.getConfigList()
     // if(typeof this.getTabBar === 'function' && this.getTabBar()){
     //   this.getTabBar().setData({
@@ -259,9 +259,11 @@ Page({
   },
 
   selectedDay(e){
+    // .toISOString()
+    // console.log(e)
     let year=e.detail.year;
-    let month=e.detail.month;
-    let day=e.detail.day;
+    let month=e.detail.month-10<0?'0'+e.detail.month:e.detail.month;
+    let day=e.detail.day-10<0?'0'+e.detail.day:e.detail.day;
     console.log('selectedDay',`${year}-${month}-${day}`)
     this.data.queryJson.appointment_time=[`${year}-${month}-${day}`]
     this.getRecordList()

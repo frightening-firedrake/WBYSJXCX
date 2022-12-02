@@ -5,11 +5,13 @@
 }
 .logo_img{
   width: 127rpx;
+  height: 127rpx;
 }
 .login_section{
   padding: 0 76rpx;
   background:#fff;
   height:100vh;
+  overflow: hidden;
 }
 .login_input{
   height: 80rpx;

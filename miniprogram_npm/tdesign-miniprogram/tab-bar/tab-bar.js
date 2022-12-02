@@ -18,6 +18,7 @@ let Tabbar = class Tabbar extends SuperComponent {
             },
         };
         this.externalClasses = [`${prefix}-class`];
+        this.backupValue = 0;
         this.data = {
             prefix,
             classPrefix,

@@ -40,8 +40,8 @@
         </label>
       </mp-cells>
     </mp-form>
-    <view slot="button">
-      <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+    <view slot="button" class=" add_view_btn">
+      <button style="margin:16px 0;" class="weui-btn" type="primary" bindtap="submitForm">确定</button>
     </view>
 
 <!-- 门店选择picker -->

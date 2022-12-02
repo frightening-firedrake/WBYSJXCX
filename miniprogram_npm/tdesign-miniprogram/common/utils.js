@@ -71,34 +71,45 @@ export const addUnit = function (value) {
     value = String(value);
     return isNumber(value) ? `${value}px` : value;
 };
-export const getCharacterLength = (str, maxCharacter) => {
-    const hasMaxCharacter = typeof maxCharacter === 'number';
+export const getCharacterLength = (type, str, max) => {
     if (!str || str.length === 0) {
         return {
             length: 0,
             characters: '',
         };
     }
-    let len = 0;
-    for (let i = 0; i < str.length; i += 1) {
-        let currentStringLength = 0;
-        if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
-            currentStringLength = 2;
+    if (type === 'maxcharacter') {
+        let len = 0;
+        for (let i = 0; i < str.length; i += 1) {
+            let currentStringLength = 0;
+            if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
+                currentStringLength = 2;
+            }
+            else {
+                currentStringLength = 1;
+            }
+            if (len + currentStringLength > max) {
+                return {
+                    length: len,
+                    characters: str.slice(0, i),
+                };
+            }
+            len += currentStringLength;
         }
-        else {
-            currentStringLength = 1;
-        }
-        if (hasMaxCharacter && len + currentStringLength > maxCharacter) {
-            return {
-                length: len,
-                characters: str.slice(0, i),
-                overflow: true,
-            };
-        }
-        len += currentStringLength;
+        return {
+            length: len,
+            characters: str,
+        };
+    }
+    else if (type === 'maxlength') {
+        const length = str.length > max ? max : str.length;
+        return {
+            length,
+            characters: str.slice(0, length),
+        };
     }
     return {
-        length: len,
+        length: str.length,
         characters: str,
     };
 };

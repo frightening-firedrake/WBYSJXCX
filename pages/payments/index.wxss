@@ -8,3 +8,8 @@
   text-overflow: ellipsis;
   width: calc(100vw - 64rpx - 125px);
 }
+.page_app {
+  min-height:100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}

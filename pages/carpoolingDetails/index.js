@@ -1,13 +1,19 @@
 // pages/carpoolingDetails/index.js
 const app = getApp()
+import Message from 'tdesign-miniprogram/message/index';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    players:'',
+    playersId:'',
+    error:'',
     base_file_url: app.globalData.baseUrl,
-    businessHostList: app.globalData.baseUrl + app.globalData.urlData.businessHostList,
+    businessHostList: app.globalData.baseUrl + app.globalData.urlData.businessHostList,//主持人
+    businessRoomList: app.globalData.baseUrl + app.globalData.urlData.businessRoomList,//房间
+    checkDate: app.globalData.baseUrl + app.globalData.urlData.checkDate,//校验时间段
     recordDetail:app.globalData.baseUrl + app.globalData.urlData.recordDetail,
     cancelAppointment:app.globalData.baseUrl + app.globalData.urlData.cancelAppointment,
     acceptAppointment:app.globalData.baseUrl + app.globalData.urlData.acceptAppointment, 
@@ -27,6 +33,14 @@ Page({
     DMValue:'',
     DMLabel:'',
     DMList: [
+      { label: '张三1', value: '张三1' },
+      { label: '张三2', value: '张三2' },
+      { label: '张三3', value: '张三3' },
+    ],
+    roomVisible:false,
+    roomValue:'',
+    roomLabel:'',
+    roomList: [
       { label: '张三1', value: '张三1' },
       { label: '张三2', value: '张三2' },
       { label: '张三3', value: '张三3' },
@@ -65,9 +79,10 @@ Page({
       'queryJson.appointment_id':options.id,
       date:day
     })
-    // 大概需要建立WebSocket链接
+    // 大概不需要建立WebSocket链接
     this.getRecordDetail()
     this.getBusinessHostList()
+    this.getBusinessRoomList()
   },
 
   /**
@@ -152,8 +167,24 @@ Page({
       schoolboyMax:this.data.sub_count-value
     });
   },
-  delPlayer(){
-    console.log('长按删除')
+  // 踢出未付款玩家
+  delPlayer(e){
+    // console.log('长按删除',e.currentTarget.dataset)
+    const {id}=e.currentTarget.dataset
+    // console.log(id)
+    this.setData({
+      playersId:id,
+      dialogShowDel:true
+    })
+  },
+  tapDialogButtonDel(e){
+    if(e.detail.index==1){
+      console.log(this.data.playersId)
+      // 调用删除接口
+    }
+    this.setData({
+      dialogShowDel: false,
+    })
   },
   // 带上id去详情页
   toReservationInformation(e){
@@ -183,24 +214,81 @@ Page({
     if(e.detail.index==1){
       // console.log(this.data.reason)
       if(this.data.refuseTitle=='不接单'){
-        this.setCancelAppointment()
+        this.setCancelAppointment(5)
       }else{
         console.log('我要流车')
-        // this.setCancelAppointment()
+        this.setCancelAppointment(4)
       }
     }
     this.setData({
       dialogShowRefuse: false,
     })
   },
+  // fuck接单换锁车真6
   receiving(){
     console.log('接单了')
-  },
-  // 锁车
-  lock(){
     this.setData({
       lockVisible:true
     })
+  },
+  // 锁车
+  lock(){
+    console.log('锁车了')
+    // console.log(this.data.detaildata.sub_count)
+    if(this.data.detaildata.sub_count){
+      Message.warning({
+        context: this,
+        offset: [20, 32],
+        duration: 2000,
+        content: '当拼车人数满足条件时可锁车',
+      });
+    }else{
+      this.setData({
+        dialogShowLock:true
+      })
+    }
+  },
+  tapDialogButtonLock(e){
+    if(e.detail.index==1){
+      console.log('锁车')
+      // 调用锁车接口
+    }
+    this.setData({
+      dialogShowLock: false,
+    })
+  },
+  // 效验表单项
+  lockOn(){
+    // 主持人，房间，日期，时间
+    const {DMLabel,DMValue,roomLabel,roomValue,date,time1}=this.data
+    
+    if(!roomLabel){
+      this.setData({
+        error: '请选择房间'
+      })
+      return
+    }
+    if(!date){
+      this.setData({
+        error: '请选择拼车日期'
+      })
+      return
+    }
+    if(!time1){
+      this.setData({
+        error: '请选择拼车开始时间'
+      })
+      return
+    }
+    if(!DMLabel){
+      this.setData({
+        error: '请选择主持人'
+      })
+      return
+    }
+    console.log('表单可提交')
+    // console.log(DMValue,roomValue,date,time1)
+    this.setAcceptAppointment(DMValue,roomValue,date,time1)
   },
   closeLock(){
     this.setData({
@@ -218,10 +306,22 @@ Page({
       DMVisible:true
     })
   },
+  // 房间
+  showRoomVisible(){
+    this.setData({
+      roomVisible:true
+    })
+  },
   onDMPickerChange(e){
     this.setData({
       DMValue:e.detail.value[0],
       DMLabel:e.detail.label[0],
+    })
+  },
+  onRoomPickerChange(e){
+    this.setData({
+      roomValue:e.detail.value[0],
+      roomLabel:e.detail.label[0],
     })
   },
   showDateVisible(){
@@ -312,7 +412,7 @@ Page({
     })
   },
   // 拒绝接单
-  setCancelAppointment(){
+  setCancelAppointment(status){
     wx.showLoading({
       title: '加载中',
     })
@@ -320,6 +420,7 @@ Page({
     queryJson.user_code = app.globalData.userCode
     queryJson.appointment_id = this.data.queryJson.appointment_id
     queryJson.cancel_cause = this.data.reason
+    queryJson.status=status
     wx.request({
       url: this.data.cancelAppointment,
       method: 'POST',
@@ -330,11 +431,21 @@ Page({
       success:(res)=>{
         wx.hideLoading()
         if(res.data.status){
-          this.setData({
-            Tiperror2:true,
-            'detaildata.status':5,
-            Tiperror2Text:queryJson.cancel_cause
-          })
+          // status 5拒绝 4流车
+          if(status==5){
+            this.setData({
+              Tiperror2:true,
+              'detaildata.status':5,
+              Tiperror2Text:queryJson.cancel_cause
+            })
+          }else if(status==4){
+            this.setData({
+              Tiperror2:true,
+              'detaildata.status':4,
+              Tiperror2Text:queryJson.cancel_cause
+            })
+          }
+          this.getRecordDetail()
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -354,7 +465,71 @@ Page({
     })
   },
   // 接单
-  setAcceptAppointment(){
+  setAcceptAppointment(DMValue,roomValue,date,time1){
+    wx.showLoading({
+      title: '加载中',
+    })
+    let queryJson = {}
+    queryJson.user_code = app.globalData.userCode
+    queryJson.appointment_id = this.data.queryJson.appointment_id
+    queryJson.dm_id = DMValue
+    queryJson.appointment_date = date
+    queryJson.appointment_time = time1
+    queryJson.room_number = roomValue
+    wx.request({
+      url: this.data.acceptAppointment,
+      method: 'POST',
+      data:queryJson,
+      header:{
+        token:app.globalData.token
+      },
+      success:(res)=>{
+        wx.hideLoading()
+        if(res.data.status){
+          this.setData({
+            Tipsuccess1:true,
+            lockVisible:false,
+            'detaildata.status':1
+          })
+          Message.success({
+            context: this,
+            offset: [20, 32],
+            duration: 3000,
+            content: '接单成功',
+          });
+          let that=this
+          setTimeout(function(){
+            that.getRecordDetail()
+          },3000)
+          // wx.navigateBack()
+        } else {
+          // wx.showToast({
+          //   title: res.data.msg,
+          //   icon: 'error',
+          //   duration: 2000
+          // })
+          this.setData({
+            error:res.data.msg
+          })
+          // Message.error({
+          //   context: this,
+          //   offset: [20, 32],
+          //   duration: 2000,
+          //   content: res.data.msg,
+          // });
+        }
+      },
+      fail(){
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络连接错误，请稍后重试',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
+  setAcceptAppointment2(){
     wx.showLoading({
       title: '加载中',
     })
@@ -484,6 +659,47 @@ Page({
       }
     })
   },
+  // 获取房间列表
+  getBusinessRoomList(){
+    let params={
+      user_code: app.globalData.userCode,
+      store_id:app.globalData.storeId
+    }
+    wx.request({
+      url: this.data.businessRoomList,
+      method: 'POST',
+      data:params,
+      header:{
+        token:app.globalData.token
+      },
+      success: (res) => {
+        wx.hideLoading()
+        if(res.data.status){
+          res.data.data.forEach((v)=>{
+            v.label=v.room_name
+            v.value=v.room_code
+          })
+          this.setData({
+            roomList: res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'error',
+            duration: 2000
+          })
+        }
+      },
+      fail(){
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络连接错误，请稍后重试',
+          icon: 'error',
+          duration: 2000
+        })
+      }
+    })
+  },
   // 设置标题的方法
   setTitle(status){
     // status
@@ -531,5 +747,15 @@ Page({
         })
         break;
     }
+  },
+  makePhoneCall(e){
+    // let phone=
+    // console.log(e.currentTarget.dataset.phone)
+      let phonenumber=e.currentTarget.dataset.phone;
+      if(phonenumber){
+        wx.makePhoneCall({
+          phoneNumber:phonenumber
+        })
+      }
   }
 })

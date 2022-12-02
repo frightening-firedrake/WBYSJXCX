@@ -34,8 +34,7 @@ const props = {
         type: Array,
     },
     icon: {
-        type: String,
-        optionalTypes: [Array],
+        type: null,
         value: 'fill-circle',
     },
     label: {
@@ -54,8 +53,7 @@ const props = {
         value: '',
     },
     value: {
-        type: String,
-        optionalTypes: [Number, Boolean],
+        type: null,
         value: false,
     },
 };

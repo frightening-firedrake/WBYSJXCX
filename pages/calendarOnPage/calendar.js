@@ -348,27 +348,51 @@ Component({
             }
         },
     },
-    lifetimes: {
-        ready() {
-            let now = this.data.defaultTime ? new Date(this.data.defaultTime) : new Date()
-            let selectDay = {
+    // lifetimes: {
+    //     ready() {
+    //         let now = this.data.defaultTime ? new Date(this.data.defaultTime) : new Date()
+    //         let selectDay = {
+    //             year: now.getFullYear(),
+    //             month: now.getMonth() + 1,
+    //             day: now.getDate()
+    //         }
+    //         this.setData({
+    //             nowDay: {
+    //                 year: now.getFullYear(),
+    //                 month: now.getMonth() + 1,
+    //                 day: now.getDate()
+    //             }
+    //         })
+    //         this.setMonth(selectDay.year, selectDay.month, selectDay.day)
+    //         this.updateList(now, -1, 0)
+    //         this.updateList(now, 0, 1)
+    //         this.updateList(now, 1, 2)
+    //         this.setSwiperHeight(1)
+    //     },
+    // },
+    pageLifetimes:{
+      show() {
+        console.log('show')
+        // 从ready中移出因为当下及页面返回时不会触发ready导致页面不刷新跟咱的业务逻辑又冲突
+        let now = this.data.defaultTime ? new Date(this.data.defaultTime) : new Date()
+        let selectDay = {
+            year: now.getFullYear(),
+            month: now.getMonth() + 1,
+            day: now.getDate()
+        }
+        this.setData({
+            nowDay: {
                 year: now.getFullYear(),
                 month: now.getMonth() + 1,
                 day: now.getDate()
             }
-            this.setData({
-                nowDay: {
-                    year: now.getFullYear(),
-                    month: now.getMonth() + 1,
-                    day: now.getDate()
-                }
-            })
-            this.setMonth(selectDay.year, selectDay.month, selectDay.day)
-            this.updateList(now, -1, 0)
-            this.updateList(now, 0, 1)
-            this.updateList(now, 1, 2)
-            this.setSwiperHeight(1)
-        }
+        })
+        this.setMonth(selectDay.year, selectDay.month, selectDay.day)
+        this.updateList(now, -1, 0)
+        this.updateList(now, 0, 1)
+        this.updateList(now, 1, 2)
+        this.setSwiperHeight(1)
+      },
     },
     observers: {
         defaultOpen(value){

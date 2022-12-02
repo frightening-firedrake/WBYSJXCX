@@ -100,16 +100,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width:120rpx;
+  /* width:120rpx; */
+  width:125rpx;
   position: relative;
 }
 .memberbox .memberWrap .member .avatar{
-  width:76rpx;
-  height:76rpx;
+  /* width:76rpx;
+  height:76rpx; */
+  width:97rpx;
+  height:97rpx;
   border-radius: 50%;
   box-sizing: border-box;
   /* border: 1px solid #4576D7; */
-  border: 1px solid var(--theme-color);
+  /* border: 1px solid var(--theme-color); */
+  border: 2px solid #F0F0F0;
 }
 .memberbox .memberWrap .member .gender{
   width:24rpx;
@@ -117,7 +121,17 @@
   background-color: hotpink;
   border-radius: 50%;
   position: absolute;
-  top:52rpx;
+  /* top:52rpx; */
+  top:73rpx;
+  left:50%;
+  margin-left: 20rpx;
+}
+.memberbox .memberWrap .member .delPlayer{
+  width:24rpx;
+  height:24rpx;
+  border-radius: 50%;
+  position: absolute;
+  top:0;
   left:50%;
   margin-left: 20rpx;
 }
@@ -137,15 +151,20 @@
   background-color:#FF9B00;
 }
 .memberbox .memberWrap .memberAdd{
-  width:76rpx;
-  height:76rpx;
+  /* width:76rpx;
+  height:76rpx; */
+  width:97rpx;
+  height:97rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   box-sizing: border-box;
-  border: 2px solid #ED6C1E;
-  color:#ED6C1E;
+  /* border: 2px solid #ED6C1E;
+  color:#ED6C1E; */
+  border: 2px solid #F0F0F0;
+  color:#333;
+  background:#F0F0F0;
 }
 .memberbox>.tip{
   border-bottom:1px solid rgb(242,242,242);
@@ -175,6 +194,8 @@
   align-items: center;
   min-height:110rpx;
   background-color: #F6F6F6;
+  /* background-color:#f0f0f0; */
+
 }
 .feedback icon.onerow{
   margin-top:-44rpx;
@@ -284,4 +305,72 @@
   position: fixed;
   bottom:0;
   left:0;
+}
+.appointmentInformation{
+  /* padding:20rpx 0; */
+  background:#f0f0f0;
+}
+.appointmentInformation .title{
+  background:#fff;
+  padding: 0 46rpx;
+  line-height: 90rpx;
+  color: #333;
+  font-size: 33rpx;
+  font-weight: bold;
+}
+.appointmentInformation .infoBox{
+  background:#fff;
+  padding: 0 46rpx;
+  margin:10rpx 0;
+  display: flex;
+  align-items: center;
+  height:132rpx;
+}
+.appointmentInformation .infoBox .avatar{
+  /* width: 76rpx;
+  height: 76rpx; */
+  width: 97rpx;
+  height: 97rpx;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 2px solid #F0F0F0;
+  margin-right:20rpx;
+}
+.appointmentInformation .infoBox .info1{
+  flex: 1;
+  color: #666;
+  font-size: 28rpx;
+}
+.appointmentInformation .infoBox .label{
+  color:#333;
+  line-height:51rpx;
+}
+.appointmentInformation .infoBox .value{
+  white-space: nowrap;
+  overflow: hidden;
+  line-height:51rpx;
+}
+.appointmentInformation .infoBox .info1 .name{
+  display: flex;
+}
+.appointmentInformation .infoBox .info2{
+  display: flex;
+  width:9em;
+  text-align: right;
+  color: #666;
+  font-size: 28rpx;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.appointmentInformation .infoBox .info2 .appointment{
+  display: flex;
+}
+/* 错误提示 */
+.weui-toptips{
+  z-index: 999999999999;
+}
+.dialogcontentMsg{
+  text-align: left;
+  font-size:30rpx;
+  color:#999;
 }

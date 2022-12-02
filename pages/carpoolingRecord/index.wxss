@@ -114,9 +114,16 @@
 .order_infor_label{
   color: #666;
   font-weight: normal;
-  width: 5em;
+  width: 4em;
   text-align: justify;
   text-align-last: justify;
+  font-size:28rpx;
+  margin-right:20rpx;
+  position: relative;
+}
+.order_infor_label::after{
+  content: "：";
+  position: absolute;
 }
 .order_price{
   position: absolute;
